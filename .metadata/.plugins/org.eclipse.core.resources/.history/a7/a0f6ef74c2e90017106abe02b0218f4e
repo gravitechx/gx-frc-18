@@ -23,7 +23,7 @@ public class Robot extends IterativeRobot {
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static final AutoDrive autoDrive = new AutoDrive();
 	public static OI oi;
-	public static RobotMap rm;//create a new RobotMap (See RobotMap.java)
+	public static RobotMap rm;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		rm = new RobotMap();//define rm as a RobotMap
+		rm = new RobotMap();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
