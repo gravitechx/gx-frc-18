@@ -26,6 +26,6 @@ public class AutoCommands extends CommandGroup {
         // arm.
     	
     	//THIS IS WHERE YOU COMMANDS LIKE SCRATCH BLOCK PROGRAMMING
-    	addSequential(new DriveF (3));
+    	addSequential(new Drive(3));
     }
 }
