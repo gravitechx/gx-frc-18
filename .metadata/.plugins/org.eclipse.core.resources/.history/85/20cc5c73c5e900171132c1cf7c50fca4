@@ -24,7 +24,7 @@ public class AutoDrive extends Subsystem {
 	}
 	
 	public static void turnLeft () {
-		Robot.rm.myRobot.drive(0.0, -1.0);
+		Robot.rm.myRobot.drive(0.0, -1);
 	}
 	
 	public static void turnRight () {
