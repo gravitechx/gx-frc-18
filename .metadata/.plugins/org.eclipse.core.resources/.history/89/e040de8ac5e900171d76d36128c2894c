@@ -10,19 +10,15 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class Drive extends Command {
-	double sec, power;
+	double sec;
 	Timer timer = new Timer();
 	boolean done = false;
 	
-    public Drive(double sec, double power) {
+    public Drive(double sec) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.autoDrive);
     	this.sec = sec;
-    	this.power=power;
-    }
-    public Drive(double sec) {
-    	this(sec,0.3);
     }
     
     public void start () {//Called whenever you begin this Drive command
@@ -36,7 +32,7 @@ public class Drive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	AutoDrive.forward(power);
+    	AutoDrive.forward();
     	if (timer.get() >= sec){
     		end();
     	}
