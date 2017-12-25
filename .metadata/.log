@@ -243,3 +243,44 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2017-12-25 13:58:52.113 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_151
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.java.product
+
+!ENTRY org.eclipse.jdt.core 4 0 2017-12-25 13:59:33.703
+!MESSAGE Invalid ZIP archive: C:\Users\Nate\wpilib\java\current\lib\WPILib.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2017-12-25 13:59:33.703
+!MESSAGE Invalid ZIP archive: C:\Users\Nate\wpilib\java\current\lib\NetworkTables.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2017-12-25 13:59:33.703
+!MESSAGE Invalid ZIP archive: C:\Users\Nate\wpilib\java\current\lib\opencv.jar
+
+!ENTRY org.eclipse.jdt.core 4 0 2017-12-25 13:59:33.703
+!MESSAGE Invalid ZIP archive: C:\Users\Nate\wpilib\java\current\lib\cscore.jar
+
+!ENTRY org.eclipse.egit.ui 2 0 2017-12-25 13:59:37.876
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Max'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-12-25 13:59:38.071
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-12-25 13:59:38.075
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-12-25 13:59:38.128
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2017-12-25 13:59:38.146
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2017-12-25 13:59:38.188
+!MESSAGE Updating projects
