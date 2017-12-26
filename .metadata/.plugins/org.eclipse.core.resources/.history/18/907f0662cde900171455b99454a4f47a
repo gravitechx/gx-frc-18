@@ -22,7 +22,7 @@ public class DriveF extends Command {
     	this.power=power;
     }
     public DriveF (double sec) {
-    	this(sec, 0.3);
+    	this(sec,0.3);
     }
     
     public void start () {//Called whenever you begin this Drive command
