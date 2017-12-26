@@ -14,8 +14,8 @@ public class AutoCommands extends CommandGroup {
          * addParallel's have commands executed at the same time.
          */
     	
-    	addSequential(new Drive (3));
-    	addSequential(new Drive (-3));
+    	addSequential(new DriveF (3));
+    	addSequential(new DriveR (3));
     	
     }
 }
