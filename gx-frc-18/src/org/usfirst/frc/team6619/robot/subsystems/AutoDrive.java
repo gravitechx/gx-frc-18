@@ -13,22 +13,22 @@ public class AutoDrive extends Subsystem {
     // here. Call these from Commands.
 
 	public static void forward (double power) {
-		Robot.rm.myRobot.drive(power,  0);
+		Robot.rm.myRobot.drive(power, 0.0);//Has the myRobot object in the RobotMap (in the RobotMap instance created in Robot.java) drive forward at power magnitude at a curve of 0
 	}
 	public static void reverse (double power) {
-		Robot.rm.myRobot.drive(-power, 0.0);
+		Robot.rm.myRobot.drive(-power, 0.0);//Has the myRobot object in the RobotMap (in the RobotMap instance created in Robot.java) drive backward at power magnitude at a curve of 0
 	}
 	
 	public static void stop () {
-		Robot.rm.myRobot.stopMotor();
+		Robot.rm.myRobot.stopMotor();//Has the myRobot object in the RobotMap (in the RobotMap instance created in Robot.java) stop moving the motors
 	}
 	
-	public static void turnLeft () {
-		Robot.rm.myRobot.drive(0.0, -1.0);
+	public static void turnLeft (double power) {
+		Robot.rm.myRobot.drive(power, -1.0);//Has the myRobot object in the RobotMap (in the RobotMap instance created in Robot.java) turn to the left as sharply as possible at power
 	}
 	
-	public static void turnRight () {
-		Robot.rm.myRobot.drive(0.0, 1.0);
+	public static void turnRight (double power) {
+		Robot.rm.myRobot.drive(power, 1.0);//Has the myRobot object in the RobotMap (in the RobotMap instance created in Robot.java) turn to the right as sharply as possible at power
 	}
 	
     public void initDefaultCommand() {
