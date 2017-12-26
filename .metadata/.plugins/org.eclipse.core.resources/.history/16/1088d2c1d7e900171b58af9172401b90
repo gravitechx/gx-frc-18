@@ -56,9 +56,9 @@ public class DriveF extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	AutoDrive.stop();//Stops the robot moving
-		timer.stop();//Stops the timer
-		done = true;//Allows isFinished() to return true
+    	AutoDrive.stop();//stops the robot moving
+		timer.stop();//stops the timer
+		done = true;//allows isFinished() to return true
     }
 
     // Called when another command which requires one or more of the same

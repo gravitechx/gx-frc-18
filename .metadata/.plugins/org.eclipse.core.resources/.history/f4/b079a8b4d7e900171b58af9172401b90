@@ -20,10 +20,10 @@ public class DriveF extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.autoDrive);//Reserves the AutoDrive subsystem to use in its commands
-    	this.sec = sec;//Sets the class level variable 'sec' to what the command is given
-    	this.power = power;//Sets the class level variable 'power' to what the command is given
-    	timer = new Timer();//Sets the class level variable 'timer' to a new instance of a Timer
-    	done = false;//Sets the class level boolean 'done' to false
+    	this.sec = sec;//Sets the class level variable 'sec' to what the command is given to initialize
+    	this.power=power;//Sets the class level variable 'power' to what the command is given to initialize
+    	timer=new Timer();//Sets the class level variable 'timer' to a new instance of a Timer
+    	done=false;//Sets the class level boolean 'done' to false, which says that the command isn't done running yet (changed in end() later on)
     }
     
     //Makes it so if only one double is given, the automatic power is set to 0.3
@@ -39,11 +39,11 @@ public class DriveF extends Command {
     // Called just before this Command. This is to be run first to set everything up for execution
     protected void initialize() {
     	timer.start();//Starts the timer needed to keep track of time robot is driving
+    	AutoDrive.move(power);
     }
 
     // Called repeatedly when this Command is 'running'
     protected void execute() {
-    	AutoDrive.move(power);
     	if (timer.hasPeriodPassed(sec)){//If the time that the robot has been moving is passed, the following statements will run
     		end();//Calls the method to finish off the command
     	}
@@ -57,8 +57,8 @@ public class DriveF extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	AutoDrive.stop();//Stops the robot moving
-		timer.stop();//Stops the timer
-		done = true;//Allows isFinished() to return true
+		timer.stop();//stops the timer
+		done = true;//Sets done to 'true', which allows isFinished() to return true, meaning 'The command is done'
     }
 
     // Called when another command which requires one or more of the same
