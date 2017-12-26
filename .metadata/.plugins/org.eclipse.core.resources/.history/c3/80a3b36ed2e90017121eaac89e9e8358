@@ -12,8 +12,11 @@ public class AutoDrive extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-	public static void move (double power) {
+	public static void forward (double power) {
 		Robot.rm.myRobot.drive(power, 0.0);//Has the myRobot object in the RobotMap (in the RobotMap instance created in Robot.java) drive forward at power magnitude at a curve of 0
+	}
+	public static void reverse (double power) {
+		Robot.rm.myRobot.drive(-power, 0.0);//Has the myRobot object in the RobotMap (in the RobotMap instance created in Robot.java) drive backward at power magnitude at a curve of 0
 	}
 	
 	public static void stop () {
