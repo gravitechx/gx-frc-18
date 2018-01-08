@@ -1,0 +1,24 @@
+INDEX VERSION 1.127+C:\Users\Nate\Documents\GitHub\gx-frc-18\.metadata\.plugins\org.eclipse.jdt.core
+2951431056.index
+61436394.index
+3065053440.index
+2509800163.index
+2365264807.index
+1470073441.index
+2688783450.index
+3677362244.index
+2901560446.index
+3786438684.index
+60382526.index
+767842954.index
+695715848.index
+289811613.index
+3894941320.index
+664140773.index
+1101913381.index
+3767767424.index
+2535932313.index
+575557243.index
+1063643129.index
+994354061.index
+1408211338.index
