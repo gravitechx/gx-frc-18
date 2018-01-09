@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team6619.robot;
+package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team6619.robot.commands.ExampleCommand;
-import org.usfirst.frc.team6619.robot.subsystems.ExampleSubsystem;
+import org.gravitechx.frc2018.robot.commands.ExampleCommand;
+import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,7 +27,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
-	 * This function is run when the robot is first started up and should be
+	 * This function is run when the robot is first startedex up and should be
 	 * used for any initialization code.
 	 */
 	@Override
