@@ -113,7 +113,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		//SmartDash.putNumber("EUREKA", pdp.getVoltage());
-		//SmartDash.updateValues();
+		//SmartDash.u
 	}
 
 	/**
