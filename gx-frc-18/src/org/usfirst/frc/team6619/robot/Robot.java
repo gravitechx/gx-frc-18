@@ -2,12 +2,14 @@
 package org.usfirst.frc.team6619.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team6619.robot.io.*;
+//import org.usfirst.frc.team6619.robot.io.*;
 import org.usfirst.frc.team6619.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6619.robot.subsystems.ExampleSubsystem;
 
@@ -22,7 +24,9 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static RobotMap rm;
 	public static SmartDashboard SmartDash;
+	public static PowerDistributionPanel pdp;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -34,9 +38,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		rm = new RobotMap();
 		SmartDash = new SmartDashboard();
+		pdp = new PowerDistributionPanel();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
+		//SmartDash.putNumber("EUREKA", pdp.getVoltage());
 	}
 
 	/**
