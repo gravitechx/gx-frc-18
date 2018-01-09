@@ -1,8 +1,8 @@
-package org.usfirst.frc.team6619.robot.commands;
+package org.gravitechx.frc2018.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team6619.robot.Robot;
+import org.gravitechx.frc2018.robot.Robot;
 
 /**
  *
