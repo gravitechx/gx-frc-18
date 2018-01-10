@@ -43,7 +43,10 @@ public class Robot extends IterativeRobot {
 		pdp = new PowerDistributionPanel();
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDash.putNumber("EUREKA", pdp.getVoltage());
+		SmartDash.putNumber("Total Voltage", pdp.getVoltage());
+		SmartDash.putNumber("Port 0", pdp.getCurrent(0));
+		SmartDash.putNumber("Port 1", pdp.getCurrent(1));
+		SmartDash.putBoolean("ON? OFF?", true);
 	}
 
 	/**
