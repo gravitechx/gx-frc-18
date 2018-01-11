@@ -2,7 +2,9 @@
 package org.usfirst.frc.team6619.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -23,6 +25,8 @@ import org.usfirst.frc.team6619.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+	public double[] amps;
+	public static Joystick joy;
 	public static OI oi;
 	public static RobotMap rm;
 	public static SmartDashboard SmartDash;
@@ -37,16 +41,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		amps = new double[15];
+		joy = new Joystick(0);		
 		oi = new OI();
 		rm = new RobotMap();
 		SmartDash = new SmartDashboard();
 		pdp = new PowerDistributionPanel();
 		chooser.addDefault("Default Auto", new ExampleCommand());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDash.putNumber("Total Voltage", pdp.getVoltage());
-		SmartDash.putNumber("Port 0", pdp.getCurrent(0));
-		SmartDash.putNumber("Port 1", pdp.getCurrent(1));
-		SmartDash.putBoolean("ON? OFF?", true);
+		//chooser.addObject("My Auto", new MyAutoCommand());
+		for (int x = 0; x <= 14; x++){
+			amps[x] = 0;
+		}
 	}
 
 	/**
@@ -62,6 +67,21 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDash.putNumber("Total Voltage", pdp.getVoltage());
+		for (int x = 1; x <= 15; x++){
+			if (pdp.getCurrent(x) > amps[x - 1]){
+				amps[x - 1] = pdp.getCurrent(x);
+			}
+			SmartDash.putNumber("Port " + x, pdp.getCurrent(x));
+			for (int n = 12; n <= 15; n++){
+			SmartDash.putNumber("Max Amps " + n, amps[n - 1]);
+			}
+		}
+		SmartDash.putNumber("Total Current", pdp.getTotalCurrent());
+		SmartDash.putNumber("Total Energy", pdp.getTotalEnergy());
+		SmartDash.putNumber("Total Power", pdp.getTotalPower());
+		SmartDash.putBoolean("  ON? OFF?", true);
+		rm.myRobot.arcadeDrive(joy);
 	}
 
 	/**
@@ -97,10 +117,29 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDash.putNumber("Total Voltage", pdp.getVoltage());
+		for (int x = 1; x <= 15; x++){
+			if (pdp.getCurrent(x) > amps[x - 1]){
+				amps[x - 1] = pdp.getCurrent(x);
+			}
+			SmartDash.putNumber("Port " + x, pdp.getCurrent(x));
+			for (int n = 12; n <= 15; n++){
+			SmartDash.putNumber("Max Amps " + n, amps[n - 1]);
+			}
+		}
+		SmartDash.putNumber("Total Current", pdp.getTotalCurrent());
+		SmartDash.putNumber("Total Energy", pdp.getTotalEnergy());
+		SmartDash.putNumber("Total Power", pdp.getTotalPower());
+		SmartDash.putBoolean("  ON? OFF?", true);
+		rm.myRobot.arcadeDrive(joy);
 	}
 
 	@Override
 	public void teleopInit() {
+		pdp.resetTotalEnergy();
+		for (int x = 0; x <= 14; x++){
+			amps[x] = 0;
+		}
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -115,8 +154,24 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		//SmartDash.putNumber("EUREKA", pdp.getVoltage());
-		//SmartDash.updateValues();
+		
+		
+		
+		SmartDash.putNumber("Total Voltage", pdp.getVoltage());
+		for (int x = 1; x <= 15; x++){
+			if (pdp.getCurrent(x) > amps[x - 1]){
+				amps[x - 1] = pdp.getCurrent(x);
+			}
+			SmartDash.putNumber("Port " + x, pdp.getCurrent(x));
+			for (int n = 12; n <= 15; n++){
+			SmartDash.putNumber("Max Amps " + n, amps[n - 1]);
+			}
+		}
+		SmartDash.putNumber("Total Current", pdp.getTotalCurrent());
+		SmartDash.putNumber("Total Energy", pdp.getTotalEnergy());
+		SmartDash.putNumber("Total Power", pdp.getTotalPower());
+		SmartDash.putBoolean("  ON? OFF?", true);
+		rm.myRobot.arcadeDrive(joy);
 	}
 
 	/**

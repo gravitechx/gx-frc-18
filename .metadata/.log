@@ -649,3 +649,1076 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+!SESSION 2018-01-10 11:14:16.605 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.core.resources 2 10035 2018-01-10 11:14:19.372
+!MESSAGE The workspace exited with unsaved changes in the previous session; refreshing workspace to recover changes.
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-01-10 11:14:36.998
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\FRC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 11:14:38.396
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 11:14:38.838
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 11:14:39.327
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 11:14:40.040
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:14:40.558
+!MESSAGE Updating projects
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:16:04.418
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:16:04.427
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:16:41.519
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:16:41.530
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:18:00.885
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:18:00.893
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:19:03.478
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:19:03.486
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:19:45.406
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:19:45.414
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:20:26.875
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:20:26.884
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:21:29.028
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:21:29.038
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:21:59.248
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:21:59.255
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:22:49.553
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:22:49.561
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:23:34.567
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 11:23:34.574
+!MESSAGE Targets: deploy, Mode: run
+!SESSION 2018-01-10 13:55:59.278 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-01-10 13:56:50.018
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\FRC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 13:56:54.712
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 13:56:54.923
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 13:56:55.514
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 13:56:55.902
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 13:56:56.096
+!MESSAGE Updating projects
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:04:05.373
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:04:05.408
+!MESSAGE Targets: deploy, Mode: run
+!SESSION 2018-01-10 14:10:02.778 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product -data file:/C:/Users/FRC/Documents/GitHub/gx-frc-18/ -product org.eclipse.epp.package.jee.product
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:38.379
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:38.510
+!MESSAGE Install necessary for tools
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-01-10 14:10:40.589
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\FRC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:40.798
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:40.899
+!MESSAGE Installing common if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:40.917
+!MESSAGE Install necessary for common
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:44.504
+!MESSAGE Installedcommon
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:44.523
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:10:44.538
+!MESSAGE Install necessary for java
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 14:11:02.463
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:11:02.476
+!MESSAGE Updating projects
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:11:02.526
+!MESSAGE Adding: wpiutil to project: gx-frc-18
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:11:12.291
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:11:12.304
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:11:57.920
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:12:29.943
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:12:31.944
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 14:12:49.019
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:12:52.453
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:18:48.626
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:18:55.161
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:26:41.025
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:26:41.033
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:26:55.532
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:26:56.549
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:27:36.569
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:27:43.568
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:28:30.122
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:28:30.134
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:28:39.871
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:28:45.889
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:28:46.761
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:28:47.876
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:28:47.888
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 14:28:47.902
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:28:47.918
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:28:49.278
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:29:23.298
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:29:24.172
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:29:25.940
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 14:29:25.948
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:29:25.959
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2018-01-10 14:29:27.613
+!MESSAGE Failed to download org.eclipse.recommenders:index::zip:0.0.0
+!STACK 0
+org.eclipse.aether.resolution.ArtifactResolutionException: Could not transfer artifact org.eclipse.recommenders:index:zip:0.0.0-SNAPSHOT from/to models (http://download.eclipse.org/recommenders/models/mars/): ClientProtocolException
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:444)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:246)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:223)
+	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.resolveArtifact(DefaultRepositorySystem.java:294)
+	at org.eclipse.recommenders.models.ModelRepository.resolveInternal(ModelRepository.java:192)
+	at org.eclipse.recommenders.models.ModelRepository.resolve(ModelRepository.java:174)
+	at org.eclipse.recommenders.internal.models.rcp.EclipseModelRepository.resolve(EclipseModelRepository.java:165)
+	at org.eclipse.recommenders.internal.models.rcp.DownloadModelArchiveJob.run(DownloadModelArchiveJob.java:76)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+Caused by: org.eclipse.aether.transfer.ArtifactTransferException: Could not transfer artifact org.eclipse.recommenders:index:zip:0.0.0-SNAPSHOT from/to models (http://download.eclipse.org/recommenders/models/mars/): ClientProtocolException
+	at org.eclipse.aether.connector.basic.ArtifactTransportListener.transferFailed(ArtifactTransportListener.java:43)
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector$TaskRunner.run(BasicRepositoryConnector.java:355)
+	at org.eclipse.aether.util.concurrency.RunnableErrorForwarder$1.run(RunnableErrorForwarder.java:67)
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector$DirectExecutor.execute(BasicRepositoryConnector.java:581)
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector.get(BasicRepositoryConnector.java:249)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:520)
+	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:421)
+	... 8 more
+Caused by: org.apache.http.client.ClientProtocolException
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:867)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:72)
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:57)
+	at org.apache.http.impl.client.DecompressingHttpClient.execute(DecompressingHttpClient.java:158)
+	at org.eclipse.aether.transport.http.HttpTransporter.execute(HttpTransporter.java:287)
+	at org.eclipse.aether.transport.http.HttpTransporter.implGet(HttpTransporter.java:243)
+	at org.eclipse.aether.spi.connector.transport.AbstractTransporter.get(AbstractTransporter.java:59)
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector$GetTaskRunner.runTask(BasicRepositoryConnector.java:447)
+	at org.eclipse.aether.connector.basic.BasicRepositoryConnector$TaskRunner.run(BasicRepositoryConnector.java:350)
+	... 13 more
+Caused by: org.apache.http.ProtocolException: Invalid redirect URI: http://iboss-report.lvjusd.k12.ca.us/block/restricted.html?fn=High School Students&fp=3&ip=10.218.65.223&ibip=10.200.64.13&ldu=1&re=0&bu=download.eclipse.org/recommenders/models/mars/org/eclipse/recommenders/index/0.0.0-snapshot/index-0.0.0-snapshot.zip&bc=Keyword: "models"
+	at org.apache.http.impl.client.DefaultRedirectStrategy.createLocationURI(DefaultRedirectStrategy.java:197)
+	at org.apache.http.impl.client.DefaultRedirectStrategy.getLocationURI(DefaultRedirectStrategy.java:145)
+	at org.apache.http.impl.client.DefaultRedirectStrategy.getRedirect(DefaultRedirectStrategy.java:217)
+	at org.apache.http.impl.client.DefaultRequestDirector.handleResponse(DefaultRequestDirector.java:1084)
+	at org.apache.http.impl.client.DefaultRequestDirector.execute(DefaultRequestDirector.java:515)
+	at org.apache.http.impl.client.AbstractHttpClient.doExecute(AbstractHttpClient.java:863)
+	... 21 more
+Caused by: java.net.URISyntaxException: Illegal character in query at index 66: http://iboss-report.lvjusd.k12.ca.us/block/restricted.html?fn=High School Students&fp=3&ip=10.218.65.223&ibip=10.200.64.13&ldu=1&re=0&bu=download.eclipse.org/recommenders/models/mars/org/eclipse/recommenders/index/0.0.0-snapshot/index-0.0.0-snapshot.zip&bc=Keyword: "models"
+	at java.net.URI$Parser.fail(Unknown Source)
+	at java.net.URI$Parser.checkChars(Unknown Source)
+	at java.net.URI$Parser.parseHierarchical(Unknown Source)
+	at java.net.URI$Parser.parse(Unknown Source)
+	at java.net.URI.<init>(Unknown Source)
+	at org.apache.http.impl.client.DefaultRedirectStrategy.createLocationURI(DefaultRedirectStrategy.java:186)
+	... 26 more
+
+!ENTRY org.eclipse.recommenders.models.rcp 1 0 2018-01-10 14:29:27.634
+!MESSAGE org.eclipse.recommenders:index::zip:0.0.0 could not be resolved from the model repositories. Are you offline?
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:30:17.179
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:30:17.193
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:30:19.984
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:30:21.986
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 14:30:40.546
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:30:41.873
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:31:31.900
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:31:35.035
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:39:04.653
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:39:04.665
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:39:17.145
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:39:18.181
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:45:04.341
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:45:05.293
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:53:51.451
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:53:51.466
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:54:11.404
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:54:12.715
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:55:36.754
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:55:39.442
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:56:14.757
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:56:14.765
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:56:26.849
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:56:27.289
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:57:19.313
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:57:20.878
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:57:56.078
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:57:56.085
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 14:58:09.419
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:58:09.985
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 14:59:36.033
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 14:59:37.457
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:59:46.973
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 14:59:46.979
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:00:00.100
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:00:00.895
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:00:58.921
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:01:00.137
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:02:06.416
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:02:06.423
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:02:19.077
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:02:19.800
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:02:47.812
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:02:49.098
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:06:15.605
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:06:15.612
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:06:26.564
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:06:26.995
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:07:25.970
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:07:25.977
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:08:03.035
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:08:06.606
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:08:18.663
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:08:18.669
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:08:31.632
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:08:31.654
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:08:55.673
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:09:01.650
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:09:45.237
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:09:45.244
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:09:55.792
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:09:56.834
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:10:36.853
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:10:41.818
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:19:03.855
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:19:03.862
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:19:14.710
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:19:15.992
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:22:16.081
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:22:16.779
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:29:21.720
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:29:21.727
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:29:31.774
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:29:32.893
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:35:47.064
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:35:47.916
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 15:37:27.239
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:37:27.635
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:38:25.273
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 15:38:25.290
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:39:13.122
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:39:16.101
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:41:12.168
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:41:19.182
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:41:50.768
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:41:50.774
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:42:01.275
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:42:02.138
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:46:15.371
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 15:46:15.382
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:46:38.540
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:46:41.497
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:49:25.578
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 15:49:30.616
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:51:26.801
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 15:51:26.809
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 15:51:40.326
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 15:51:41.513
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:01:33.454
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:01:33.477
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:12:09.327
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:12:09.354
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:23:11.079
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:23:11.105
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:25:05.523
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:25:05.534
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 16:26:54.482
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:26:57.830
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 16:27:01.013
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:27:03.594
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:27:33.608
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:27:49.037
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:27:50.579
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:27:50.585
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 16:28:03.676
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:28:04.387
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:29:20.423
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:29:21.797
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 16:29:34.985
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:29:36.151
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:32:02.093
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:32:02.101
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 16:32:24.242
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:32:28.266
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:32:29.470
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 16:32:29.484
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:32:29.504
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:32:35.399
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:34:47.467
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:34:55.563
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 16:35:07.517
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:35:08.660
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:37:34.131
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:37:34.138
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:39:34.604
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:39:34.611
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:52:37.528
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:52:37.537
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 16:53:07.179
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:53:10.213
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:53:12.135
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 16:53:12.148
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 16:53:12.166
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 16:53:19.545
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:53:50.117
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:53:50.128
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:55:51.109
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:55:51.120
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:57:47.462
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:57:47.472
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:58:11.522
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 16:58:11.532
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 17:01:22.605
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 17:01:22.617
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 17:01:56.362
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 17:01:59.362
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 17:02:07.596
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 17:02:07.609
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 17:04:06.052
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 17:04:06.061
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-10 17:26:32.044
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 17:26:36.130
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 17:26:37.212
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 17:26:37.221
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 17:26:37.236
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-10 17:26:53.252
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 17:26:55.253
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-10 17:27:45.587
+!MESSAGE exiting listener
+!SESSION 2018-01-10 17:27:54.644 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY riolog 1 0 2018-01-10 17:28:10.313
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 17:28:12.354
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 17:28:12.375
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 17:28:12.427
+!MESSAGE Installing common if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 17:28:12.530
+!MESSAGE Installedcommon
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 17:28:16.913
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-10 17:28:16.935
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-10 17:28:16.954
+!MESSAGE Updating projects
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-01-10 17:28:17.024
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\FRC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY riolog 1 0 2018-01-10 17:36:48.225
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-10 17:36:48.259
+!MESSAGE exiting listener
+
+!ENTRY org.eclipse.jface 4 0 2018-01-10 17:36:48.679
+!MESSAGE Unhandled event loop exception during blocked modal context.
+!STACK 0
+org.eclipse.swt.SWTException: Failed to execute runnable (org.eclipse.swt.SWTException: Widget is disposed)
+	at org.eclipse.swt.SWT.error(SWT.java:4491)
+	at org.eclipse.swt.SWT.error(SWT.java:4406)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:138)
+	at org.eclipse.swt.widgets.Display.runAsyncMessages(Display.java:4155)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3772)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.block(ModalContext.java:172)
+	at org.eclipse.jface.operation.ModalContext.run(ModalContext.java:387)
+	at org.eclipse.jface.dialogs.ProgressMonitorDialog.run(ProgressMonitorDialog.java:500)
+	at org.eclipse.ui.internal.progress.ProgressMonitorJobsDialog.run(ProgressMonitorJobsDialog.java:284)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.disconnectFromWorkspace(IDEWorkbenchAdvisor.java:460)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor.postShutdown(IDEWorkbenchAdvisor.java:306)
+	at org.eclipse.ui.internal.Workbench.shutdown(Workbench.java:3183)
+	at org.eclipse.ui.internal.Workbench.busyClose(Workbench.java:1201)
+	at org.eclipse.ui.internal.Workbench.access$22(Workbench.java:1113)
+	at org.eclipse.ui.internal.Workbench$19.run(Workbench.java:1454)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.ui.internal.Workbench.close(Workbench.java:1451)
+	at org.eclipse.ui.internal.Workbench.close(Workbench.java:1424)
+	at org.eclipse.ui.internal.WorkbenchWindow.busyClose(WorkbenchWindow.java:1596)
+	at org.eclipse.ui.internal.WorkbenchWindow.access$16(WorkbenchWindow.java:1542)
+	at org.eclipse.ui.internal.WorkbenchWindow$11.run(WorkbenchWindow.java:1628)
+	at org.eclipse.swt.custom.BusyIndicator.showWhile(BusyIndicator.java:70)
+	at org.eclipse.ui.internal.WorkbenchWindow.close(WorkbenchWindow.java:1625)
+	at org.eclipse.ui.internal.WorkbenchWindow.close(WorkbenchWindow.java:1639)
+	at org.eclipse.ui.internal.WorkbenchWindow$6.close(WorkbenchWindow.java:527)
+	at org.eclipse.e4.ui.workbench.renderers.swt.WBWRenderer$7.shellClosed(WBWRenderer.java:518)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:98)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Display.sendEvent(Display.java:4362)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1113)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1137)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1122)
+	at org.eclipse.swt.widgets.Decorations.closeWidget(Decorations.java:308)
+	at org.eclipse.swt.widgets.Decorations.WM_CLOSE(Decorations.java:1703)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4678)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:339)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1633)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2117)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5050)
+	at org.eclipse.swt.internal.win32.OS.DefWindowProcW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DefWindowProc(OS.java:2544)
+	at org.eclipse.swt.widgets.Shell.callWindowProc(Shell.java:498)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4774)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:339)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1633)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2117)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5050)
+	at org.eclipse.swt.internal.win32.OS.DefWindowProcW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DefWindowProc(OS.java:2544)
+	at org.eclipse.swt.widgets.Shell.callWindowProc(Shell.java:498)
+	at org.eclipse.swt.widgets.Control.windowProc(Control.java:4774)
+	at org.eclipse.swt.widgets.Canvas.windowProc(Canvas.java:339)
+	at org.eclipse.swt.widgets.Decorations.windowProc(Decorations.java:1633)
+	at org.eclipse.swt.widgets.Shell.windowProc(Shell.java:2117)
+	at org.eclipse.swt.widgets.Display.windowProc(Display.java:5050)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessageW(Native Method)
+	at org.eclipse.swt.internal.win32.OS.DispatchMessage(OS.java:2549)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3767)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$4.run(PartRenderingEngine.java:1127)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:1018)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:156)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:694)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:337)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:606)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:150)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:139)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:134)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:104)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:380)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:235)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:669)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:608)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1515)
+Caused by: org.eclipse.swt.SWTException: Widget is disposed
+	at org.eclipse.swt.SWT.error(SWT.java:4491)
+	at org.eclipse.swt.SWT.error(SWT.java:4406)
+	at org.eclipse.swt.SWT.error(SWT.java:4377)
+	at org.eclipse.swt.widgets.Widget.error(Widget.java:482)
+	at org.eclipse.swt.widgets.Widget.checkWidget(Widget.java:354)
+	at org.eclipse.swt.widgets.Label.setImage(Label.java:349)
+	at netconsole2.views.RiologView.lambda$3(RiologView.java:532)
+	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:35)
+	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:135)
+	... 76 more
+
+!ENTRY riolog 1 0 2018-01-10 17:36:48.810
+!MESSAGE failed to send keep alive, reconnecting
+!SESSION 2018-01-11 11:58:50.837 -----------------------------------------------
+eclipse.buildId=4.5.2.M20160212-1500
+java.version=1.8.0_112
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-11 11:59:22.988
+!MESSAGE Installing tools if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-11 11:59:23.102
+!MESSAGE Installedtools
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-11 11:59:23.122
+!MESSAGE Installing common if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-11 11:59:23.157
+!MESSAGE Installedcommon
+
+!ENTRY org.eclipse.egit.ui 2 0 2018-01-11 11:59:25.936
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\FRC'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-11 11:59:28.945
+!MESSAGE Installing java if necessary
+
+!ENTRY edu.wpi.first.wpilib.plugins.core 1 0 2018-01-11 11:59:29.028
+!MESSAGE Installedjava
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 11:59:29.889
+!MESSAGE Updating projects
+
+!ENTRY riolog 1 0 2018-01-11 12:07:10.042
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:07:16.164
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:07:16.177
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:08:02.076
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:08:02.088
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:08:25.679
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:08:25.692
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:09:16.383
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:09:16.431
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:09:52.579
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:09:52.595
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:10:28.549
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:10:28.564
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:15:50.326
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:15:50.367
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:18:46.502
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:18:46.512
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:21:02.600
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-11 12:21:02.612
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-11 12:21:54.458
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-11 12:21:56.460
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-11 12:22:00.982
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-11 12:22:02.473
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-11 12:22:18.480
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-11 12:22:21.013
+!MESSAGE failed to send keep alive, reconnecting
