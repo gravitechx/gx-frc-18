@@ -1,30 +1,59 @@
 package org.gravitechx.frc2018.robot.subsystems;
-import com.ctre.CANTalon;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.VictorSP;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.gravitechx.frc2018.robot.Constants;
-import org.gravitechx.frc2018.utils.CANTalonFactory;
+import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.VictorSPFactory;
-import org.gravitechx.frc2018.utils.wrappers.MasterTalon;
 
 
-public class Drive extends Subsystem {
-    /* CONTINUING DEVELOPMENT */
-    private CANTalon leftDrive;
-    private CANTalon rightDrive;
+public class Drive extends Subsystem implements Testable {
+    /*
+    * Singleton Pattern
+    * Reference: https://www.tutorialspoint.com/design_pattern/singleton_pattern.htm
+    * */
+    private static Drive mInstance = new Drive();
+    public static Drive getInstance(){
+        return mInstance;
+    }
 
-    private Drive mInstance = new Drive();
+    // Motor controllers (slaved)
+    private WPI_TalonSRX leftDrive;
+    private WPI_TalonSRX rightDrive;
+
+    private DriveControlStates mCurrentState;
+
+    public enum DriveControlStates {
+        CLOSED_LOOP,
+        AUTO,
+        OPEN_LOOP
+    }
 
     private Drive() {
         /* Initialize motor controllers */
-        leftDrive = CANTalonFactory.createDefaultSlaveTalon(
-                0, VictorSPFactory.createDefaultVictor(0));
-        rightDrive = CANTalonFactory.createDefaultSlaveTalon(
-                1, VictorSPFactory.createDefaultVictor(1));
+        leftDrive = TalonSRXFactory.createDefaultSlaveTalon(
+                Constants.leftTalonCanChannel, VictorSPFactory.createDefaultVictor(Constants.leftVictorSPPwmChannel));
+        rightDrive = TalonSRXFactory.createDefaultSlaveTalon(
+                Constants.rightTalonCanChannel, VictorSPFactory.createDefaultVictor(Constants.rightVictorSPPwmChannel));
+        mCurrentState = DriveControlStates.OPEN_LOOP;
     }
 
-    public Drive getInstance(){
-        return mInstance;
+    public void setControlState(DriveControlStates state){
+        mCurrentState = state;
+    }
+
+    @Override
+    protected void initDefaultCommand() {
+
+    }
+
+    @Override
+    public void test() {
+        DifferentialDrive d = new DifferentialDrive(leftDrive, rightDrive);
+        Timer t = new Timer();
+        while(t.get() < 5.0){
+            d.curvatureDrive(.5, 0.0, true);
+        }
     }
 }

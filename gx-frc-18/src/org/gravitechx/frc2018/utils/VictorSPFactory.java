@@ -1,6 +1,5 @@
 package org.gravitechx.frc2018.utils;
 
-import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.VictorSP;
 import org.gravitechx.frc2018.utils.motorconfigs.VictorSPConfig;
 

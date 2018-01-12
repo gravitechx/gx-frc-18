@@ -8,6 +8,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="wpilibj" level="project" />
-    <orderEntry type="library" name="CTRLib" level="project" />
+    <orderEntry type="library" name="NetworkTables" level="project" />
+    <orderEntry type="library" name="cscore" level="project" />
+    <orderEntry type="library" name="opencv" level="project" />
+    <orderEntry type="library" name="WPILib" level="project" />
+    <orderEntry type="library" name="CTRE_Phoenix" level="project" />
   </component>
 </module>
