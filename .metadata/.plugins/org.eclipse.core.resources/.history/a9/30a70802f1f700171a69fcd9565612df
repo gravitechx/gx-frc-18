@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		amps = new double[16];
+		amps = new double[15];
 		joy = new Joystick(0);		
 		oi = new OI();
 		rm = new RobotMap();

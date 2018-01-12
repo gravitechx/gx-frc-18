@@ -1,82 +1,133 @@
 <xml version="1.0">
 <dashboard>
-	<widget field="Total Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="14" y="4"/>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="745" y="390"/>
+		<property name="Text" value="Port 15"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="534" y="389"/>
+		<property name="Text" value="Port 14"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="326" y="388"/>
+		<property name="Text" value="Port 13"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="116" y="392"/>
+		<property name="Text" value="Port 12"/>
+	</static-widget>
+	<widget field="Port 15" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="633" y="239"/>
+		<property name="Upper Limit" value="60.0"/>
 	</widget>
-	<widget field="Port 15" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="259" y="170"/>
+	<widget field="Port 14" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="426" y="238"/>
+		<property name="Upper Limit" value="60.0"/>
 	</widget>
-	<widget field="Port 14" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="879" y="27"/>
-		<height>389</height>
+	<widget field="Port 13" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="216" y="237"/>
+		<property name="Upper Limit" value="60.0"/>
 	</widget>
-	<widget field="Port 13" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="17" y="10"/>
+	<widget field="Port 12" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="7" y="240"/>
+		<property name="Upper Limit" value="60.0"/>
 	</widget>
-	<widget field="Port 12" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="18" y="21"/>
+	<widget field="Total Power" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="336" y="10"/>
+		<property name="Upper Limit" value="1000.0"/>
+		<property name="Tick Interval" value="50.0"/>
 	</widget>
-	<widget field="Port 11" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="30" y="31"/>
+	<widget field="Total Current" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.SimpleDial">
+		<location x="548" y="4"/>
 	</widget>
-	<widget field="Port 10" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+	<widget field="Total Energy" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.FormattedField">
+		<location x="419" y="192"/>
+		<width>292</width>
+	</widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="643" y="158"/>
+		<property name="Text" value="Total Current"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="434" y="158"/>
+		<property name="Text" value="Total Power"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.Label">
+		<location x="27" y="47"/>
+		<property name="Text" value="Connected?"/>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.ConnectionIndicator">
 		<location x="9" y="4"/>
+		<width>93</width>
+		<height>38</height>
+	</static-widget>
+	<static-widget class="edu.wpi.first.smartdashboard.gui.elements.CameraServerViewer">
+		<location x="846" y="8"/>
+		<width>395</width>
+		<height>206</height>
+		<property name="Camera Choice" value=""/>
+	</static-widget>
+	<widget field="Total Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.ProgressBar">
+		<location x="114" y="3"/>
+		<width>178</width>
+		<height>57</height>
+		<property name="Maximum" value="13.2"/>
 	</widget>
 	<widget field="  ON? OFF?" type="Boolean" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="30" y="17"/>
+		<location x="18" y="94"/>
+	</widget>
+	<widget field="Port 11" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1127" y="342"/>
+	</widget>
+	<widget field="Port 10" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="1126" y="319"/>
 	</widget>
 	<widget field="Port 9" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="31" y="26"/>
+		<location x="1132" y="297"/>
 	</widget>
 	<widget field="Port 8" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="8" y="24"/>
+		<location x="1132" y="274"/>
 	</widget>
 	<widget field="Port 7" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="17" y="18"/>
+		<location x="1132" y="250"/>
 	</widget>
 	<widget field="Port 6" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="31" y="8"/>
+		<location x="1132" y="227"/>
 	</widget>
 	<widget field="Port 5" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="18" y="30"/>
+		<location x="998" y="341"/>
 	</widget>
 	<widget field="Port 4" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="9" y="29"/>
+		<location x="997" y="319"/>
 	</widget>
 	<widget field="Port 3" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="16" y="12"/>
+		<location x="998" y="297"/>
 	</widget>
 	<widget field="Port 2" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="3" y="1"/>
+		<location x="998" y="274"/>
 	</widget>
 	<widget field="Port 1" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="11" y="30"/>
-	</widget>
-	<widget field="Total Voltage" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="22" y="5"/>
-	</widget>
-	<widget field="Total Power" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="16" y="29"/>
+		<location x="998" y="252"/>
 	</widget>
 	<widget field="Max Amps 15" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="2" y="19"/>
+		<location x="684" y="421"/>
 	</widget>
 	<widget field="Max Amps 14" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="10" y="28"/>
+		<location x="479" y="422"/>
 	</widget>
 	<widget field="Max Amps 13" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="20" y="7"/>
+		<location x="271" y="422"/>
 	</widget>
 	<widget field="Max Amps 12" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="7" y="24"/>
+		<location x="55" y="423"/>
 	</widget>
-	<widget field="Total Energy" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
-		<location x="27" y="21"/>
+	<widget field="Port 0" type="Number" class="edu.wpi.first.smartdashboard.gui.elements.TextBox">
+		<location x="998" y="228"/>
 	</widget>
 </dashboard>
 <live-window>
 	<widget field="ExampleSubsystem" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
-		<location x="0" y="325"/>
+		<location x="0" y="265"/>
 	</widget>
 	<widget field="Ungrouped" type="LW Subsystem" class="edu.wpi.first.smartdashboard.livewindow.elements.LWSubsystem">
 		<widget field="Talon[1]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
@@ -90,16 +141,26 @@
 			<width>0</width>
 		</widget>
 		<widget field="Talon[0]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
-			<location x="6" y="16"/>
-			<height>46</height>
-			<width>326</width>
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<widget field="Talon[0]" type="Speed Controller" class="edu.wpi.first.smartdashboard.livewindow.elements.SpeedController">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
 		</widget>
 		<widget field="PowerDistributionPanel[0]" type="PowerDistributionPanel" class="edu.wpi.first.smartdashboard.livewindow.elements.PowerDistributionPanel">
-			<location x="6" y="62"/>
-			<height>195</height>
-			<width>326</width>
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
 		</widget>
-		<location x="3" y="14"/>
+		<widget field="PowerDistributionPanel[0]" type="PowerDistributionPanel" class="edu.wpi.first.smartdashboard.livewindow.elements.PowerDistributionPanel">
+			<location x="0" y="0"/>
+			<height>0</height>
+			<width>0</width>
+		</widget>
+		<location x="0" y="0"/>
 		<width>338</width>
 		<height>264</height>
 	</widget>

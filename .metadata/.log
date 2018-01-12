@@ -4551,3 +4551,90 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:09:27.525
 !MESSAGE Updating projects
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:31:58.227
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:31:58.236
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:32:20.479
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:32:20.490
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-12 15:32:33.483
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:34:19.998
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:34:20.007
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-12 15:39:49.651
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-12 15:39:51.023
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-12 15:39:51.653
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-12 15:39:51.667
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-12 15:39:51.684
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-12 15:39:51.755
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-12 15:42:33.826
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-12 15:42:34.682
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-12 15:42:34.692
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-12 15:42:39.764
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-12 15:42:44.866
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:43:25.831
+!MESSAGE Running ant file: C:\Users\FRC\Documents\GitHub\gx-frc-18\gx-frc-18\build.xml
+
+!ENTRY WPILib_Java_Robot_Development 1 0 2018-01-12 15:43:25.842
+!MESSAGE Targets: deploy, Mode: run
+
+!ENTRY riolog 1 0 2018-01-12 15:43:26.892
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-12 15:43:27.756
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-12 15:43:27.764
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-12 15:43:28.893
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-12 15:43:36.933
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-12 15:43:38.172
+!MESSAGE Connected to robot at 10.218.65.32
+
+!ENTRY riolog 1 0 2018-01-12 15:45:10.209
+!MESSAGE socket disconnected during read
+
+!ENTRY riolog 1 0 2018-01-12 15:45:11.049
+!MESSAGE failed to send keep alive, reconnecting
+
+!ENTRY riolog 1 0 2018-01-12 15:45:15.346
+!MESSAGE exiting listener

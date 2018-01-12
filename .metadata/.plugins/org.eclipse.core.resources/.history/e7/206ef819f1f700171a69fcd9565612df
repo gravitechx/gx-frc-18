@@ -41,7 +41,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		amps = new double[16];
+		amps = new double[15];
 		joy = new Joystick(0);		
 		oi = new OI();
 		rm = new RobotMap();
@@ -68,7 +68,7 @@ public class Robot extends IterativeRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 		SmartDash.putNumber("Total Voltage", pdp.getVoltage());
-		for (int x = 0; x <= 15; x++){
+		for (int x = 0; x <= 14; x++){
 			if (pdp.getCurrent(x) > amps[x]){
 				amps[x] = pdp.getCurrent(x);
 			}
