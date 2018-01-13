@@ -30,11 +30,6 @@ public class Drive extends Command {
     public Drive (double sec) {
     	this(sec, 0.3);//Refers to the above DriveR to set everything else up with the power 0.3
     }
-    
-    //Called whenever you begin the command
-    public void start () {
-    	initialize();//refers to initialize - see right below
-    }
 
     // Called just before this Command. This is to be run first to set everything up for execution
     protected void initialize() {
