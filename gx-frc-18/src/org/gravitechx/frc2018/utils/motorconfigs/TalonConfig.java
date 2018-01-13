@@ -14,12 +14,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
  */
 
 public class TalonConfig extends MotorConfig {
-
-    public TalonConfig(int port){
-        super(port);
-    }
-
-
+    /* IDS */
     public int PID_ID = 0;
     public int SLOT_ID = 0;
 

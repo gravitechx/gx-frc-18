@@ -114,6 +114,5 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void testPeriodic() {
 		drive.test();
-		LiveWindow.run();
 	}
 }

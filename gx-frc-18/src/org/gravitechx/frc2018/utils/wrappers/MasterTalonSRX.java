@@ -6,17 +6,32 @@ import edu.wpi.first.wpilibj.SpeedController;
  * Basic wrapper to the Talon that adds the ability for it to direct the talon.
  */
 public class MasterTalonSRX extends EfficientTalonSRX {
-    SpeedController slave;
+    private SpeedController mSlave;
 
-    public MasterTalonSRX(int deviceNumber, SpeedController slave){
+    /**
+     * Initiates a Talon and Slave speed controller using the
+     * @param deviceNumber
+     * @param mSlave
+     */
+    public MasterTalonSRX(int deviceNumber, SpeedController mSlave){
         super(deviceNumber);
-        this.slave = slave;
+        this.mSlave = mSlave;
     }
 
-    // Set the master and slave to the slave value
+    /**
+     * Sets the master and slave talons to the same value.
+     * @param value
+     */
     @Override
     public void set(double value){
         super.set(value);
-        slave.set(value);
+        mSlave.set(value);
+    }
+
+    /**
+     * Returns the slave speed controller.
+     */
+    public SpeedController getSlave(){
+        return mSlave;
     }
 }

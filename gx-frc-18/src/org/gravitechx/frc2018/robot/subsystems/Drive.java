@@ -8,7 +8,7 @@ import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.VictorSPFactory;
 
 
-public class Drive extends Subsystem implements Testable {
+public class Drive extends Subsystem implements TestableSystem {
     /*
     * Singleton Pattern
     * Reference: https://www.tutorialspoint.com/design_pattern/singleton_pattern.htm

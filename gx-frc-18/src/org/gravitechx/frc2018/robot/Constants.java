@@ -1,5 +1,8 @@
 package org.gravitechx.frc2018.robot;
 
+/**
+ * Contains all constants used on the 2018 robot.
+ */
 public class Constants {
     /* ========================== */
     /* Motor controller constants */

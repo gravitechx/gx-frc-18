@@ -7,41 +7,49 @@ import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.wrappers.EfficientTalonSRX;
 import org.gravitechx.frc2018.utils.wrappers.MasterTalonSRX;
 
+/**
+ * Constructs Talon objects using various configurations.
+ */
 public class TalonSRXFactory {
 
     /**
      * Creates a Talon using only the default settings and the PWM port.
-     * @param pwmPort
+     * @param canPort
      * @return
      */
-    public static WPI_TalonSRX createDefaultTalon(int pwmPort){
-        return createTalon(new TalonConfig(pwmPort));
+    public static WPI_TalonSRX createDefaultTalon(int canPort){
+        return createTalon(canPort, new TalonConfig());
     }
 
-    public static WPI_TalonSRX createDefaultSlaveTalon(int canPort, SpeedController s){
-        return createSlaveTalon(s, new TalonConfig(canPort));
+    /**
+     * Creates a Slave, Talon pair using default values.
+     * @param canPort
+     * @param speedController
+     * @return
+     */
+    public static WPI_TalonSRX createDefaultSlaveTalon(int canPort, SpeedController speedController){
+        return createSlaveTalon(canPort, new TalonConfig(), speedController);
     }
 
     /**
      * Create a slave talon and returns the master.
      */
-    public static WPI_TalonSRX createSlaveTalon(SpeedController s, TalonConfig config){
-        return setTalon(
-                new MasterTalonSRX(config.PORT, s),
-                config);
+    public static WPI_TalonSRX createSlaveTalon(int port, TalonConfig config, SpeedController s){
+        return configureTalon(new MasterTalonSRX(port, s), config);
     }
 
     /**
      * Creates a WPI_TalonSRX using a TalonConfig
+     * @param port
      * @param config
      * @return
      */
-    public static WPI_TalonSRX createTalon(TalonConfig config){
-        WPI_TalonSRX talon = new EfficientTalonSRX(config.PORT);
-        return setTalon(talon, config);
+    public static WPI_TalonSRX createTalon(int port, TalonConfig config){
+        WPI_TalonSRX talon = new EfficientTalonSRX(port);
+        return configureTalon(talon, config);
     }
 
-    private static WPI_TalonSRX setTalon(WPI_TalonSRX talon, TalonConfig config){
+    private static WPI_TalonSRX configureTalon(WPI_TalonSRX talon, TalonConfig config){
 
         // CAN settings
         talon.changeMotionControlFramePeriod(config.MOTION_CONTROL_FRAME_PERIOD_MS);
