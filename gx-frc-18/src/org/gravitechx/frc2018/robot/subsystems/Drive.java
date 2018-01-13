@@ -53,7 +53,7 @@ public class Drive extends Subsystem implements TestableSystem {
         DifferentialDrive d = new DifferentialDrive(leftDrive, rightDrive);
         Timer t = new Timer();
         while(t.get() < 5.0){
-            d.curvatureDrive(.5, 0.0, true);
+            d.curvatureDrive(.2, 0.0, true);
         }
     }
 }
