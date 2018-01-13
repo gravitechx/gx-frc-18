@@ -2,13 +2,17 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 import org.gravitechx.frc2018.robot.commands.ExampleCommand;
+import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
+import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
 
@@ -26,6 +30,10 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	ControlScheme dControlScheme;
+	DifferentialDrive difDrive;
+	Joystick throttleStick;
+	Joystick rotationStick;
 
 	/**
 	 * This function is run when the robot is first startedex up and should be
@@ -38,6 +46,13 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 
 		drive = Drive.getInstance();
+
+		difDrive = new DifferentialDrive(null, null);
+
+		dControlScheme = DefaultControlScheme.getInstance();
+
+		throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
+		rotationStick = new Joystick(Constants.ROTATION_STICK_PORT);
 	}
 
 	/**
@@ -106,6 +121,9 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		difDrive.arcadeDrive(dControlScheme.getThrottle(throttleStick), dControlScheme.getWheel(rotationStick));
+
+
 	}
 
 	/**
