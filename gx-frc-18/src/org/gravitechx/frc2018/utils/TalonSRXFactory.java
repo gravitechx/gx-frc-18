@@ -1,9 +1,13 @@
 package org.gravitechx.frc2018.utils;
 
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
+import org.gravitechx.frc2018.utils.motorconfigs.PIDConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
+import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
 import org.gravitechx.frc2018.utils.wrappers.EfficientTalonSRX;
 import org.gravitechx.frc2018.utils.wrappers.MasterTalonSRX;
 
@@ -27,15 +31,15 @@ public class TalonSRXFactory {
      * @param speedController
      * @return
      */
-    public static WPI_TalonSRX createDefaultSlaveTalon(int canPort, SpeedController speedController){
+    public static MasterTalonSRX createDefaultSlaveTalon(int canPort, SpeedController speedController){
         return createSlaveTalon(canPort, new TalonConfig(), speedController);
     }
 
     /**
      * Create a slave talon and returns the master.
      */
-    public static WPI_TalonSRX createSlaveTalon(int port, TalonConfig config, SpeedController s){
-        return configureTalon(new MasterTalonSRX(port, s), config);
+    public static MasterTalonSRX createSlaveTalon(int port, TalonConfig config, SpeedController s){
+        return (MasterTalonSRX) configureTalon(new MasterTalonSRX(port, s), config);
     }
 
     /**
@@ -120,5 +124,19 @@ public class TalonSRXFactory {
 
 
         return talon;
+    }
+
+    public static WPI_TalonSRX configurePID(WPI_TalonSRX talon, TalonPIDConfig config){
+        talon.config_kP(config.PID_ID, config.kP, 0);
+        talon.config_kI(config.PID_ID, config.kI, 0);
+        talon.config_kD(config.PID_ID, config.kD, 0);
+        talon.config_kF(config.PID_ID, config.kD, 0);
+        return talon;
+    }
+
+    /* A start of a to string function. We can add things as we go. */
+
+    public static String getProperties(WPI_TalonSRX talon){
+        return "Inverted: " + talon.getInverted() + "\n";
     }
 }

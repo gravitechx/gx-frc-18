@@ -34,4 +34,8 @@ public class VictorSPFactory {
         victor.setExpiration(config.EXPIRATION_TIMEOUT_SECONDS);
         return victor;
     }
+
+    public static String getProperties(VictorSP victor){
+        return "Inverted: " + victor.getInverted() + "\n";
+    }
 }
