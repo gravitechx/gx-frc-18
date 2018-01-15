@@ -56,4 +56,9 @@ public class Constants {
     public static final double NEG_INERTIA_THREASHOLD = 0.65;
     public static final double NEG_INERTIA_CLOSE_SCALAR = 4.0;
     public static final double NEG_IRERTIA_FAR_SCALAR = 5.0;
+
+    /* QUICK STOP */
+    public static final double QUICK_STOP_DEADBAND =  0.2;
+    public static final double QUICK_STOP_WEIGHT = 0.1;
+    public static final double QUICK_STOP_SCALAR = 5.0;
 }

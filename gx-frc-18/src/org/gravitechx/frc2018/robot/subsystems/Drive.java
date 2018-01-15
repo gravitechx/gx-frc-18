@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.utils.drivehelpers.DriveSignal;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.VictorSPFactory;
@@ -79,54 +80,6 @@ public class Drive extends Subsystem implements TestableSystem {
 
     public void setControlState(DriveControlStates state){
         mCurrentState = state;
-    }
-
-    double lastZRotation = 0.0;
-    double mNegInertiaScalar;
-    double mNegInertiaAccumlator = 0.0;
-
-    /**
-     * This methods uses a version of cheesy drive for teleop.
-     * @todo Make the rotationalScaler dependant on speed.
-     * @param rotationalDriveSignal
-     * @param isQuickTurn
-     */
-    public void curveDrive(RotationalDriveSignal rotationalDriveSignal, boolean isQuickTurn){
-        rotationalDriveSignal.limit();
-        rotationalDriveSignal.applyXZDeadband(Constants.THROTTLE_DEADBAND, Constants.WHEEL_DEADBAND);
-
-        double dZ = rotationalDriveSignal.getZRoation() - lastZRotation;
-        lastZRotation = rotationalDriveSignal.getZRoation();
-
-        rotationalDriveSignal.transposeXSpeed(Constants.THROTTLE_TRANSPOSITION_OPERATION);
-        rotationalDriveSignal.transposeZRotation(Constants.WHEEL_TRANSPOSITION_OPERATION);
-
-        // If we are trying to turn left or right
-        if(dZ * rotationalDriveSignal.getZRoation() > 0.0){
-            mNegInertiaScalar = Constants.NEG_INERTIA_TURN_SCALAR;
-        }else{
-            // If we are trying to get to 0.0
-            if(Math.abs(rotationalDriveSignal.getZRoation()) > Constants.NEG_INERTIA_THREASHOLD){
-                // If we are outside the negative inertia threshold
-                mNegInertiaScalar =  Constants.NEG_IRERTIA_FAR_SCALAR;
-            }else{
-                // If we are inside the negative inertia threshold
-                mNegInertiaScalar = Constants.NEG_INERTIA_CLOSE_SCALAR;
-            }
-        }
-
-        mNegInertiaAccumlator += mNegInertiaScalar * dZ;
-        rotationalDriveSignal.setzRotation(rotationalDriveSignal.getZRoation() + mNegInertiaAccumlator);
-
-        if(mNegInertiaAccumlator > 1.0){
-            mNegInertiaAccumlator -= 1.0;
-        }else if(mNegInertiaAccumlator < -1.0){
-            mNegInertiaAccumlator += 1.0;
-        }else {
-            mNegInertiaAccumlator = 0.0;
-        }
-
-        set(rotationalDriveSignal.toDifferencialDriveSignal());
     }
 
     @Override
