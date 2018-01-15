@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Timer;
 
 /**
  * Represents a time in seconds.
+ * Uses getFPGATimestamp from Timer
  */
 public class Timestamp {
     private double time_S;

@@ -5,6 +5,9 @@ import java.util.function.UnaryOperator;
 public class RotationalDriveSignal extends DriveSignal {
     private double xSpeed, zRotation;
 
+    public static final RotationalDriveSignal NEUTRAL = new RotationalDriveSignal(0.0, 0.0);
+    public static final RotationalDriveSignal BREAK = new RotationalDriveSignal(0.0, 0.0, true);
+
     public RotationalDriveSignal(double xSpeed, double zRotation){
         super(false);
         this.xSpeed = xSpeed;
@@ -42,15 +45,15 @@ public class RotationalDriveSignal extends DriveSignal {
     }
 
     /**
-     * Converts a rotational drive signal to a differencial drive signal.
+     * Converts a rotational drive signal to a differential drive signal.
+     * @param rotationIsOverpowered specifies whether the rotation should be reduced.
      * @return
      */
     public DifferentialDriveSignal toDifferencialDriveSignal(){
-        DifferentialDriveSignal differentialDriveSignal =
-                new DifferentialDriveSignal(xSpeed + zRotation,
-                        xSpeed - zRotation);
-        differentialDriveSignal.normalize();
-        return differentialDriveSignal;
+        double leftMotorOutput = xSpeed + zRotation;
+        double rightMotorOutput = xSpeed - zRotation;
+
+        return new DifferentialDriveSignal(leftMotorOutput, rightMotorOutput);
     }
 
     @Override

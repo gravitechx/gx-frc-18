@@ -1,6 +1,9 @@
 package org.gravitechx.frc2018.utils.drivehelpers;
 
-public class DriveSignal {
+/**
+ * Repersents an arbitrary drive signal.
+ */
+abstract public class DriveSignal {
     private boolean mBreakActive;
 
     public DriveSignal(boolean breakActive){
@@ -9,7 +12,7 @@ public class DriveSignal {
 
     /**
      * Get whether break mode is active.
-     * @return
+     * @return breakMode
      */
     public boolean isBreakActive() {
         return mBreakActive;
@@ -27,7 +30,7 @@ public class DriveSignal {
      * Limits the value by setting it equal to the limit or -limit if it is outside [-limit, limit]
      * @param signal a double that is a number
      * @param limit a positive value
-     * @return
+     * @return Limited signal
      */
     public static double limit(double signal,double limit){
         if(signal > limit){
@@ -48,10 +51,10 @@ public class DriveSignal {
     }
 
     /**
-     * Eliminates the deadband of a function given the signal (deadband)
+     * Eliminates the deadband of a function given the signal (deadband) This is needed if the stick's travel distance before actuation of the motor is too far.
      * @param deadband
      * @param signal
-     * @return
+     * @return Signal without a deadband
      */
     public static double eliminateDeadband(double deadband, double signal){
         if(signal >= 0.0) {
@@ -62,10 +65,10 @@ public class DriveSignal {
     }
 
     /**
-     * Introduces a deadband of a function given the signal
+     * Introduces a deadband of a function given the signal. This is needed if the stick is "too touchy" and moves with slight bumps.
      * @param deadband
      * @param signal
-     * @return
+     * @return New signal
      */
     public static double applyDeadband(double deadband, double signal){
         if (Math.abs(signal) > deadband) {

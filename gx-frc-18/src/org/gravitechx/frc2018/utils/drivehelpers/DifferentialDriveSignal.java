@@ -1,8 +1,21 @@
 package org.gravitechx.frc2018.utils.drivehelpers;
 
-public class DifferentialDriveSignal extends DriveSignal {
-    public double leftMotorOutput, rightMotorOutput;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+/**
+ * Represents a drive signal using left and right motor values.
+ */
+public class DifferentialDriveSignal extends DriveSignal {
+    private double leftMotorOutput, rightMotorOutput;
+
+    public static final DifferentialDriveSignal BREAK = new DifferentialDriveSignal(0.0, 0.0, true);
+    public static final DifferentialDriveSignal NEUTRAL = new DifferentialDriveSignal(0.0, 0.0);
+
+    /**
+     * Constructs a drive signal assuming break mode isn't on.
+     * @param leftMotorOutput
+     * @param rightMotorOutput
+     */
     public DifferentialDriveSignal(double leftMotorOutput, double rightMotorOutput){
         super(false);
         this.leftMotorOutput = leftMotorOutput;
@@ -31,24 +44,22 @@ public class DifferentialDriveSignal extends DriveSignal {
         return rightMotorOutput;
     }
 
-
     /**
-     * Reduces drive signal to motor values between 100% speed and -100% speed.
+     * Reduces the rotation proportionally
      */
-    public void normalize(){
-        if(leftMotorOutput > 1.0){
+    public void limitRotation(){
+        if (leftMotorOutput > 1.0) {
             rightMotorOutput -= leftMotorOutput - 1.0;
             leftMotorOutput = 1.0;
-        }else if(leftMotorOutput < -1.0){
-            rightMotorOutput -= leftMotorOutput + 1.0;
-            leftMotorOutput = -1.0;
-        }else if(rightMotorOutput > 1.0){
+        } else if (rightMotorOutput > 1.0) {
             leftMotorOutput -= rightMotorOutput - 1.0;
             rightMotorOutput = 1.0;
-        }else if(rightMotorOutput < -1.0){
-            rightMotorOutput -= rightMotorOutput + 1.0;
+        } else if (leftMotorOutput < -1.0) {
+            rightMotorOutput -= leftMotorOutput + 1.0;
+            leftMotorOutput = -1.0;
+        } else if (rightMotorOutput < -1.0) {
+            leftMotorOutput -= rightMotorOutput + 1.0;
             rightMotorOutput = -1.0;
         }
     }
-
 }

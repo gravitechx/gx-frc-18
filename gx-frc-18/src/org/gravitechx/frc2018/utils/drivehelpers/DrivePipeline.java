@@ -20,7 +20,6 @@ public class DrivePipeline {
         rotationalDriveSignal.applyXZDeadband(Constants.THROTTLE_DEADBAND, Constants.WHEEL_DEADBAND);
 
         /* CALCULATE A dZ FOR NEGATIVE INERTIA */
-
         double dZ = rotationalDriveSignal.getZRoation() - lastZRotation;
         lastZRotation = rotationalDriveSignal.getZRoation();
 

@@ -4,12 +4,9 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
-import org.gravitechx.frc2018.utils.drivehelpers.DriveSignal;
-import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.VictorSPFactory;
 
@@ -17,7 +14,6 @@ import org.gravitechx.frc2018.utils.VictorSPFactory;
  * Implements the drive subsystem. This contains the DriveTrain and primitive drive functions.
  */
 public class Drive extends Subsystem implements TestableSystem {
-    // Singleton Pattern
     private static Drive mInstance = new Drive();
     public static Drive getInstance(){
         return mInstance;
@@ -27,8 +23,8 @@ public class Drive extends Subsystem implements TestableSystem {
     private WPI_TalonSRX leftDrive;
     private WPI_TalonSRX rightDrive;
 
+    // Drive state modeling
     private DriveControlStates mCurrentState;
-
     public enum DriveControlStates {CLOSED_LOOP, AUTO, OPEN_LOOP}
 
     /**
@@ -74,10 +70,14 @@ public class Drive extends Subsystem implements TestableSystem {
      * @param differentialDriveSignal
      */
     public void set(DifferentialDriveSignal differentialDriveSignal){
-        leftDrive.set(differentialDriveSignal.leftMotorOutput);
-        rightDrive.set(differentialDriveSignal.rightMotorOutput);
+        leftDrive.set(differentialDriveSignal.getLeftMotorOutput());
+        rightDrive.set(differentialDriveSignal.getRightMotorOutput());
     }
 
+    /**
+     * Sets the subsystems control state.
+     * @param state
+     */
     public void setControlState(DriveControlStates state){
         mCurrentState = state;
     }
