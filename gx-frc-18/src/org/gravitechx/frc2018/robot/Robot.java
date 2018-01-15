@@ -9,13 +9,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.buttons.Button;
 
 import org.gravitechx.frc2018.robot.commands.ExampleCommand;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
-
+import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
+import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -32,8 +34,9 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	ControlScheme dControlScheme;
 	DifferentialDrive difDrive;
-	Joystick throttleStick;
-	Joystick rotationStick;
+	DrivePipeline dPipe;
+
+
 
 	/**
 	 * This function is run when the robot is first startedex up and should be
@@ -48,11 +51,9 @@ public class Robot extends IterativeRobot {
 		drive = Drive.getInstance();
 
 		difDrive = new DifferentialDrive(null, null);
-
 		dControlScheme = DefaultControlScheme.getInstance();
+		dPipe = new DrivePipeline();
 
-		throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
-		rotationStick = new Joystick(Constants.ROTATION_STICK_PORT);
 	}
 
 	/**
@@ -121,7 +122,8 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		difDrive.arcadeDrive(dControlScheme.getThrottle(throttleStick), dControlScheme.getWheel(rotationStick));
+		difDrive.arcadeDrive(dControlScheme.getThrottle(DefaultControlScheme.getThrottleStick()), dControlScheme.getWheel(DefaultControlScheme.getRotationStick()));
+		 dPipe.apply(DefaultControlScheme.getRotationalDriveSignal(DefaultControlScheme.getThrottleStick(),DefaultControlScheme.getRotationStick()), true);
 
 
 	}
