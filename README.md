@@ -34,3 +34,11 @@ Contains hardware drivers, wrapper and helper classes.
     + Example: DISTANCE_TO_GOAL
  - m** for private or protected variables (for meta)
     + Example: mCurrentExtensionLength
+    
+ Patterns
+ --------
+ 
+ We use programming patterns when appropriate. Some of the patterns harnessed so far:
+ 
+ - [The Singleton Pattern](https://www.tutorialspoint.com/design_pattern/singleton_pattern.htm)
+ - [The Factory Pattern](https://tutorialspoint.com/design_pattern/factory_pattern.htm)

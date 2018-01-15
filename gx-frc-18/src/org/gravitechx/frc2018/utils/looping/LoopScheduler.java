@@ -15,6 +15,10 @@ public class LoopScheduler {
     private double mPeriod;
     private Timestamp ts;
 
+    /**
+     * Constructs a loop scheduler using the run period
+     * @param runPeriod
+     */
     private LoopScheduler(double runPeriod) {
         mLoops = new ArrayList<>();
         ts = new Timestamp();

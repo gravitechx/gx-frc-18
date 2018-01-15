@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 /**
  * Basic wrapper to the Talon that adds the ability for it to direct the talon.
+ * @see EfficientTalonSRX
+ * @see SpeedController
  */
 public class MasterTalonSRX extends EfficientTalonSRX {
     private SpeedController mSlave;
@@ -30,6 +32,7 @@ public class MasterTalonSRX extends EfficientTalonSRX {
 
     /**
      * Returns the slave speed controller.
+     * @return the slave speed controller
      */
     public SpeedController getSlave(){
         return mSlave;

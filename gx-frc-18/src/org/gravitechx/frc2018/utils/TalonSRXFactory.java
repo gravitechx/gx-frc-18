@@ -1,21 +1,27 @@
 package org.gravitechx.frc2018.utils;
 
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
+import org.gravitechx.frc2018.utils.motorconfigs.PIDConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
+import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
 import org.gravitechx.frc2018.utils.wrappers.EfficientTalonSRX;
 import org.gravitechx.frc2018.utils.wrappers.MasterTalonSRX;
 
 /**
- * Constructs Talon objects using various configurations.
+ * Constructs Talon objects using various configurations. In most cases it uses a TalonConfig.
+ * @see WPI_TalonSRX
+ * @see SpeedController
+ * @see TalonConfig
  */
 public class TalonSRXFactory {
-
     /**
      * Creates a Talon using only the default settings and the PWM port.
      * @param canPort
-     * @return
+     * @return A default talon.
      */
     public static WPI_TalonSRX createDefaultTalon(int canPort){
         return createTalon(canPort, new TalonConfig());
@@ -23,32 +29,43 @@ public class TalonSRXFactory {
 
     /**
      * Creates a Slave, Talon pair using default values.
-     * @param canPort
-     * @param speedController
-     * @return
+     * @param canPort The CAN Port
+     * @param speedController A speed controller (Victor, Talon, Ect.)
+     * @return A default talon configured with a slave.
      */
-    public static WPI_TalonSRX createDefaultSlaveTalon(int canPort, SpeedController speedController){
+    public static MasterTalonSRX createDefaultSlaveTalon(int canPort, SpeedController speedController){
         return createSlaveTalon(canPort, new TalonConfig(), speedController);
     }
 
     /**
      * Create a slave talon and returns the master.
+     * @param port The CAN Port
+     * @param config
+     * @param s A speed controller (Victor, Talon, Ect.)
+     * @return A configured talon.
      */
-    public static WPI_TalonSRX createSlaveTalon(int port, TalonConfig config, SpeedController s){
-        return configureTalon(new MasterTalonSRX(port, s), config);
+    public static MasterTalonSRX createSlaveTalon(int port, TalonConfig config, SpeedController s){
+        return (MasterTalonSRX) configureTalon(new MasterTalonSRX(port, s), config);
     }
 
     /**
      * Creates a WPI_TalonSRX using a TalonConfig
      * @param port
      * @param config
-     * @return
+     * @return configured talonSRX with port
+     * @see WPI_TalonSRX
      */
     public static WPI_TalonSRX createTalon(int port, TalonConfig config){
         WPI_TalonSRX talon = new EfficientTalonSRX(port);
         return configureTalon(talon, config);
     }
 
+    /**
+     * Configures a talon with a TalonConfig
+     * @param talon
+     * @param config
+     * @return configured talon
+     */
     private static WPI_TalonSRX configureTalon(WPI_TalonSRX talon, TalonConfig config){
 
         // CAN settings
@@ -103,7 +120,7 @@ public class TalonSRXFactory {
         talon.configClosedloopRamp(config.CLOSED_LOOP_RAMP_RATE_SEC, config.TIME_TILL_ERROR_MS);
 
         /*
-        Depricated functions for which I (Alex) couldn't find a replacement.
+        Deprecated functions for which I (Alex) couldn't find a replacement.
 
         talon.enableZeroSensorPositionOnForwardLimit(false);
         talon.enableZeroSensorPositionOnIndex(false, false);
@@ -120,5 +137,29 @@ public class TalonSRXFactory {
 
 
         return talon;
+    }
+
+    /**
+     * Creates a WPI Talon using a config file
+     * @param talon
+     * @param config
+     * @return A talon configured for PID.
+     */
+    public static WPI_TalonSRX configurePID(WPI_TalonSRX talon, TalonPIDConfig config){
+        talon.config_kP(config.PID_ID, config.kP, 0);
+        talon.config_kI(config.PID_ID, config.kI, 0);
+        talon.config_kD(config.PID_ID, config.kD, 0);
+        talon.config_kF(config.PID_ID, config.kD, 0);
+        return talon;
+    }
+
+    /**
+     * Returns the properties of a Talon.
+     * @param talon
+     * @return The properties of the talon as a string.
+     * @todo Add more properties (we can add them as we go)
+     */
+    public static String getProperties(WPI_TalonSRX talon){
+        return "Inverted: " + talon.getInverted() + "\n";
     }
 }
