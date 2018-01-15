@@ -123,7 +123,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		difDrive.arcadeDrive(dControlScheme.getThrottle(DefaultControlScheme.getThrottleStick()), dControlScheme.getWheel(DefaultControlScheme.getRotationStick()));
-		 dPipe.apply(DefaultControlScheme.getRotationalDriveSignal(DefaultControlScheme.getThrottleStick(),DefaultControlScheme.getRotationStick()), true);
+		drive.set(dPipe.apply(DefaultControlScheme.getRotationalDriveSignal(), true));
 
 
 	}

@@ -9,7 +9,6 @@ import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 public class DefaultControlScheme extends ControlScheme{
     private static Joystick throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
     private static Joystick rotationStick = new Joystick(Constants.ROTATION_STICK_PORT);
-    private static JoystickButton quickTurn = new JoystickButton(throttleStick, 2);
     private static DefaultControlScheme mInstance = new DefaultControlScheme();
 
     //singleton pattern to prevent multiple instances of DefaultControlScheme
@@ -34,16 +33,16 @@ public class DefaultControlScheme extends ControlScheme{
     public double getWheel(Joystick rotationStick) {
         return rotationStick.getX();
     }
-    public static JoystickButton getQuickTurn(){
-        return quickTurn;
-    }
+    //getter for throttleStick
     public static Joystick getThrottleStick(){
         return throttleStick;
     }
+    //getter for rotationStick
     public static Joystick getRotationStick (){
         return rotationStick;
     }
-    public static RotationalDriveSignal getRotationalDriveSignal(Joystick throttleStick, Joystick rotationStick){
+    //returns the rotational drive signal for the inputs of the throttleStick Y value and rotationStick X value
+    public static RotationalDriveSignal getRotationalDriveSignal(){
         return new RotationalDriveSignal(throttleStick.getY(), rotationStick.getX());
     }
 
