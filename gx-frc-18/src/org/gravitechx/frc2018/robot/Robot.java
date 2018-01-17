@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team6619.robot;
+package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
@@ -11,9 +11,15 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+<<<<<<< HEAD:gx-frc-18/src/org/usfirst/frc/team6619/robot/Robot.java
 //import org.usfirst.frc.team6619.robot.io.*;
 import org.usfirst.frc.team6619.robot.commands.ExampleCommand;
 import org.usfirst.frc.team6619.robot.subsystems.ExampleSubsystem;
+=======
+import org.gravitechx.frc2018.robot.commands.ExampleCommand;
+import org.gravitechx.frc2018.robot.subsystems.Drive;
+import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
+>>>>>>> master:gx-frc-18/src/org/gravitechx/frc2018/robot/Robot.java
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +31,7 @@ import org.usfirst.frc.team6619.robot.subsystems.ExampleSubsystem;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+<<<<<<< HEAD:gx-frc-18/src/org/usfirst/frc/team6619/robot/Robot.java
 	public double[] amps;
 	public static Joystick joy;
 	public static OI oi;
@@ -32,15 +39,20 @@ public class Robot extends IterativeRobot {
 	public static SmartDashboard SmartDash;
 	public static PowerDistributionPanel pdp;
 	
+=======
+	public static Drive drive;
+
+>>>>>>> master:gx-frc-18/src/org/gravitechx/frc2018/robot/Robot.java
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
 	/**
-	 * This function is run when the robot is first started up and should be
+	 * This function is run when the robot is first startedex up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+<<<<<<< HEAD:gx-frc-18/src/org/usfirst/frc/team6619/robot/Robot.java
 		amps = new double[16];
 		joy = new Joystick(0);		
 		oi = new OI();
@@ -52,6 +64,13 @@ public class Robot extends IterativeRobot {
 		for (int x = 0; x <= 14; x++){
 			amps[x] = 0;
 		}
+=======
+		chooser.addDefault("Default Auto", new ExampleCommand());
+		// chooser.addObject("My Auto", new MyAutoCommand());
+		SmartDashboard.putData("Auto mode", chooser);
+
+		drive = Drive.getInstance();
+>>>>>>> master:gx-frc-18/src/org/gravitechx/frc2018/robot/Robot.java
 	}
 
 	/**
@@ -179,6 +198,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+		drive.test();
 		LiveWindow.run();
 	}
 }
