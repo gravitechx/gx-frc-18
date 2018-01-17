@@ -9,6 +9,10 @@ import java.util.function.UnaryOperator;
  * Contains all constants used on the 2018 robot.
  */
 public class Constants {
+    /* TESTING */
+    public static int kPIDLoopIdx = 0;
+    public static int kTimeoutMs = 1000;
+
     /* ========================== */
     /* Motor controller constants */
     /* ========================== */
@@ -18,7 +22,7 @@ public class Constants {
     public static final int rightVictorSPPwmChannel = 1;
 
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
-            new TalonPIDConfig(.2, .01, 1.0, .1);
+            new TalonPIDConfig(0.025, .001, 0.1, .34);
 
     public static final TalonConfig DRIVE_TALON_CONFIG = new TalonConfig();
 

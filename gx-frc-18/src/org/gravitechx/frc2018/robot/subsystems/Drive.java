@@ -1,8 +1,8 @@
 package org.gravitechx.frc2018.robot.subsystems;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
@@ -29,7 +29,7 @@ public class Drive extends Subsystem implements TestableSystem {
 
     /**
      * Sets the up PID and drive train
-     * @todo Refactor Drive to set the PID responce times in the motor config.
+     * @todo Refactor Drive to set the PID response times in the motor config.
      */
     private Drive() {
         /* Initialize motor controllers */
@@ -38,7 +38,6 @@ public class Drive extends Subsystem implements TestableSystem {
         rightDrive = TalonSRXFactory.createDefaultSlaveTalon(
                 Constants.rightTalonCanChannel, VictorSPFactory.createDefaultVictor(Constants.rightVictorSPPwmChannel));
 
-        // Set up encoders
         leftDrive.configSelectedFeedbackSensor(
                 FeedbackDevice.CTRE_MagEncoder_Relative,
                 Constants.DRIVE_PID_CONFIG.PID_ID,
@@ -49,20 +48,25 @@ public class Drive extends Subsystem implements TestableSystem {
                 Constants.DRIVE_PID_CONFIG.PID_ID,
                 0);
 
-        leftDrive.setStatusFramePeriod(
-                StatusFrameEnhanced.Status_2_Feedback0,
-                5,
-                0);
+        leftDrive.setSensorPhase(true);
+        rightDrive.setSensorPhase(true);
 
-        rightDrive.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0,
-                5,
-                0);
+        leftDrive.configNominalOutputForward(0, 0);
+        leftDrive.configNominalOutputReverse(0, 0);
+        leftDrive.configPeakOutputForward(1, 0);
+        leftDrive.configPeakOutputReverse(-1, 0);
+
+        rightDrive.configNominalOutputForward(0, 0);
+        rightDrive.configNominalOutputReverse(0, 0);
+        rightDrive.configPeakOutputForward(1, 0);
+        rightDrive.configPeakOutputReverse(-1, 0);
 
         // Configure PID
-        TalonSRXFactory.configurePID(leftDrive, Constants.DRIVE_PID_CONFIG);
-        TalonSRXFactory.configurePID(rightDrive, Constants.DRIVE_PID_CONFIG);
 
-        mCurrentState = DriveControlStates.OPEN_LOOP;
+        leftDrive = TalonSRXFactory.configurePID(leftDrive, Constants.DRIVE_PID_CONFIG);
+        rightDrive = TalonSRXFactory.configurePID(rightDrive, Constants.DRIVE_PID_CONFIG);
+
+        mCurrentState = DriveControlStates.CLOSED_LOOP;
     }
 
     /**
@@ -88,19 +92,36 @@ public class Drive extends Subsystem implements TestableSystem {
     }
 
     @Override
+    public void initializeTest(){
+
+    }
+
+    public int getLeftEncoder() {
+        return leftDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID);
+    }
+
+    public int getRightEncoder() {
+        return rightDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID);
+    }
+
+    public int getLeftError() {
+        return leftDrive.getClosedLoopError(Constants.DRIVE_PID_CONFIG.PID_ID);
+    }
+
+    public int getRightError() {
+        return rightDrive.getClosedLoopError(Constants.DRIVE_PID_CONFIG.PID_ID);
+    }
+
+    @Override
     public void test() {
-        //DifferentialDrive d = new DifferentialDrive(leftDrive, rightDrive);
-        Timer t = new Timer();
-        t.start();
-        while(t.get() < 5.0){
-            //d.curvatureDrive(.2, 0.0, true);
-            leftDrive.set(.3);
-            rightDrive.set(.3);
-
-            SmartDashboard.putNumber("Response Left: ", leftDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID));
-            SmartDashboard.putNumber("Response Right: ", rightDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID));
-
-            SmartDashboard.putString("Talons", TalonSRXFactory.getProperties(leftDrive));
-        }
+        leftDrive.set(ControlMode.Velocity, .5 * 4096 * 500.0 / 600);
+        rightDrive.set(ControlMode.Velocity, -.5 * 4096 * 500.0 / 600);
+        SmartDashboard.putString("Build", "1.0.0");
+        SmartDashboard.putNumber("Left Encoder: ", getLeftEncoder());
+        SmartDashboard.putNumber("Left Error: ", getLeftError());
+        SmartDashboard.putNumber("Right Encoder: ", getRightEncoder());
+        SmartDashboard.putNumber("Left Encoder: ", getRightError());
+        System.out.println(Integer.toString(getLeftError()));
+        System.out.println(Integer.toString(getRightError()));
     }
 }
