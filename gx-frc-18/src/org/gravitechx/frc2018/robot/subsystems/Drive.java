@@ -1,9 +1,9 @@
 package org.gravitechx.frc2018.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
@@ -22,6 +22,8 @@ public class Drive extends Subsystem implements TestableSystem {
     // Motor controllers (slaved)
     private WPI_TalonSRX leftDrive;
     private WPI_TalonSRX rightDrive;
+
+    public DifferentialDrive testDrive;
 
     // Drive state modeling
     private DriveControlStates mCurrentState;
@@ -74,8 +76,8 @@ public class Drive extends Subsystem implements TestableSystem {
      * @param differentialDriveSignal
      */
     public void set(DifferentialDriveSignal differentialDriveSignal){
-        leftDrive.set(differentialDriveSignal.getLeftMotorOutput());
-        rightDrive.set(differentialDriveSignal.getRightMotorOutput());
+        leftDrive.set(ControlMode.Velocity, differentialDriveSignal.getLeftMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
+        rightDrive.set(ControlMode.Velocity, -1 * differentialDriveSignal.getRightMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
     }
 
     /**
@@ -114,9 +116,10 @@ public class Drive extends Subsystem implements TestableSystem {
 
     @Override
     public void test() {
-        leftDrive.set(ControlMode.Velocity, .5 * 4096 * 500.0 / 600);
-        rightDrive.set(ControlMode.Velocity, -.5 * 4096 * 500.0 / 600);
-        SmartDashboard.putString("Build", "1.0.0");
+
+    }
+
+    public void graphEncodersToConsole(){
         SmartDashboard.putNumber("Left Encoder: ", getLeftEncoder());
         SmartDashboard.putNumber("Left Error: ", getLeftError());
         SmartDashboard.putNumber("Right Encoder: ", getRightEncoder());

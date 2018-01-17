@@ -1,23 +1,30 @@
 
 package org.gravitechx.frc2018.robot;
 
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.Sendable;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.buttons.InternalButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.buttons.Button;
 
 import org.gravitechx.frc2018.robot.commands.ExampleCommand;
+import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
+import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
 import org.gravitechx.frc2018.robot.subsystems.TestableSystem;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
+import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
+
+import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,6 +40,11 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
+	private ControlScheme mControlScheme;
+	//DifferentialDrive difDrive;
+	//public Joystick mStick = new Joystick(0);
+
+
 
 	/**
 	 * This function is run when the robot is first startedex up and should be
@@ -45,6 +57,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 
 		drive = Drive.getInstance();
+
+		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
 	/**
@@ -113,6 +127,54 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		// PID test
+		double moveValue = mControlScheme.getThrottle();
+		double rotateValue = - 1.0 * mControlScheme.getWheel();
+		boolean squaredInputs = true;
+		double leftMotorSpeed;
+		double rightMotorSpeed;
+
+		if(mControlScheme.getReversedButton()){
+			moveValue *= -1;
+		}
+
+		System.out.println(rotateValue);
+		System.out.println(moveValue);
+		System.out.println(mControlScheme.getReversedButton());
+
+		moveValue = limit(moveValue);
+		rotateValue = limit(rotateValue);
+
+		// square the inputs (while preserving the sign) to increase fine control
+		// while permitting full power
+		if (squaredInputs) {
+			// square the inputs (while preserving the sign) to increase fine control
+			// while permitting full power
+			moveValue = Math.copySign(moveValue * moveValue, moveValue);
+			rotateValue = Math.copySign(rotateValue * rotateValue, rotateValue);
+		}
+
+		if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = Math.max(moveValue, rotateValue);
+			} else {
+				leftMotorSpeed = Math.max(moveValue, -rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			}
+		} else {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			} else {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+			}
+		}
+
+		drive.set(new DifferentialDriveSignal(leftMotorSpeed, rightMotorSpeed));
+
+		drive.graphEncodersToConsole();
 	}
 
 	/**
