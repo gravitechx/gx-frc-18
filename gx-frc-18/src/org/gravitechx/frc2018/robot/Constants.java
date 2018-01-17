@@ -16,6 +16,8 @@ public class Constants {
     public static final int rightTalonCanChannel = 1;
     public static final int leftVictorSPPwmChannel = 0;
     public static final int rightVictorSPPwmChannel = 1;
+    public static final int THROTTLE_STICK_PORT = 0;
+    public static final int ROTATION_STICK_PORT = 0;
 
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(.2, .01, 1.0, .1);
@@ -61,4 +63,5 @@ public class Constants {
     public static final double QUICK_STOP_DEADBAND =  0.2;
     public static final double QUICK_STOP_WEIGHT = 0.1;
     public static final double QUICK_STOP_SCALAR = 5.0;
+
 }
