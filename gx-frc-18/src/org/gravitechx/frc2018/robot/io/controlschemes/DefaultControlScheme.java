@@ -45,5 +45,9 @@ public class DefaultControlScheme extends ControlScheme{
     public static RotationalDriveSignal getRotationalDriveSignal(){
         return new RotationalDriveSignal(throttleStick.getY(), rotationStick.getX());
     }
+    //returns the quickturn button on the throttlestick(it is button 2)
+    public static boolean getQuickTurnButton(){
+        return throttleStick.getRawButton(2);
+    }
 
 }
