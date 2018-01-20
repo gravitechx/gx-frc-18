@@ -1,2 +1,0 @@
-INDEX VERSION 1.127+C:\Users\Nate\Documents\GitHub\gx-frc-18\.metadata\.plugins\org.eclipse.jdt.core
-60382526.index

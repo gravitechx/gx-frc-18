@@ -12,14 +12,8 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
  * Repersents the configuration of a Talon motor controller.
  * Designed to be implemented in the TalonFacotry.
  */
-
 public class TalonConfig extends MotorConfig {
-
-    public TalonConfig(int port){
-        super(port);
-    }
-
-
+    /* IDS */
     public int PID_ID = 0;
     public int SLOT_ID = 0;
 
