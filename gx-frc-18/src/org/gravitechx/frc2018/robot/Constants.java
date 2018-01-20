@@ -23,7 +23,7 @@ public class Constants {
 
     public static final int ROTATION_STICK_PORT = 0;
     public static final int IO_REVERSED_BUTTON = 5;
-    public static final int IO_QUICK_TURN_BUTTON = 2;
+    public static final int IO_QUICK_TURN_BUTTON = 6;
 
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(0.025, .001, 0.1, .34);
@@ -70,5 +70,4 @@ public class Constants {
     public static final double QUICK_STOP_DEADBAND =  0.2;
     public static final double QUICK_STOP_WEIGHT = 0.1;
     public static final double QUICK_STOP_SCALAR = 5.0;
-
 }

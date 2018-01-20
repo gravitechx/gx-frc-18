@@ -47,19 +47,19 @@ public class DifferentialDriveSignal extends DriveSignal {
     /**
      * Reduces the rotation proportionally
      */
-    public void limitRotation(){
-        if (leftMotorOutput > 1.0) {
-            rightMotorOutput -= leftMotorOutput - 1.0;
-            leftMotorOutput = 1.0;
-        } else if (rightMotorOutput > 1.0) {
-            leftMotorOutput -= rightMotorOutput - 1.0;
-            rightMotorOutput = 1.0;
-        } else if (leftMotorOutput < -1.0) {
-            rightMotorOutput -= leftMotorOutput + 1.0;
-            leftMotorOutput = -1.0;
-        } else if (rightMotorOutput < -1.0) {
-            leftMotorOutput -= rightMotorOutput + 1.0;
-            rightMotorOutput = -1.0;
-        }
+        public void limitRotation(){
+            if (leftMotorOutput > 1.0) {
+                rightMotorOutput -= leftMotorOutput - 1.0;
+                leftMotorOutput = 1.0;
+            } else if (rightMotorOutput > 1.0) {
+                leftMotorOutput -= rightMotorOutput - 1.0;
+                rightMotorOutput = 1.0;
+            } else if (leftMotorOutput < -1.0) {
+                rightMotorOutput -= leftMotorOutput + 1.0;
+                leftMotorOutput = -1.0;
+            } else if (rightMotorOutput < -1.0) {
+                leftMotorOutput -= rightMotorOutput + 1.0;
+                rightMotorOutput = -1.0;
+            }
     }
 }

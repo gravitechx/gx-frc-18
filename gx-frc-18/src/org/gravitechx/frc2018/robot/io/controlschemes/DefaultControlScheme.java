@@ -20,7 +20,7 @@ public class DefaultControlScheme extends ControlScheme {
     // Returns the throttle of the inputted Joystick (throttle is the Y axis)
     @Override
     public double getThrottle() {
-        return ControlScheme.transformSignal(rotationStick.getY(), -1, 1, 1, 0);
+        return ControlScheme.transformSignal(rotationStick.getY(), -1, 1, 0, 1);
     }
     // Returns the rotation value of the inputted joystick(rotation is the X axis)
     @Override

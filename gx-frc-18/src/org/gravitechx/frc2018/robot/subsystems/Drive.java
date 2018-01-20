@@ -3,7 +3,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
@@ -23,15 +22,12 @@ public class Drive extends Subsystem implements TestableSystem {
     private WPI_TalonSRX leftDrive;
     private WPI_TalonSRX rightDrive;
 
-    public DifferentialDrive testDrive;
-
     // Drive state modeling
     private DriveControlStates mCurrentState;
     public enum DriveControlStates {CLOSED_LOOP, AUTO, OPEN_LOOP}
 
     /**
      * Sets the up PID and drive train
-     * @todo Refactor Drive to set the PID response times in the motor config.
      */
     private Drive() {
         /* Initialize motor controllers */
@@ -53,16 +49,6 @@ public class Drive extends Subsystem implements TestableSystem {
         leftDrive.setSensorPhase(true);
         rightDrive.setSensorPhase(true);
 
-        leftDrive.configNominalOutputForward(0, 0);
-        leftDrive.configNominalOutputReverse(0, 0);
-        leftDrive.configPeakOutputForward(1, 0);
-        leftDrive.configPeakOutputReverse(-1, 0);
-
-        rightDrive.configNominalOutputForward(0, 0);
-        rightDrive.configNominalOutputReverse(0, 0);
-        rightDrive.configPeakOutputForward(1, 0);
-        rightDrive.configPeakOutputReverse(-1, 0);
-
         // Configure PID
 
         leftDrive = TalonSRXFactory.configurePID(leftDrive, Constants.DRIVE_PID_CONFIG);
@@ -73,7 +59,8 @@ public class Drive extends Subsystem implements TestableSystem {
 
     /**
      * Lets the left and right motor values.
-     * @param differentialDriveSignal
+     * @param differentialDriveSignal The drive signal to which we will set the motors.
+     * @see DifferentialDriveSignal
      */
     public void set(DifferentialDriveSignal differentialDriveSignal){
         leftDrive.set(ControlMode.Velocity, differentialDriveSignal.getLeftMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
@@ -82,7 +69,7 @@ public class Drive extends Subsystem implements TestableSystem {
 
     /**
      * Sets the subsystems control state.
-     * @param state
+     * @param state The current DriveControlState of the drive system
      */
     public void setControlState(DriveControlStates state){
         mCurrentState = state;
@@ -106,25 +93,26 @@ public class Drive extends Subsystem implements TestableSystem {
         return rightDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
-    public int getLeftError() {
+    public int getLeftPIDError() {
         return leftDrive.getClosedLoopError(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
-    public int getRightError() {
+    public int getRightPIDError() {
         return rightDrive.getClosedLoopError(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
     @Override
     public void test() {
-
+        graphEncoderOutput();
     }
 
-    public void graphEncodersToConsole(){
+    /**
+     * Creates a graph of the left and right encoder output and errors for debug.
+     */
+    public void graphEncoderOutput(){
         SmartDashboard.putNumber("Left Encoder: ", getLeftEncoder());
-        SmartDashboard.putNumber("Left Error: ", getLeftError());
+        SmartDashboard.putNumber("Left Error: ", getLeftPIDError());
         SmartDashboard.putNumber("Right Encoder: ", getRightEncoder());
-        SmartDashboard.putNumber("Left Encoder: ", getRightError());
-        System.out.println(Integer.toString(getLeftError()));
-        System.out.println(Integer.toString(getRightError()));
+        SmartDashboard.putNumber("Left Error: ", getRightPIDError());
     }
 }

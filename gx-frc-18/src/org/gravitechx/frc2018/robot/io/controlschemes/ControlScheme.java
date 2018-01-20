@@ -1,7 +1,6 @@
 package org.gravitechx.frc2018.robot.io.controlschemes;
-
-import edu.wpi.first.wpilibj.Joystick;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
+
 //an abstract class for all common methods between control schemes
 
 public abstract class ControlScheme {
@@ -11,7 +10,16 @@ public abstract class ControlScheme {
     public abstract boolean getReversedButton();
     public abstract RotationalDriveSignal getRotationalDriveSignal();
 
-    public static double transformSignal(double signal, double initialX, double initialY, double finalX, double finalY){
-        return (finalY - finalX) / (initialY - initialX) * (signal - initialX) + initialY;
+    /**
+     * Transforms the signal from one domain to anther domain using a simple linear equation.
+     * @param signal Input signal
+     * @param initialLowerBound current lower bound
+     * @param initialUpperBound current upper bound
+     * @param finalUpperBound desired lower bound
+     * @param finalLowerBound desired upper bound
+     * @return
+     */
+    public static double transformSignal(double signal, double initialLowerBound, double initialUpperBound, double finalLowerBound, double finalUpperBound){
+        return (finalUpperBound - finalLowerBound) / (initialUpperBound - initialLowerBound) * (signal - initialLowerBound) + finalLowerBound;
     }
 }

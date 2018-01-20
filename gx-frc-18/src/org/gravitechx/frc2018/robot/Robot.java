@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 	private ControlScheme mControlScheme;
 	//DifferentialDrive difDrive;
 	//public Joystick mStick = new Joystick(0);
+	DrivePipeline pipe = new DrivePipeline();
 
 
 
@@ -128,53 +129,8 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		// PID test
-		double moveValue = mControlScheme.getThrottle();
-		double rotateValue = - 1.0 * mControlScheme.getWheel();
-		boolean squaredInputs = true;
-		double leftMotorSpeed;
-		double rightMotorSpeed;
-
-		if(mControlScheme.getReversedButton()){
-			moveValue *= -1;
-		}
-
-		System.out.println(rotateValue);
-		System.out.println(moveValue);
-		System.out.println(mControlScheme.getReversedButton());
-
-		moveValue = limit(moveValue);
-		rotateValue = limit(rotateValue);
-
-		// square the inputs (while preserving the sign) to increase fine control
-		// while permitting full power
-		if (squaredInputs) {
-			// square the inputs (while preserving the sign) to increase fine control
-			// while permitting full power
-			moveValue = Math.copySign(moveValue * moveValue, moveValue);
-			rotateValue = Math.copySign(rotateValue * rotateValue, rotateValue);
-		}
-
-		if (moveValue > 0.0) {
-			if (rotateValue > 0.0) {
-				leftMotorSpeed = moveValue - rotateValue;
-				rightMotorSpeed = Math.max(moveValue, rotateValue);
-			} else {
-				leftMotorSpeed = Math.max(moveValue, -rotateValue);
-				rightMotorSpeed = moveValue + rotateValue;
-			}
-		} else {
-			if (rotateValue > 0.0) {
-				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
-				rightMotorSpeed = moveValue + rotateValue;
-			} else {
-				leftMotorSpeed = moveValue - rotateValue;
-				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
-			}
-		}
-
-		drive.set(new DifferentialDriveSignal(leftMotorSpeed, rightMotorSpeed));
-
-		drive.graphEncodersToConsole();
+		DifferentialDriveSignal signal = pipe.apply(mControlScheme.getRotationalDriveSignal(), mControlScheme.getQuickTurnButton());
+		drive.set(signal);
 	}
 
 	/**
