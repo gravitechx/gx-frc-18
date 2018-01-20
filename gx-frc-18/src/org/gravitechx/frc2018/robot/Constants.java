@@ -22,7 +22,7 @@ public class Constants {
     public static final int rightVictorSPPwmChannel = 1;
 
     public static final int ROTATION_STICK_PORT = 0;
-    public static final int THROTTLE_STICK_PORT = 0;
+    public static final int THROTTLE_STICK_PORT = 1;
     public static final int IO_REVERSED_BUTTON = 5;
     public static final int IO_QUICK_TURN_BUTTON = 2;
 
