@@ -9,5 +9,6 @@ public interface TestableSystem {
     /**
      * Tests the subsystem.
      */
-    void test();
+    public void initializeTest();
+    public void test();
 }

@@ -1,53 +1,59 @@
 package org.gravitechx.frc2018.robot.io.controlschemes;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 
-public class DefaultControlScheme extends ControlScheme{
-    private static Joystick throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
-    private static Joystick rotationStick = new Joystick(Constants.ROTATION_STICK_PORT);
-    private static DefaultControlScheme mInstance = new DefaultControlScheme();
+public class DefaultControlScheme extends ControlScheme {
+    private static Joystick rotationStick;
+    private static Joystick throttleStick;
 
     //singleton pattern to prevent multiple instances of DefaultControlScheme
+    private static DefaultControlScheme mInstance = new DefaultControlScheme();
+    public static DefaultControlScheme getInstance() { return mInstance; }
 
     protected DefaultControlScheme(){
-        //prevents instantiation
+        rotationStick = new Joystick(Constants.ROTATION_STICK_PORT);
+        throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
     }
 
-    //returns the instance of DefaultControlScheme
-    public static DefaultControlScheme getInstance() {
-
-        return mInstance;
-
-    }
-    //returns the throttle of the inputed Joystick (throttle is the Y axis)
+    // Returns the throttle of the inputted Joystick (throttle is the Y axis)
     @Override
-    public double getThrottle(Joystick throttleStick) {
+    public double getThrottle() {
         return throttleStick.getY();
     }
-    //returns the rotation value of the inputed joystick(rotation is the X axis)
+    // Returns the rotation value of the inputted joystick(rotation is the X axis)
     @Override
-    public double getWheel(Joystick rotationStick) {
+    public double getWheel() {
         return rotationStick.getX();
     }
-    //getter for throttleStick
-    public static Joystick getThrottleStick(){
-        return throttleStick;
-    }
-    //getter for rotationStick
+
+    //returns the rotation stick
+
     public static Joystick getRotationStick (){
         return rotationStick;
     }
-    //returns the rotational drive signal for the inputs of the throttleStick Y value and rotationStick X value
-    public static RotationalDriveSignal getRotationalDriveSignal(){
-        return new RotationalDriveSignal(throttleStick.getY(), rotationStick.getX());
-    }
-    //returns the quickturn button on the throttlestick(it is button 2)
-    public static boolean getQuickTurnButton(){
-        return throttleStick.getRawButton(2);
+
+    //returns the throttle stick
+
+    public static Joystick getThrottleStick (){
+        return throttleStick;
     }
 
+    // Returns the rotational drive signal for the inputs of the throttleStick Y value and rotationStick X value
+    public RotationalDriveSignal getRotationalDriveSignal(){
+        return new RotationalDriveSignal(getThrottle(), getWheel());
+    }
+
+    @Override
+    public boolean getReversedButton() {
+        return rotationStick.getRawButton(Constants.IO_REVERSED_BUTTON);
+    }
+
+    //returns the quickturn button on the throttlestick(it is button 2)
+
+    @Override
+    public boolean getQuickTurnButton() {
+        return rotationStick.getRawButton(Constants.IO_QUICK_TURN_BUTTON);
+    }
 }

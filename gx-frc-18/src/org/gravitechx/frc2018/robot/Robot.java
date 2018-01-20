@@ -2,22 +2,19 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.buttons.Button;
-
 import org.gravitechx.frc2018.robot.commands.ExampleCommand;
-import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
+import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
-import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
-import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
+import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+
+import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
+
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -32,9 +29,9 @@ public class Robot extends IterativeRobot {
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	ControlScheme dControlScheme;
-	DifferentialDrive difDrive;
-	DrivePipeline dPipe;
+	private ControlScheme mControlScheme;
+	//DifferentialDrive difDrive;
+	//public Joystick mStick = new Joystick(0);
 
 
 
@@ -50,10 +47,7 @@ public class Robot extends IterativeRobot {
 
 		drive = Drive.getInstance();
 
-		difDrive = new DifferentialDrive(null, null);
-		dControlScheme = DefaultControlScheme.getInstance();
-		dPipe = new DrivePipeline();
-
+		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
 	/**
@@ -77,7 +71,7 @@ public class Robot extends IterativeRobot {
 	 * chooser code works with the Java SmartDashboard. If you prefer the
 	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
 	 * getString code to get the auto name from the text box below the Gyro
-	 *
+	 * <p>
 	 * You can add additional auto modes by adding additional commands to the
 	 * chooser code above (like the commented example) or additional comparisons
 	 * to the switch structure below with additional strings & commands.
@@ -122,15 +116,62 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		difDrive.arcadeDrive(dControlScheme.getThrottle(DefaultControlScheme.getThrottleStick()), dControlScheme.getWheel(DefaultControlScheme.getRotationStick()));
-		drive.set(dPipe.apply(DefaultControlScheme.getRotationalDriveSignal(), DefaultControlScheme.getQuickTurnButton()));
 
+		// PID test
+		double moveValue = mControlScheme.getThrottle();
+		double rotateValue = - 1.0 *mControlScheme.getWheel();
+		boolean squaredInputs = true;
+		double leftMotorSpeed;
+		double rightMotorSpeed;
+
+		if(mControlScheme.getReversedButton()){
+			moveValue *= -1;
+		}
+
+		System.out.println(rotateValue);
+		System.out.println(moveValue);
+		System.out.println(mControlScheme.getReversedButton());
+
+		moveValue = limit(moveValue);
+		rotateValue = limit(rotateValue);
+
+		// square the inputs (while preserving the sign) to increase fine control
+		// while permitting full power
+		if (squaredInputs) {
+			// square the inputs (while preserving the sign) to increase fine control
+			// while permitting full power
+			moveValue = Math.copySign(moveValue * moveValue, moveValue);
+			rotateValue = Math.copySign(rotateValue * rotateValue, rotateValue);
+		}
+
+		if (moveValue > 0.0) {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = Math.max(moveValue, rotateValue);
+			} else {
+				leftMotorSpeed = Math.max(moveValue, -rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			}
+		} else {
+			if (rotateValue > 0.0) {
+				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
+			} else {
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+			}
+		}
+
+		drive.set(new DifferentialDriveSignal(leftMotorSpeed, rightMotorSpeed));
+
+		drive.graphEncodersToConsole();
 
 	}
 
 	/**
 	 * This function is called periodically during test mode
 	 */
+
 	@Override
 	public void testPeriodic() {
 		drive.test();

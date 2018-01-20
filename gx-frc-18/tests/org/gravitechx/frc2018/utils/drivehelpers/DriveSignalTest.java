@@ -1,10 +1,9 @@
 package org.gravitechx.frc2018.utils.drivehelpers;
 
-import org.gravitechx.frc2018.utils.drivehelpers.DriveSignal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Test all generalized signal functions.")
 class DriveSignalTest {

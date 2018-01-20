@@ -9,6 +9,10 @@ import java.util.function.UnaryOperator;
  * Contains all constants used on the 2018 robot.
  */
 public class Constants {
+    /* TESTING CONSTANTS */
+    public static int kPIDLoopIdx = 0;
+    public static int kTimeoutMs = 1000;
+
     /* ========================== */
     /* Motor controller constants */
     /* ========================== */
@@ -16,11 +20,16 @@ public class Constants {
     public static final int rightTalonCanChannel = 1;
     public static final int leftVictorSPPwmChannel = 0;
     public static final int rightVictorSPPwmChannel = 1;
-    public static final int THROTTLE_STICK_PORT = 0;
+
     public static final int ROTATION_STICK_PORT = 0;
+    public static final int THROTTLE_STICK_PORT = 0;
+    public static final int IO_REVERSED_BUTTON = 5;
+    public static final int IO_QUICK_TURN_BUTTON = 2;
 
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
-            new TalonPIDConfig(.2, .01, 1.0, .1);
+            new TalonPIDConfig(0.025, .001, 0.1, .34);
+
+    public static final double DRIVE_ENCODER_MOTIFIER =  4096 * 500.0 / 600.0;
 
     public static final TalonConfig DRIVE_TALON_CONFIG = new TalonConfig();
 
@@ -49,7 +58,6 @@ public class Constants {
             signal = Math.sin(Math.PI / 2.0 * WHEEL_NONLINEARITY * signal) / denominator;
             signal = Math.sin(Math.PI / 2.0 * WHEEL_NONLINEARITY * signal) / denominator;
             return signal;
-
         }
     };
 
