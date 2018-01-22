@@ -49,6 +49,7 @@ public class Constants {
 
     public static final double WHEEL_NONLINEARITY = 0.5;
 
+
     public static final UnaryOperator<Double> WHEEL_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {
         final double denominator = Math.sin(Math.PI / 2.0 *  WHEEL_NONLINEARITY);
 
