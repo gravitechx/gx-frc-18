@@ -1,7 +1,5 @@
 package org.gravitechx.frc2018.utils.drivehelpers;
 
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-
 /**
  * Represents a drive signal using left and right motor values.
  */

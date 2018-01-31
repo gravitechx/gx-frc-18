@@ -2,6 +2,7 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -12,6 +13,8 @@ import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
+import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 
 import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 
@@ -26,12 +29,11 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static Drive drive;
+	public static DrivePipeline dPipe;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
-	//DifferentialDrive difDrive;
-	//public Joystick mStick = new Joystick(0);
 
 
 
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData("Auto mode", chooser);
 
 		drive = Drive.getInstance();
+		dPipe = new DrivePipeline();
 
 		mControlScheme = DefaultControlScheme.getInstance();
 	}
@@ -117,52 +120,12 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		// PID test
-		double moveValue = mControlScheme.getThrottle();
-		double rotateValue = - 1.0 *mControlScheme.getWheel();
-		boolean squaredInputs = true;
-		double leftMotorSpeed;
-		double rightMotorSpeed;
+		;
 
-		if(mControlScheme.getReversedButton()){
-			moveValue *= -1;
-		}
-
-		System.out.println(rotateValue);
-		System.out.println(moveValue);
-		System.out.println(mControlScheme.getReversedButton());
-
-		moveValue = limit(moveValue);
-		rotateValue = limit(rotateValue);
-
-		// square the inputs (while preserving the sign) to increase fine control
-		// while permitting full power
-		if (squaredInputs) {
-			// square the inputs (while preserving the sign) to increase fine control
-			// while permitting full power
-			moveValue = Math.copySign(moveValue * moveValue, moveValue);
-			rotateValue = Math.copySign(rotateValue * rotateValue, rotateValue);
-		}
-
-		if (moveValue > 0.0) {
-			if (rotateValue > 0.0) {
-				leftMotorSpeed = moveValue - rotateValue;
-				rightMotorSpeed = Math.max(moveValue, rotateValue);
-			} else {
-				leftMotorSpeed = Math.max(moveValue, -rotateValue);
-				rightMotorSpeed = moveValue + rotateValue;
-			}
-		} else {
-			if (rotateValue > 0.0) {
-				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
-				rightMotorSpeed = moveValue + rotateValue;
-			} else {
-				leftMotorSpeed = moveValue - rotateValue;
-				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
-			}
-		}
-
-		drive.set(new DifferentialDriveSignal(leftMotorSpeed, rightMotorSpeed));
+		drive.set(dPipe.apply(
+						new RotationalDriveSignal(mControlScheme.getThrottle(), mControlScheme.getWheel()),
+						mControlScheme.getQuickTurnButton())
+		);
 
 		drive.graphEncodersToConsole();
 

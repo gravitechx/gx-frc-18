@@ -7,6 +7,7 @@ import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 public class DefaultControlScheme extends ControlScheme {
     private static Joystick rotationStick;
     private static Joystick throttleStick;
+    private boolean isReversed = Constants.isReverse;
 
     //singleton pattern to prevent multiple instances of DefaultControlScheme
     private static DefaultControlScheme mInstance = new DefaultControlScheme();
@@ -20,8 +21,17 @@ public class DefaultControlScheme extends ControlScheme {
     // Returns the throttle of the inputted Joystick (throttle is the Y axis)
     @Override
     public double getThrottle() {
-        return throttleStick.getY();
+        return isReversed ? throttleStick.getY() : -1 * throttleStick.getY();
     }
+
+    public boolean isReversed() {
+        return isReversed;
+    }
+
+    public void setReversed(boolean reversed) {
+        isReversed = reversed;
+    }
+
     // Returns the rotation value of the inputted joystick(rotation is the X axis)
     @Override
     public double getWheel() {
@@ -46,14 +56,7 @@ public class DefaultControlScheme extends ControlScheme {
     }
 
     @Override
-    public boolean getReversedButton() {
-        return rotationStick.getRawButton(Constants.IO_REVERSED_BUTTON);
-    }
-
-    //returns the quickturn button on the throttlestick(it is button 2)
-
-    @Override
     public boolean getQuickTurnButton() {
-        return rotationStick.getRawButton(Constants.IO_QUICK_TURN_BUTTON);
+        return throttleStick.getRawButton(Constants.IO_QUICK_TURN_BUTTON);
     }
 }

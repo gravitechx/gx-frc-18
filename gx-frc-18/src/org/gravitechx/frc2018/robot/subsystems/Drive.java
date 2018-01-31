@@ -2,9 +2,10 @@ package org.gravitechx.frc2018.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
@@ -20,11 +21,12 @@ public class Drive extends Subsystem implements TestableSystem {
         return mInstance;
     }
 
-    // Motor controllers (slaved)
+    // Motor controllers
     private WPI_TalonSRX leftDrive;
     private WPI_TalonSRX rightDrive;
 
-    public DifferentialDrive testDrive;
+    private WPI_VictorSPX leftSlave;
+    private WPI_VictorSPX rightSlave;
 
     // Drive state modeling
     private DriveControlStates mCurrentState;
@@ -36,10 +38,18 @@ public class Drive extends Subsystem implements TestableSystem {
      */
     private Drive() {
         /* Initialize motor controllers */
-        leftDrive = TalonSRXFactory.createDefaultSlaveTalon(
-               Constants.leftTalonCanChannel, VictorSPFactory.createDefaultVictor(Constants.leftVictorSPPwmChannel));
-        rightDrive = TalonSRXFactory.createDefaultSlaveTalon(
-                Constants.rightTalonCanChannel, VictorSPFactory.createDefaultVictor(Constants.rightVictorSPPwmChannel));
+        leftDrive = TalonSRXFactory.createDefaultTalon(Constants.LEFT_TALON_CAN_CHANNEL);
+        rightDrive = TalonSRXFactory.createDefaultTalon(Constants.RIGHT_TALON_CAN_CHANNEL);
+
+        leftSlave = new WPI_VictorSPX(Constants.LEFT_VICTOR_CAN_CHANNEL);
+        rightSlave = new WPI_VictorSPX(Constants.RIGHT_VICTOR_CAN_CHANNEL);
+
+        leftSlave.follow(leftDrive);
+        rightSlave.follow(rightDrive);
+
+        leftDrive.setNeutralMode(NeutralMode.Coast);
+        rightDrive.setNeutralMode(NeutralMode.Coast);
+
 
         leftDrive.configSelectedFeedbackSensor(
                 FeedbackDevice.CTRE_MagEncoder_Relative,
@@ -65,9 +75,9 @@ public class Drive extends Subsystem implements TestableSystem {
         rightDrive.configPeakOutputReverse(-1, 0);
 
         // Configure PID
-
         leftDrive = TalonSRXFactory.configurePID(leftDrive, Constants.DRIVE_PID_CONFIG);
         rightDrive = TalonSRXFactory.configurePID(rightDrive, Constants.DRIVE_PID_CONFIG);
+
 
         mCurrentState = DriveControlStates.CLOSED_LOOP;
     }

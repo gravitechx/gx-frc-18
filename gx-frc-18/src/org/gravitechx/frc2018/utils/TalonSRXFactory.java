@@ -146,7 +146,7 @@ public class TalonSRXFactory {
         talon.config_kP(config.PID_ID, config.kP, config.TIME_TILL_ERROR_MS);
         talon.config_kI(config.PID_ID, config.kI, config.TIME_TILL_ERROR_MS);
         talon.config_kD(config.PID_ID, config.kD, config.TIME_TILL_ERROR_MS);
-        talon.config_kF(config.PID_ID, config.kD, config.TIME_TILL_ERROR_MS);
+        talon.config_kF(config.PID_ID, config.kF, config.TIME_TILL_ERROR_MS);
         return talon;
     }
 

@@ -7,7 +7,6 @@ public abstract class ControlScheme {
     public abstract double getThrottle();
     public abstract double getWheel();
     public abstract boolean getQuickTurnButton();
-    public abstract boolean getReversedButton();
     public abstract RotationalDriveSignal getRotationalDriveSignal();
 
     public static double transformSignal(double signal, double initialX, double initialY, double finalX, double finalY){

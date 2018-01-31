@@ -7,6 +7,10 @@ public class TalonPIDConfig extends PIDConfig {
     public int PID_ID = 0;
     public int TIME_TILL_ERROR_MS = 0;
 
+    public TalonPIDConfig(double kP, double kI, double kD, double kF, double scalingFactor){
+        super(kP, kI, kD, kF, scalingFactor);
+    }
+
     public TalonPIDConfig(double kP, double kI, double kD, double kF){
         super(kP, kI, kD, kF);
     }
