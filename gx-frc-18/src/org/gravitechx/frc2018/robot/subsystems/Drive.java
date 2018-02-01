@@ -25,12 +25,9 @@ public class Drive extends Subsystem implements TestableSystem {
     private WPI_TalonSRX leftDrive;
     private WPI_TalonSRX rightDrive;
 
-<<<<<<< HEAD
-=======
     private WPI_VictorSPX leftSlave;
     private WPI_VictorSPX rightSlave;
 
->>>>>>> io
     // Drive state modeling
     private DriveControlStates mCurrentState;
     public enum DriveControlStates {CLOSED_LOOP, AUTO, OPEN_LOOP};
@@ -63,12 +60,9 @@ public class Drive extends Subsystem implements TestableSystem {
         leftDrive.setSensorPhase(true);
         rightDrive.setSensorPhase(true);
 
-<<<<<<< HEAD
-=======
         rightDrive.setInverted(Constants.RIGHT_DRIVE_MOTOR_REVERSED);
         leftDrive.setInverted(Constants.LEFT_DRIVE_MOTOR_REVERSED);
 
->>>>>>> io
         // Configure PID
         leftDrive = TalonSRXFactory.configurePID(leftDrive, Constants.DRIVE_PID_CONFIG);
         rightDrive = TalonSRXFactory.configurePID(rightDrive, Constants.DRIVE_PID_CONFIG);
@@ -128,26 +122,16 @@ public class Drive extends Subsystem implements TestableSystem {
 
     @Override
     public void test() {
-        graphEncoderOutput();
+
     }
 
     /**
-<<<<<<< HEAD
      * Creates a graph of the left and right encoder output and errors for debug.
      */
-    public void graphEncoderOutput(){
-=======
-     * Outputs graphs of encoder data to the smart dashboard.
-     */
     public void graphEncodersToConsole(){
->>>>>>> io
         SmartDashboard.putNumber("Left Encoder: ", getLeftEncoder());
         SmartDashboard.putNumber("Left Error: ", getLeftPIDError());
         SmartDashboard.putNumber("Right Encoder: ", getRightEncoder());
-<<<<<<< HEAD
-        SmartDashboard.putNumber("Left Error: ", getRightPIDError());
-=======
-        SmartDashboard.putNumber("Right Error: ", getRightError());
->>>>>>> io
+        SmartDashboard.putNumber("Right Error: ", getRightPIDError());
     }
 }

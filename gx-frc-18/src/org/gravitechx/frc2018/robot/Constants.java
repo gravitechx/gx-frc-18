@@ -22,15 +22,9 @@ public class Constants {
     public static final int LEFT_VICTOR_CAN_CHANNEL = 0;
     public static final int RIGHT_VICTOR_CAN_CHANNEL = 1;
 
-<<<<<<< HEAD
-    public static final int ROTATION_STICK_PORT = 0;
-    public static final int IO_REVERSED_BUTTON = 5;
-    public static final int IO_QUICK_TURN_BUTTON = 6;
-=======
     // Is reversed
     public static final boolean LEFT_DRIVE_MOTOR_REVERSED = false;
     public static final boolean RIGHT_DRIVE_MOTOR_REVERSED = true;
->>>>>>> io
 
     /* PID */
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
@@ -85,19 +79,6 @@ public class Constants {
         }
     };
 
-<<<<<<< HEAD
-    /* NEGATIVE INERTIA CONSTANTS */
-    public static final double NEG_INERTIA_TURN_SCALAR = 3.5;
-    public static final double NEG_INERTIA_THREASHOLD = 0.65;
-    public static final double NEG_INERTIA_CLOSE_SCALAR = 4.0;
-    public static final double NEG_IRERTIA_FAR_SCALAR = 5.0;
-
-    /* QUICK STOP */
-    public static final double QUICK_STOP_DEADBAND =  0.2;
-    public static final double QUICK_STOP_WEIGHT = 0.1;
-    public static final double QUICK_STOP_SCALAR = 5.0;
-}
-=======
     /* ============= */
     /* MOTOR CONFIGS */
     /* ============= */
@@ -112,4 +93,3 @@ public class Constants {
         }
     }
 }
->>>>>>> io

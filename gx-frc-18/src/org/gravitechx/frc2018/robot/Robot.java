@@ -34,12 +34,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
-<<<<<<< HEAD
-	//DifferentialDrive difDrive;
-	//public Joystick mStick = new Joystick(0);
 	DrivePipeline pipe = new DrivePipeline();
-=======
->>>>>>> io
 
 
 
@@ -125,14 +120,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-<<<<<<< HEAD
-		// PID test
-		DifferentialDriveSignal signal = pipe.apply(mControlScheme.getRotationalDriveSignal(), mControlScheme.getQuickTurnButton());
-		drive.set(signal);
-=======
-
-		;
-
 		drive.set(dPipe.apply(
 						new RotationalDriveSignal(mControlScheme.getThrottle(), mControlScheme.getWheel()),
 						mControlScheme.getQuickTurnButton())
@@ -140,7 +127,6 @@ public class Robot extends IterativeRobot {
 
 		drive.graphEncodersToConsole();
 
->>>>>>> io
 	}
 
 	/**

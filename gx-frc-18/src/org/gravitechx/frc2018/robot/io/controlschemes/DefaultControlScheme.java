@@ -21,15 +21,11 @@ public class DefaultControlScheme extends ControlScheme {
     // Returns the throttle of the inputted Joystick (throttle is the Y axis)
     @Override
     public double getThrottle() {
-<<<<<<< HEAD
-        return ControlScheme.transformSignal(rotationStick.getY(), -1, 1, 0, 1);
-=======
         return isReversed ? throttleStick.getY() : -1 * throttleStick.getY();
     }
 
     public boolean isReversed() {
         return isReversed;
->>>>>>> io
     }
 
     public void setReversed(boolean reversed) {

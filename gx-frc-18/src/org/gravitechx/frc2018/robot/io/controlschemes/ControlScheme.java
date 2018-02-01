@@ -1,8 +1,4 @@
 package org.gravitechx.frc2018.robot.io.controlschemes;
-<<<<<<< HEAD
-=======
-
->>>>>>> io
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 
 //an abstract class for all common methods between control schemes
