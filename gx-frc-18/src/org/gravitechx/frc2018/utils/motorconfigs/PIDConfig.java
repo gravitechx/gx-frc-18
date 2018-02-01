@@ -10,6 +10,10 @@ public class PIDConfig {
     public double kD;
     public double kF;
 
+    public PIDConfig(double kP, double kI, double kD, double kF, double scalingFactor){
+        this(scalingFactor * kP, scalingFactor * kI, scalingFactor * kD, scalingFactor * kF);
+    }
+
     public PIDConfig(double kP, double kI, double kD, double kF){
         this.kP = kP;
         this.kI = kI;

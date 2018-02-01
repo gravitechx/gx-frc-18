@@ -16,10 +16,12 @@
  * Tweak the PID gains accordingly.
  */
 package org.gravitechx.frc2018.robot;
-import com.ctre.phoenix.motorcontrol.can.*;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
-import com.ctre.phoenix.motorcontrol.*;
 
 public class EncoderTest extends IterativeRobot {
   

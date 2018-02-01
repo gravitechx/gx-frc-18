@@ -1,13 +1,10 @@
 package org.gravitechx.frc2018.utils.drivehelpers;
 
-import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
-import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.function.UnaryOperator;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static junit.framework.TestCase.assertEquals;
 
 class RotationalDriveSignalTest {
     @Test

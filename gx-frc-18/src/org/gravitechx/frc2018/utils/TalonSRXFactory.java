@@ -1,12 +1,8 @@
 package org.gravitechx.frc2018.utils;
 
 import com.ctre.phoenix.motorcontrol.StatusFrame;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import org.gravitechx.frc2018.robot.Constants;
-import org.gravitechx.frc2018.utils.motorconfigs.PIDConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
 import org.gravitechx.frc2018.utils.wrappers.EfficientTalonSRX;
@@ -150,7 +146,7 @@ public class TalonSRXFactory {
         talon.config_kP(config.PID_ID, config.kP, config.TIME_TILL_ERROR_MS);
         talon.config_kI(config.PID_ID, config.kI, config.TIME_TILL_ERROR_MS);
         talon.config_kD(config.PID_ID, config.kD, config.TIME_TILL_ERROR_MS);
-        talon.config_kF(config.PID_ID, config.kD, config.TIME_TILL_ERROR_MS);
+        talon.config_kF(config.PID_ID, config.kF, config.TIME_TILL_ERROR_MS);
         return talon;
     }
 
