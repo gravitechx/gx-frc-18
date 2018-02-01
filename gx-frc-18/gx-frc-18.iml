@@ -12,7 +12,6 @@
     <orderEntry type="library" name="ntcore" level="project" />
     <orderEntry type="library" name="opencv" level="project" />
     <orderEntry type="library" name="WPILib" level="project" />
-    <orderEntry type="library" name="wpiutil" level="project" />
     <orderEntry type="library" name="CTRE_Phoenix" level="project" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
@@ -36,11 +35,11 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="WPILib-sources" level="project" />
     <orderEntry type="library" name="opencv-sources" level="project" />
     <orderEntry type="library" name="ntcore-sources" level="project" />
     <orderEntry type="library" name="cscore-sources" level="project" />
     <orderEntry type="library" name="CTRLib" level="project" />
     <orderEntry type="library" name="CTRE_Phoenix-sources" level="project" />
+    <orderEntry type="library" name="wpilibj-javadoc" level="project" />
   </component>
 </module>

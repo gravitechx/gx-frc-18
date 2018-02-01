@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
-import org.gravitechx.frc2018.utils.VictorSPFactory;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 
 /**
  * Implements the drive subsystem. This contains the DriveTrain and primitive drive functions.
@@ -30,7 +30,7 @@ public class Drive extends Subsystem implements TestableSystem {
 
     // Drive state modeling
     private DriveControlStates mCurrentState;
-    public enum DriveControlStates {CLOSED_LOOP, AUTO, OPEN_LOOP}
+    public enum DriveControlStates {CLOSED_LOOP, AUTO, OPEN_LOOP};
 
     /**
      * Sets the up PID and drive train
@@ -38,8 +38,8 @@ public class Drive extends Subsystem implements TestableSystem {
      */
     private Drive() {
         /* Initialize motor controllers */
-        leftDrive = TalonSRXFactory.createDefaultTalon(Constants.LEFT_TALON_CAN_CHANNEL);
-        rightDrive = TalonSRXFactory.createDefaultTalon(Constants.RIGHT_TALON_CAN_CHANNEL);
+        leftDrive = TalonSRXFactory.createTalon(Constants.LEFT_TALON_CAN_CHANNEL, new Constants.DriveTalonConfig());
+        rightDrive = TalonSRXFactory.createTalon(Constants.RIGHT_TALON_CAN_CHANNEL, new Constants.DriveTalonConfig());
 
         leftSlave = new WPI_VictorSPX(Constants.LEFT_VICTOR_CAN_CHANNEL);
         rightSlave = new WPI_VictorSPX(Constants.RIGHT_VICTOR_CAN_CHANNEL);
@@ -47,10 +47,7 @@ public class Drive extends Subsystem implements TestableSystem {
         leftSlave.follow(leftDrive);
         rightSlave.follow(rightDrive);
 
-        leftDrive.setNeutralMode(NeutralMode.Coast);
-        rightDrive.setNeutralMode(NeutralMode.Coast);
-
-
+        /* Set up encoders */
         leftDrive.configSelectedFeedbackSensor(
                 FeedbackDevice.CTRE_MagEncoder_Relative,
                 Constants.DRIVE_PID_CONFIG.PID_ID,
@@ -64,15 +61,8 @@ public class Drive extends Subsystem implements TestableSystem {
         leftDrive.setSensorPhase(true);
         rightDrive.setSensorPhase(true);
 
-        leftDrive.configNominalOutputForward(0, 0);
-        leftDrive.configNominalOutputReverse(0, 0);
-        leftDrive.configPeakOutputForward(1, 0);
-        leftDrive.configPeakOutputReverse(-1, 0);
-
-        rightDrive.configNominalOutputForward(0, 0);
-        rightDrive.configNominalOutputReverse(0, 0);
-        rightDrive.configPeakOutputForward(1, 0);
-        rightDrive.configPeakOutputReverse(-1, 0);
+        rightDrive.setInverted(Constants.RIGHT_DRIVE_MOTOR_REVERSED);
+        leftDrive.setInverted(Constants.LEFT_DRIVE_MOTOR_REVERSED);
 
         // Configure PID
         leftDrive = TalonSRXFactory.configurePID(leftDrive, Constants.DRIVE_PID_CONFIG);
@@ -87,8 +77,13 @@ public class Drive extends Subsystem implements TestableSystem {
      * @param differentialDriveSignal
      */
     public void set(DifferentialDriveSignal differentialDriveSignal){
-        leftDrive.set(ControlMode.Velocity, differentialDriveSignal.getLeftMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
-        rightDrive.set(ControlMode.Velocity, -1 * differentialDriveSignal.getRightMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
+        if(mCurrentState == DriveControlStates.CLOSED_LOOP) {
+            leftDrive.set(ControlMode.Velocity, differentialDriveSignal.getLeftMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
+            rightDrive.set(ControlMode.Velocity, -1 * differentialDriveSignal.getRightMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
+        }else{
+            leftDrive.set(ControlMode.PercentOutput, differentialDriveSignal.getLeftMotorOutput());
+            rightDrive.set(ControlMode.PercentOutput, -1 * differentialDriveSignal.getRightMotorOutput());
+        }
     }
 
     /**
@@ -130,12 +125,13 @@ public class Drive extends Subsystem implements TestableSystem {
 
     }
 
+    /**
+     * Outputs graphs of encoder data to the smart dashboard.
+     */
     public void graphEncodersToConsole(){
         SmartDashboard.putNumber("Left Encoder: ", getLeftEncoder());
         SmartDashboard.putNumber("Left Error: ", getLeftError());
         SmartDashboard.putNumber("Right Encoder: ", getRightEncoder());
-        SmartDashboard.putNumber("Left Encoder: ", getRightError());
-        System.out.println(Integer.toString(getLeftError()));
-        System.out.println(Integer.toString(getRightError()));
+        SmartDashboard.putNumber("Right Error: ", getRightError());
     }
 }

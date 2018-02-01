@@ -7,7 +7,7 @@ import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 public class DefaultControlScheme extends ControlScheme {
     private static Joystick rotationStick;
     private static Joystick throttleStick;
-    private boolean isReversed = Constants.isReverse;
+    private boolean isReversed = Constants.REVERSE_THROTTLE_STICK;
 
     //singleton pattern to prevent multiple instances of DefaultControlScheme
     private static DefaultControlScheme mInstance = new DefaultControlScheme();
