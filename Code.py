@@ -1,51 +1,115 @@
+import numpy as np
+import cv2
+import math
 
-#def average(numbers):
-#    return float(sum(numbers)) / max(len(numbers), 1)
 
+CLOSE_AREA  = 233452.5
 
-lower_yellow = np.array([20, 190, 20])
+#yellow color ranges
+lower_yellow = np.array([15, 140, 20])
 upper_yellow = np.array([30, 255, 255])
     
 #image used in program
+im = cv2.imread('C:/Users/GravitechX/Desktop/severalboxes.jpg', 1)
 
-im = cv2.imread('C:/Users/GravitechX/Documents/GitHub/gx-frc-18/OpenCV/lit_pictures_7.jpg', 1)
+#changing image colorspace from BGR to HSV
 hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
 
-hsv = cv2.resize(hsv, (0,0), fx=0.25, fy=0.25)
+#resizes the images to 1/4 the size
+resize = 1
+hsv = cv2.resize(hsv, (0,0), fx=resize, fy=resize)
+blite = cv2.resize(hsv, (0,0), fx=resize, fy=resize)
+im = cv2.resize(im, (0,0), fx=resize, fy=resize)
 
-the_window_just_for_nira = hsv
-#hsv = cv2.blur (hsv, (50, 50))
+#gets the height, width and channels of the image. (I have no idea what the channels are) 
+height, width, channels = im.shape
+
+#blurs the image
 hsv = cv2.medianBlur (hsv, 5)
-mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
-mask = cv2.resize(mask, (0,0), fx=0.8, fy=0.8)
 
-ret,thresh = cv2.threshold(mask,255,255,255)
-im2, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
+#locates all "yellow" and filters everything else out.  Results in a black and white image
+blite = cv2.inRange(hsv, lower_yellow, upper_yellow)
 
-im2 = cv2.drawContours(im2, contours, 3, (0,255,0), 3)
+#changes the colorspace of the filtered image to BGR allowing for the contours to be displayed in color
+final = cv2.cvtColor(blite, cv2.COLOR_GRAY2BGR)
+
+#sets up contour stuff
+ret,thresh = cv2.threshold(blite, 255, 255, 255)
+blite, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
+
+
+#variables to be used in for loop
+biggest_contour = 0
+other_contour = 0
+y = 0
+
+#loop that finds the contour with the biggest area.
+#Remeber that everything but yellow has been filtered out reducing the contour count greatly
+for x in range(0, len(contours)):
+    if x == 0:
+        biggest_contour = cv2.contourArea(contours[x])
+        y = x
+    elif cv2.contourArea(contours[x]) > cv2.contourArea(contours[y]):
+        biggest_contour = cv2.contourArea(contours[x])
+        y = x
+        
+    x += 1    
+
+#variables to be used in finding the average point of the box
+cnt = contours[y]
+M = cv2.moments(cnt)
+
+
+
+cx = int(M['m10']/M['m00']) #Average x point of contour box
+cy = int(M['m01']/M['m00']) #Average y point of contour box
+
+#variables to be used in for loop below
+av_len = 0
+total_lengths = 1
+#puts the box contour in a multidimensional array including all points on the contour
+contour = np.vstack(contours[y]).squeeze()
+#loops through the box contour and finds the average distance from the centroid to the perimeter
+for x in range(0, len(contour)):
+    #distance formula
+    av_len += ((contour[x][0] - cx)**2 + (contour[x][1] - cy)**2)**(1/2)
+    total_lengths +=1
+    x += 1
+#finds the average
+av_len = av_len/total_lengths
+
+#draws the box contour onto final
+final = cv2.drawContours(final, contours[y], -1, (0, 0, 255), 5)
+
+#distances from centroid to edges of screen
+distance_from_left = cx
+distance_from_right = width - cx
+distance_from_top = cy
+distance_from_bottom = height - cy
+
+
+
+#draws the centroid onto final
+cv2.circle(final, (cx, cy), 1, (0,255,0), thickness=1, lineType=8, shift=0)
+
+#draws box contour onto hsv and im
+hsv = cv2.drawContours(hsv, contours[y], -1, (0, 0, 255), 5)
+im = cv2.drawContours(im, contours[y], -1, (0, 0, 255), 5)
+#draws the centroid onto im
+cv2.circle(im, (cx, cy), 1, (0,255,0), thickness=20, lineType=8, shift=0)
+
 
 #this is necessary for the instantiation of the vision DO NOT DELETE OR ELSE EVERYTHING WILL BREAK
-print("I chose to sat there - nira 1/29/18")
-#cv2.boundingRect(
-#darkIm = cv2.cvtColor(hsv, cv2.COLOR_BGR2GRAY)
-#retval, threshold = cv2.threshold(darkIm, 50, 100, cv2.THRESH_BINARY);
-#hsvHist = average(cv2.calcHist([darkIm], [0], None, [256], [0,256]))
+print("I chose to sat there - 1/21/18")
 
 
-#retval, threshold = cv2.threshold(darkIm, (hsvHist-1000)/10, (hsvHist-500)/10, cv2.THRESH_BINARY)
-#Black and White Threshold using average lighting (does not work yet)
-#https://pythonprogramming.net/thresholding-image-analysis-python-opencv-tutorial/  <-- threshold info
 
-#print (hsvHist)
+#displays the images
+cv2.imshow('hsv', hsv)
+cv2.imshow('blite', blite)
+cv2.imshow('final', final)
+cv2.imshow('im', im)
 
-#displays images
-cv2.imshow('image', hsv)
-cv2.imshow('mask', mask)
-cv2.imshow('the_window_just_for_nira', the_window_just_for_nira)
-cv2.imshow('im2', im2)
-#cv2.imshow('bw', darkIm)
-#cv2.imshow('threshold', threshold)
-
-
+#kills the windows when a key is pressed
 cv2.waitKey(0)
 cv2.destroyAllWindows()
