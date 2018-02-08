@@ -17,19 +17,33 @@ public class Constants {
     /* ========================== */
     /* Motor controller constants */
     /* ========================== */
-    public static final int LEFT_TALON_CAN_CHANNEL = 0;
+
+    // Drive Motor Controllers
+    public static final int LEFT_TALON_CAN_CHANNEL = 3;
     public static final int RIGHT_TALON_CAN_CHANNEL = 1;
-    public static final int LEFT_VICTOR_CAN_CHANNEL = 0;
-    public static final int RIGHT_VICTOR_CAN_CHANNEL = 1;
+    public static final int LEFT_VICTOR_CAN_CHANNEL = 1;
+    public static final int RIGHT_VICTOR_CAN_CHANNEL = 3;
+
+    // ARM Motor Controllers
+    public static final int LEFT_LIFT_TALON_CAN_CHANNEL = 0;
+    public static final int RIGHT_LIFT_TALON_CAN_CHANNEL = 2;
+
+    public static final int LEFT_LIFT_FRONT_SPARK_PWM_CHANNEL = 0;
+    public static final int LEFT_LIFT_BACK_SPARK_PWM_CHANNEL = 1;
+
+    public static final int RIGHT_LIFT_FRONT_SPARK_PWM_CHANNEL = 2;
+    public static final int RIGHT_LIFT_BACK_SPARK_PWM_CHANNEL = 3;
 
     // Is reversed
     public static final boolean LEFT_DRIVE_MOTOR_REVERSED = false;
-    public static final boolean RIGHT_DRIVE_MOTOR_REVERSED = true;
+    public static final boolean RIGHT_DRIVE_MOTOR_REVERSED = false;
 
     /* PID */
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
-            new TalonPIDConfig(0.35, 5e-7, .33, 0.01, 1.3);
-    public static final double DRIVE_ENCODER_MOTIFIER =  4096 * 500.0 / 600.0 * 2.0;
+            new TalonPIDConfig(0.20, 1.0E-5, 0.15, 0.1, 1.0);
+    public static final TalonPIDConfig NO_PID_CONFIG = new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
+
+    public static final double DRIVE_ENCODER_MOTIFIER =  4096.0 * 500.0 / 600.0 * 2.0;
 
     /* NEGATIVE INERTIA CONSTANTS */
     public static final double NEG_INERTIA_TURN_SCALAR = 2.5;
@@ -39,8 +53,8 @@ public class Constants {
 
     /* QUICK STOP */
     public static final double QUICK_STOP_DEADBAND =  0.16;
-    public static final double QUICK_STOP_WEIGHT = 0.2;
-    public static final double QUICK_STOP_SCALAR = 5.0;
+    public static final double QUICK_STOP_WEIGHT = 0.15;
+    public static final double QUICK_STOP_SCALAR = 3.0;
 
     /* == */
     /* IO */
@@ -58,11 +72,26 @@ public class Constants {
     /* Throttle Reverse */
     public static final boolean REVERSE_THROTTLE_STICK = false;
 
+    /* LIFT */
+    public static int PRIMARY_LIFT_STICK_PORT = 2;
+    public static int SECONDARY_LIFT_STICK_PORT = 3;
+    public static double DEFAULT_AXIS_FUSE_RATIO = .75;
+
+    /* BIO */
+    public static final int BIO_OPEN_PORT = 0;
+    public static final int BIO_CLOSE_PORT = 1;
+    public static final int ROTATOR_PORT = 2;
+    public static final int NULL_PORT = 10;
+
     /* Control System Joystick Functions */
     public static final UnaryOperator<Double> THROTTLE_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {
         @Override
         public Double apply(Double signal) {
-            return signal;
+            if(signal > 0.0){
+                return signal * signal;
+            }else{
+                return - 1 * signal * signal;
+            }
         }
     };
 
@@ -83,13 +112,15 @@ public class Constants {
     /* MOTOR CONFIGS */
     /* ============= */
 
+    public static double MAX_LIFT_VOLTAGE = 6.0;
+
     /* Talon on the drive train */
     public static class DriveTalonConfig extends TalonConfig {
         public DriveTalonConfig(){
             super();
             this.BREAK_MODE = NeutralMode.Coast;
-            this.CLOSED_LOOP_RAMP_RATE_SEC = 4.0;
-            this.OPEN_LOOP_RAMP_RATE_SEC = 4.0;
+            this.CLOSED_LOOP_RAMP_RATE_SEC = .35;
+            this.OPEN_LOOP_RAMP_RATE_SEC = .35;
         }
     }
 }

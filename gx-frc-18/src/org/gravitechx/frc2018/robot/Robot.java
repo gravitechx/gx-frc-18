@@ -2,17 +2,15 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.gravitechx.frc2018.robot.commands.ExampleCommand;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
+import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
-import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
-import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.robot.subsystems.Lift;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 
@@ -27,9 +25,10 @@ import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static Drive drive;
 	public static DrivePipeline dPipe;
+	public static Lift lift;
+	public static BIO bio;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -44,14 +43,16 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 
 		drive = Drive.getInstance();
+		lift = Lift.getInstance();
 		dPipe = new DrivePipeline();
 
 		mControlScheme = DefaultControlScheme.getInstance();
+
+		bio = BIO.getInstance();
 	}
 
 	/**
@@ -126,7 +127,7 @@ public class Robot extends IterativeRobot {
 		);
 
 		drive.graphEncodersToConsole();
-
+		lift.set(-mControlScheme.getFusedAxis());
 	}
 
 	/**

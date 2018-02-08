@@ -7,6 +7,8 @@ import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 public class DefaultControlScheme extends ControlScheme {
     private static Joystick rotationStick;
     private static Joystick throttleStick;
+    private static Joystick primaryLift;
+    private static Joystick secondaryLift;
     private boolean isReversed = Constants.REVERSE_THROTTLE_STICK;
 
     //singleton pattern to prevent multiple instances of DefaultControlScheme
@@ -16,6 +18,18 @@ public class DefaultControlScheme extends ControlScheme {
     protected DefaultControlScheme(){
         rotationStick = new Joystick(Constants.ROTATION_STICK_PORT);
         throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
+        primaryLift = new Joystick(Constants.PRIMARY_LIFT_STICK_PORT);
+        secondaryLift = new Joystick(Constants.SECONDARY_LIFT_STICK_PORT);
+    }
+
+    @Override
+    public double getLiftPrimaryAxis(){
+        return primaryLift.getY();
+    }
+
+    @Override
+    public double getLiftSecondaryAxis(){
+        return secondaryLift.getY();
     }
 
     // Returns the throttle of the inputted Joystick (throttle is the Y axis)
@@ -58,5 +72,15 @@ public class DefaultControlScheme extends ControlScheme {
     @Override
     public boolean getQuickTurnButton() {
         return throttleStick.getRawButton(Constants.IO_QUICK_TURN_BUTTON);
+    }
+
+    @Override
+    public boolean getArmAccuator() {
+        return primaryLift.getTrigger();
+    }
+
+    @Override
+    public boolean getRotatorAccuator() {
+        return secondaryLift.getTrigger();
     }
 }
