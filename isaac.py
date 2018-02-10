@@ -6,13 +6,13 @@ import math
 CLOSE_AREA  = 233452.5
 
 #yellow color ranges
-lower_yellow = np.array([20, 140, 20])
+lower_yellow = np.array([20, 50, 145])
 upper_yellow = np.array([30, 255, 255])
 loower_yellow = np.array([20, 100, 100])
 uppper_yellow = np.array([60, 255, 255])
     
 #image used in program
-im = cv2.imread('C:/Users/GravitechX/Desktop/lit_pictures_1.jpg', 1)
+im = cv2.imread('C:/Users/GravitechX/Desktop/lit_picture_1.jpg', 1)
 
 #changing image colorspace from BGR to HSV
 hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
@@ -82,36 +82,36 @@ oldX = []
 top = 0
 bottom = 100000
 this = True
-for x in range(0, len(contour) - 1):
-    stuff.append(x)
-    for j in range(x + 1, len(contour) - 1):
-        if contour[j][0] == contour[x][0]:
-            stuff.append(j)
-    for i in range(0, len(stuff) - 1):
-        if contour[stuff[i]][1] > top:
-            top = contour[stuff[i]][1]
-        elif contour[stuff[i]][1] < bottom:
-            bottom = contour[stuff[i]][1]
-    for n in range(0, len(contour) - 1):
-        if contour[n][0] == contour[x][0]:
-            if contour[n][1] != top and contour[n][1] != bottom:
-                this = True
-            else:
-                np.append(new_contour, [contour[n]])
-    for h in range(0, len(stuff) - 1):
-        del stuff[0]
-    oldX.append(contour[x][0])
-print(contours[y])
-print(new_contour)
+#for x in range(0, len(contour) - 1):
+#    stuff.append(x)
+#    for j in range(x + 1, len(contour) - 1):
+#        if contour[j][0] == contour[x][0]:
+#            stuff.append(j)
+#    for i in range(0, len(stuff) - 1):
+#        if contour[stuff[i]][1] > top:
+#            top = contour[stuff[i]][1]
+#        elif contour[stuff[i]][1] < bottom:
+#            bottom = contour[stuff[i]][1]
+#    for n in range(0, len(contour) - 1):
+#        if contour[n][0] == contour[x][0]:
+#            if contour[n][1] != top and contour[n][1] != bottom:
+#                this = True
+#            else:
+#                np.append(new_contour, [contour[n]])
+#    for h in range(0, len(stuff) - 1):
+#        del stuff[0]
+#    oldX.append(contour[x][0])
+#print(contours[y])
+#print(new_contour)
 #loops through the box contour and finds the average distance from the centroid to the perimeter
-for x in range(0, len(contour)):
+#for x in range(0, len(contour)):
     #distance formula
-    av_len += ((contour[x][0] - cx)**2 + (contour[x][1] - cy)**2)**(1/2)
-    total_lengths +=1
+    #av_len += ((contour[x][0] - cx)**2 + (contour[x][1] - cy)**2)**(1/2)
+    #total_lengths +=1
 #finds the average
 av_len = av_len/total_lengths
 #draws the box contour onto final
-final = cv2.drawContours(final, new_contour, -1, (0, 0, 255), 5)
+final = cv2.drawContours(final, contours[y], -1, (0, 0, 255), 5)
 
 #distances from centroid to edges of screen
 distance_from_left = cx
@@ -125,8 +125,8 @@ distance_from_bottom = height - cy
 cv2.circle(final, (cx, cy), 1, (0,255,0), thickness=1, lineType=8, shift=0)
 
 #draws box contour onto hsv and im
-hsv = cv2.drawContours(hsv, new_contour, -1, (0, 0, 255), 5)
-im = cv2.drawContours(im, new_contour, -1, (0, 0, 255), 5)
+hsv = cv2.drawContours(hsv, contours[y], -1, (0, 0, 255), 5)
+im = cv2.drawContours(im, contours[y], -1, (0, 0, 255), 5)
 #draws the centroid onto im
 cv2.circle(im, (cx, cy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 print (cx, cy)
@@ -145,7 +145,7 @@ cv2.imshow('hsv', hsv)
 cv2.imshow('blite', blite)
 cv2.imshow('final', final)
 cv2.imshow('im', im)
-#cv2.imshow('rgb', rgb)
+cv2.imshow('rgb', rgb)
 
 #kills the windows when a key is pressed
 cv2.waitKey(0)
