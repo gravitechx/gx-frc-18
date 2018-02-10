@@ -7,7 +7,7 @@ CLOSE_AREA  = 233452.5
 
 #yellow color ranges
 lower_yellow = np.array([20, 50, 145])
-upper_yellow = np.array([30, 255, 255])
+upper_yellow = np.array([40, 255, 255])
 loower_yellow = np.array([20, 100, 100])
 uppper_yellow = np.array([60, 255, 255])
     
