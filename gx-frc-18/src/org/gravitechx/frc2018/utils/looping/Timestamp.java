@@ -26,6 +26,10 @@ public class Timestamp {
         dt_S = 0.0;
     }
 
+    public double cdt(){
+        return Timer.getFPGATimestamp() - time_S;
+    }
+
     /**
      * Get the time differential between the last two updates.
      * @return

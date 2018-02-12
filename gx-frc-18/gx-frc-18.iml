@@ -41,5 +41,6 @@
     <orderEntry type="library" name="CTRLib" level="project" />
     <orderEntry type="library" name="CTRE_Phoenix-sources" level="project" />
     <orderEntry type="library" name="wpilibj-javadoc" level="project" />
+    <orderEntry type="library" name="navx_frc" level="project" />
   </component>
 </module>

@@ -1,6 +1,7 @@
 package org.gravitechx.frc2018.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
 
@@ -54,7 +55,7 @@ public class Constants {
     /* QUICK STOP */
     public static final double QUICK_STOP_DEADBAND =  0.16;
     public static final double QUICK_STOP_WEIGHT = 0.15;
-    public static final double QUICK_STOP_SCALAR = 3.0;
+    public static final double QUICK_STOP_SCALAR = 1.5;
 
     /* == */
     /* IO */
@@ -81,7 +82,21 @@ public class Constants {
     public static final int BIO_OPEN_PORT = 0;
     public static final int BIO_CLOSE_PORT = 1;
     public static final int ROTATOR_PORT = 2;
-    public static final int NULL_PORT = 10;
+    public static final int NULL_PORT = 7;
+
+    public static final int LEFT_BIO_MOTOR_CAN_PORT = 0;
+    public static final int RIGHT_BIO_MOTOR_CAN_PORT = 2;
+
+    public static final double BIO_INHALE_SPEED = .45;
+    public static final double BIO_EXHALE_SPEED = -.27;
+
+    public static final double BUTTON_SWITCH_SPEED = .2;
+
+    public static final DoubleSolenoid.Value BIO_GRASP_OPEN_SOLENOID_POSITION = DoubleSolenoid.Value.kForward;
+    public static final DoubleSolenoid.Value BIO_GRASP_CLOSED_SOLENOID_POSITION = DoubleSolenoid.Value.kReverse;
+
+    public static final DoubleSolenoid.Value BIO_ROTATOR_UP_SOLENOID_POSITION = DoubleSolenoid.Value.kReverse;
+    public static final DoubleSolenoid.Value BIO_ROTATOR_DOWN_SOLENOID_POSITION = DoubleSolenoid.Value.kForward;
 
     /* Control System Joystick Functions */
     public static final UnaryOperator<Double> THROTTLE_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {
@@ -112,7 +127,7 @@ public class Constants {
     /* MOTOR CONFIGS */
     /* ============= */
 
-    public static double MAX_LIFT_VOLTAGE = 6.0;
+    public static double MAX_LIFT_VOLTAGE = 8.0;
 
     /* Talon on the drive train */
     public static class DriveTalonConfig extends TalonConfig {

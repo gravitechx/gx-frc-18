@@ -2,6 +2,8 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -13,6 +15,9 @@ import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.Lift;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
+import org.gravitechx.frc2018.utils.looping.Loop;
+import org.gravitechx.frc2018.utils.looping.LoopScheduler;
+import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
 
 import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 
@@ -29,11 +34,14 @@ public class Robot extends IterativeRobot {
 	public static DrivePipeline dPipe;
 	public static Lift lift;
 	public static BIO bio;
+	public static GravAHRS ahrs;
+	public boolean isGrabbing;
+
+	public static PowerDistributionPanel pdp;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
-	DrivePipeline pipe = new DrivePipeline();
 
 
 
@@ -43,16 +51,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		//chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 
 		drive = Drive.getInstance();
 		lift = Lift.getInstance();
 		dPipe = new DrivePipeline();
+		bio = BIO.getInstance();
+		pdp  = new PowerDistributionPanel(0);
+		ahrs = new GravAHRS(SPI.Port.kMXP);
 
 		mControlScheme = DefaultControlScheme.getInstance();
-
-		bio = BIO.getInstance();
 	}
 
 	/**
@@ -128,6 +137,36 @@ public class Robot extends IterativeRobot {
 
 		drive.graphEncodersToConsole();
 		lift.set(-mControlScheme.getFusedAxis());
+
+		if(mControlScheme.getInhalingButton() && bio.getControlState() != BIO.ControlState.EXHALING){
+			bio.set(BIO.ControlState.INHALING);
+		}else if (mControlScheme.getExhalingButton()){
+			bio.set(BIO.ControlState.EXHALING);
+		}else{
+			bio.set(BIO.ControlState.NEUTRAL);
+		}
+
+		if(bio.getControlState() == BIO.ControlState.EXHALING && mControlScheme.getInhalingButton()){
+			bio.setShouldExhale(true);
+		}else{
+			bio.setShouldExhale(false);
+		}
+
+		if(mControlScheme.getGrabbingButton()){
+			bio.grasp(BIO.GraspingStatus.CLOSED);
+		}else{
+			bio.grasp(BIO.GraspingStatus.OPEN);
+		}
+
+		System.out.print(
+				"AHRS Yaw: " + ahrs.getYawDegrees()
+				+ "AHRS Yaw / Sec: " + ahrs.getYawRateDegreesPerSecond()
+				+ "AHRS Pitch: " + ahrs.getPitchDegrees()
+				+ "AHRS Pitch / Sec: " + ahrs.getPitchDegreesPerSecond()
+		);
+
+		bio.update();
+		mControlScheme.update();
 	}
 
 	/**

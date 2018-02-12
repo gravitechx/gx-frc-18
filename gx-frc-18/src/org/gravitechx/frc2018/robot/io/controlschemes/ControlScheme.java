@@ -10,8 +10,10 @@ public abstract class ControlScheme {
     public abstract double getWheel();
     public abstract boolean getQuickTurnButton();
     public abstract RotationalDriveSignal getRotationalDriveSignal();
-    public abstract boolean getArmAccuator();
-    public abstract boolean getRotatorAccuator();
+    public abstract boolean getInhalingButton();
+    public abstract boolean getExhalingButton();
+    public abstract boolean getGrabbingButton();
+    public abstract void update();
 
     public abstract double getLiftPrimaryAxis();
     public abstract double getLiftSecondaryAxis();

@@ -1,5 +1,7 @@
 package org.gravitechx.frc2018.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,6 +28,7 @@ public class Lift extends Subsystem {
         private WPI_TalonSRX mMaster;
         private Spark mSlaveBack;
 
+
         public LiftGearBox(Spark mSlaveFront, WPI_TalonSRX mMaster, Spark mSlaveBack){
             this.mSlaveFront = mSlaveFront;
             this.mMaster = mMaster;
@@ -34,8 +37,8 @@ public class Lift extends Subsystem {
 
         public void set(double speed){
             mMaster.set(-speed);
-            mSlaveFront.set(speed);
-            mSlaveBack.set(speed);
+            mSlaveFront.set(-mMaster.getMotorOutputVoltage()); // Test
+            mSlaveBack.set(-mMaster.getMotorOutputVoltage());
         }
 
         /* GETTERS AND SETTERS */
@@ -65,8 +68,9 @@ public class Lift extends Subsystem {
     }
 
     private Lift(){
+        WPI_TalonSRX leftTalon = TalonSRXFactory.createDefaultTalon(Constants.LEFT_LIFT_TALON_CAN_CHANNEL);
         leftGearBox = new LiftGearBox(new Spark(Constants.LEFT_LIFT_FRONT_SPARK_PWM_CHANNEL),
-                TalonSRXFactory.createDefaultTalon(Constants.LEFT_LIFT_TALON_CAN_CHANNEL),
+                leftTalon,
                 new Spark(Constants.LEFT_LIFT_BACK_SPARK_PWM_CHANNEL));
 
         rightGearBox = new LiftGearBox(new Spark(Constants.RIGHT_LIFT_FRONT_SPARK_PWM_CHANNEL),

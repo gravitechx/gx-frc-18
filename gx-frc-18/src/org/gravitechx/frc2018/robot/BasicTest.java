@@ -22,7 +22,6 @@ import org.gravitechx.frc2018.utils.TalonSRXFactory;
  */
 public class BasicTest extends IterativeRobot {
 
-    public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     public DifferentialDrive basicDrive;
 
     Command autonomousCommand;
@@ -37,7 +36,6 @@ public class BasicTest extends IterativeRobot {
      */
     @Override
     public void robotInit() {
-        chooser.addDefault("Default Auto", new ExampleCommand());
         // chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         tleft = TalonSRXFactory.createDefaultTalon(Constants.LEFT_TALON_CAN_CHANNEL);

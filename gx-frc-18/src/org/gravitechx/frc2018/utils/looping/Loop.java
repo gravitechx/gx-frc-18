@@ -7,7 +7,7 @@ abstract public class Loop {
     /**
      * Initialize any values prior to looping
      */
-    void initalize() {
+    public void initalize() {
         // Overload me
     }
 
@@ -15,10 +15,12 @@ abstract public class Loop {
      * Constant updating function. Time can be received from @see {Timestamp}
      * @param timestamp
      */
-    abstract void update(Timestamp timestamp);
+    public abstract void update(Timestamp timestamp);
 
     /**
      * Denitializes or logs values.
      */
-    void deinitalize() {}
+    public void deinitalize() {
+        // Overload me
+    }
 }

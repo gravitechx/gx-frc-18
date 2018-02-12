@@ -2,6 +2,7 @@ package org.gravitechx.frc2018.robot.io.controlschemes;
 
 import edu.wpi.first.wpilibj.Joystick;
 import org.gravitechx.frc2018.robot.Constants;
+import org.gravitechx.frc2018.utils.SwitchingBoolean;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 
 public class DefaultControlScheme extends ControlScheme {
@@ -10,6 +11,7 @@ public class DefaultControlScheme extends ControlScheme {
     private static Joystick primaryLift;
     private static Joystick secondaryLift;
     private boolean isReversed = Constants.REVERSE_THROTTLE_STICK;
+    private SwitchingBoolean grabbingBoolean;
 
     //singleton pattern to prevent multiple instances of DefaultControlScheme
     private static DefaultControlScheme mInstance = new DefaultControlScheme();
@@ -20,6 +22,7 @@ public class DefaultControlScheme extends ControlScheme {
         throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
         primaryLift = new Joystick(Constants.PRIMARY_LIFT_STICK_PORT);
         secondaryLift = new Joystick(Constants.SECONDARY_LIFT_STICK_PORT);
+        grabbingBoolean = new SwitchingBoolean(true, Constants.BUTTON_SWITCH_SPEED);
     }
 
     @Override
@@ -75,12 +78,23 @@ public class DefaultControlScheme extends ControlScheme {
     }
 
     @Override
-    public boolean getArmAccuator() {
+    public boolean getInhalingButton() {
         return primaryLift.getTrigger();
     }
 
     @Override
-    public boolean getRotatorAccuator() {
+    public boolean getExhalingButton() {
         return secondaryLift.getTrigger();
+    }
+
+    @Override
+    public boolean getGrabbingButton() {
+        return grabbingBoolean.getValue();
+    }
+
+    public void update(){
+        if(primaryLift.getTop()){
+            grabbingBoolean.switchValue();
+        }
     }
 }

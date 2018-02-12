@@ -1,30 +1,45 @@
 package org.gravitechx.frc2018.robot.subsystems;
 
-
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.gravitechx.frc2018.robot.Constants;
 
 public class BIO {
     private DoubleSolenoid mGripper;
     private DoubleSolenoid mRotator;
+
+    private WPI_VictorSPX mRightIntake;
+    private WPI_VictorSPX mLeftIntake;
     
     private ControlState mControlState;
 
     public enum ControlState {
-        NEUTRAL, GRASPING, INHALING, EXHALING
+        NEUTRAL, INHALING, EXHALING
     }
 
     public enum GraspingStatus {
         CLOSED, NEUTRAL, OPEN
     }
 
-    private boolean isRotated;
     private GraspingStatus mGraspingStatus;
+
+    private boolean mShouldExhale;
+
+    public ControlState getControlState() {
+        return mControlState;
+    }
 
     private BIO(){
         mGripper = new DoubleSolenoid(Constants.BIO_OPEN_PORT, Constants.BIO_CLOSE_PORT);
         mRotator = new DoubleSolenoid(Constants.ROTATOR_PORT, Constants.NULL_PORT);
+        mRightIntake = new WPI_VictorSPX(Constants.RIGHT_BIO_MOTOR_CAN_PORT);
+        mLeftIntake = new WPI_VictorSPX(Constants.LEFT_BIO_MOTOR_CAN_PORT);
         mControlState = ControlState.NEUTRAL;
+        mShouldExhale = false;
+
+        mLeftIntake.setNeutralMode(NeutralMode.Coast);
+        mRightIntake.setNeutralMode(NeutralMode.Coast);
     }
 
     private static final BIO mBIO = new BIO();
@@ -38,12 +53,6 @@ public class BIO {
         switch (cState){
             case NEUTRAL:
                 rotate(true);
-                if(mGraspingStatus == GraspingStatus.NEUTRAL){
-                    grasp(GraspingStatus.OPEN);
-                }
-                break;
-            case GRASPING:
-                grasp(GraspingStatus.CLOSED);
                 break;
             case EXHALING:
                 rotate(false);
@@ -56,24 +65,56 @@ public class BIO {
     }
 
     public void grasp(GraspingStatus graspingStatus){
-        switch(graspingStatus){
-            case OPEN:
-                mGripper.set(DoubleSolenoid.Value.kForward);
-                break;
-            case NEUTRAL:
-                mGripper.set(DoubleSolenoid.Value.kOff);
-                break;
-            case CLOSED:
-                mGripper.set(DoubleSolenoid.Value.kReverse);
+        if(graspingStatus != mGraspingStatus) {
+            switch (graspingStatus) {
+                case OPEN:
+                    mGripper.set(Constants.BIO_GRASP_OPEN_SOLENOID_POSITION);
+                    break;
+                case NEUTRAL:
+                    mGripper.set(DoubleSolenoid.Value.kOff);
+                    break;
+                case CLOSED:
+                    mGripper.set(Constants.BIO_GRASP_CLOSED_SOLENOID_POSITION);
+            }
+            mGraspingStatus = graspingStatus;
         }
-        mGraspingStatus = graspingStatus;
     }
 
     public void rotate(boolean isUp){
         if(isUp){
-            mRotator.set(DoubleSolenoid.Value.kForward);
+            mRotator.set(Constants.BIO_ROTATOR_UP_SOLENOID_POSITION);
         }else{
-            mRotator.set(DoubleSolenoid.Value.kOff);
+            mRotator.set(Constants.BIO_ROTATOR_DOWN_SOLENOID_POSITION);
+        }
+    }
+
+    public void setIntake(double speed){
+        mLeftIntake.set(speed);
+        mRightIntake.set(speed);
+    }
+
+    public boolean isShouldExhale() {
+        return mShouldExhale;
+    }
+
+    public void setShouldExhale(boolean mShouldExhale) {
+        this.mShouldExhale = mShouldExhale;
+    }
+
+    public void update(){
+        switch (mControlState){
+            case INHALING:
+                setIntake(Constants.BIO_INHALE_SPEED);
+                break;
+            case EXHALING:
+                if(mShouldExhale) {
+                    setIntake(Constants.BIO_EXHALE_SPEED);
+                }else{
+                    setIntake(0.0);
+                }
+                break;
+            default:
+                setIntake(0.0);
         }
     }
 }
