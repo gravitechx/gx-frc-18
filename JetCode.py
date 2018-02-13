@@ -1,7 +1,6 @@
 import numpy as np
 import cv2
 import math
-from time import sleep
 
 cap = cv2.VideoCapture(0)
 if (cap.isOpened()== False): 
