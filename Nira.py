@@ -6,17 +6,17 @@ import math
 CLOSE_AREA  = 233452.5
 
 #yellow color ranges
-lower_yellow = np.array([20, 50, 145])
+lower_yellow = np.array([27, 50, 145])
 upper_yellow = np.array([40, 255, 255])
     
 #image used in program
-im = cv2.imread('C:/Users/GravitechX/Desktop/lit_picture_1.jpg', 1)
+im = cv2.imread('C:/Users/GravitechX/Desktop/Boxes.jpg', 1)
 
 #changing image colorspace from BGR to HSV
 hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
 
 #resizes the images to 1/4 the size
-resize = .25
+resize = 1
 hsv = cv2.resize(hsv, (0,0), fx=resize, fy=resize)
 blite = cv2.resize(hsv, (0,0), fx=resize, fy=resize)
 im = cv2.resize(im, (0,0), fx=resize, fy=resize)
@@ -150,6 +150,11 @@ print (BoxRImage)
     
 #draws the centroid onto im
 cv2.circle(im, (cx, cy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+
+varX = 1.878472
+distance = (width * varX) / w
+print (distance)
+
 
 #this is necessary for the instantiation of the vision DO NOT DELETE OR ELSE EVERYTHING WILL BREAK
 print("I chose to sat there - 1/21/18")
