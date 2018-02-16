@@ -1,26 +1,52 @@
 package org.gravitechx.frc2018.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.gravitechx.frc2018.robot.Constants;
+import org.gravitechx.frc2018.utils.PIDController;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.drivehelpers.DriveSignal;
+import org.gravitechx.frc2018.utils.lifthelpers.ElevatorHallEffect;
+import org.gravitechx.frc2018.utils.motorconfigs.PIDConfig;
 
 public class Lift extends Subsystem {
     /* MOTOR CONTROLLERS */
     private LiftGearBox leftGearBox;
     private LiftGearBox rightGearBox;
 
+    private ElevatorHallEffect mTopHall;
+    private ElevatorHallEffect mMidHall;
+    private ElevatorHallEffect mBottomHall;
+
+    private SensorCollection encoder;
+
     private double M_MAX_VOLTAGE = Constants.MAX_LIFT_VOLTAGE;
 
     /* SINGLETON */
     private static Lift mLift = new Lift();
 
+    private PIDController liftController;
+
+    enum ControlState {NEUTRAL, HOLDING, LIFTING};
+
+    private ControlState mControlMode;
+
     public static Lift getInstance(){
         return mLift;
+    }
+
+    public void clearQuadature(){
+        encoder.setQuadraturePosition(0, 0);
+    }
+
+    public double getPosition(){
+        return encoder.getQuadraturePosition() * Constants.QUADRATURE_TO_METER_LIFT;
     }
 
     public class LiftGearBox {
@@ -36,9 +62,14 @@ public class Lift extends Subsystem {
         }
 
         public void set(double speed){
+            mSlaveFront.set(speed);
+            mSlaveBack.set(speed);
             mMaster.set(-speed);
-            mSlaveFront.set(-mMaster.getMotorOutputVoltage()); // Test
-            mSlaveBack.set(-mMaster.getMotorOutputVoltage());
+            //System.out.print("TOP HALL: " + mTopHall.isPressed() + "MID HALL: " + mMidHall.isPressed() + " BASE HALL" + mBottomHall.isPressed() + "\n");
+            //mMaster.set(-speed);
+            //System.out.println("SPEED: " + mMaster.getMotorOutputVoltage());
+            //mSlaveFront.set(-mMaster.getMotorOutputVoltage() / 12.0);
+            //mSlaveBack.set(-mMaster.getMotorOutputVoltage() / 12.0);
         }
 
         /* GETTERS AND SETTERS */
@@ -69,6 +100,7 @@ public class Lift extends Subsystem {
 
     private Lift(){
         WPI_TalonSRX leftTalon = TalonSRXFactory.createDefaultTalon(Constants.LEFT_LIFT_TALON_CAN_CHANNEL);
+        encoder = leftTalon.getSensorCollection();
         leftGearBox = new LiftGearBox(new Spark(Constants.LEFT_LIFT_FRONT_SPARK_PWM_CHANNEL),
                 leftTalon,
                 new Spark(Constants.LEFT_LIFT_BACK_SPARK_PWM_CHANNEL));
@@ -76,14 +108,40 @@ public class Lift extends Subsystem {
         rightGearBox = new LiftGearBox(new Spark(Constants.RIGHT_LIFT_FRONT_SPARK_PWM_CHANNEL),
                 TalonSRXFactory.createDefaultTalon(Constants.RIGHT_LIFT_TALON_CAN_CHANNEL),
                 new Spark(Constants.RIGHT_LIFT_BACK_SPARK_PWM_CHANNEL));
+        liftController = new PIDController(Constants.LIFT_PID_CONFIG);
 
+        mTopHall = new ElevatorHallEffect(Constants.HALL_TOP_DIO_CHANNEL);
+        mMidHall = new ElevatorHallEffect(Constants.HALL_MID_DIO_CHANNEL);
+        mBottomHall = new ElevatorHallEffect(Constants.HALL_BOTTOM_DIO_CHANNEL);
+
+        mControlMode = ControlState.LIFTING;
     }
 
     public void set(double speed){
-        DriveSignal.limit(speed, 1.0);
+        System.out.println("SPEED: " + speed);
+
+        if(mControlMode != ControlState.NEUTRAL) {
+            speed = DriveSignal.limit(speed, 1.0);
+            speed += Constants.NOMINAL_UP_VOLTAGE / 12.0;
+            setDirect(speed);
+        }
+    }
+
+    public void setDirect(double speed){
+        speed = DriveSignal.limit(speed, 1.0);
         leftGearBox.set(M_MAX_VOLTAGE * speed / 12.0);
         rightGearBox.set(-M_MAX_VOLTAGE * speed / 12.0);
-        System.out.println(M_MAX_VOLTAGE * speed / 12.0);
+    }
+
+    public void setSetPoint(double position){
+        liftController.setSetPoint(position);
+        liftController.run(getPosition(), Timer.getFPGATimestamp());
+        set(-liftController.get() * 3.0);
+        System.out.print("SET POINT: " + position + "Lift Controller: " + liftController.get() + " DISTANCE: " + getPosition() + "\n");
+    }
+
+    public void setRelitivePosition(double position){
+        setSetPoint(position * Constants.LIFT_MAX_TRAVEL_M);
     }
 
     @Override

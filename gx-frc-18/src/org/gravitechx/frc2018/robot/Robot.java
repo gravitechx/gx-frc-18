@@ -1,6 +1,8 @@
 
 package org.gravitechx.frc2018.robot;
 
+import edu.wpi.cscore.VideoSink;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
@@ -13,6 +15,7 @@ import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.Lift;
+import org.gravitechx.frc2018.utils.UsbLifeCam;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.utils.looping.Loop;
@@ -36,8 +39,10 @@ public class Robot extends IterativeRobot {
 	public static BIO bio;
 	public static GravAHRS ahrs;
 	public boolean isGrabbing;
+	public VideoSink cameraServer;
+	public UsbLifeCam topCam;
 
-	public static PowerDistributionPanel pdp;
+	//public static PowerDistributionPanel pdp;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -58,10 +63,16 @@ public class Robot extends IterativeRobot {
 		lift = Lift.getInstance();
 		dPipe = new DrivePipeline();
 		bio = BIO.getInstance();
-		pdp  = new PowerDistributionPanel(0);
+		//pdp  = new PowerDistributionPanel(0);
 		ahrs = new GravAHRS(SPI.Port.kMXP);
 
 		mControlScheme = DefaultControlScheme.getInstance();
+
+		cameraServer = CameraServer.getInstance().getServer();
+
+		topCam = new UsbLifeCam(Constants.TOP_CAM);
+
+		cameraServer.setSource(topCam.getCamera());
 	}
 
 	/**
@@ -136,7 +147,12 @@ public class Robot extends IterativeRobot {
 		);
 
 		drive.graphEncodersToConsole();
+
+		//lift.setDirect(-mControlScheme.getFusedAxis());
+
 		lift.set(-mControlScheme.getFusedAxis());
+
+		//lift.setRelitivePosition(-mControlScheme.getFusedAxis());
 
 		if(mControlScheme.getInhalingButton() && bio.getControlState() != BIO.ControlState.EXHALING){
 			bio.set(BIO.ControlState.INHALING);
@@ -158,12 +174,13 @@ public class Robot extends IterativeRobot {
 			bio.grasp(BIO.GraspingStatus.OPEN);
 		}
 
-		System.out.print(
+		//System.out.printf("DISTANCE TRAVELED: " + lift.getPosition() + "\n");
+		/*System.out.print(
 				"AHRS Yaw: " + ahrs.getYawDegrees()
 				+ "AHRS Yaw / Sec: " + ahrs.getYawRateDegreesPerSecond()
 				+ "AHRS Pitch: " + ahrs.getPitchDegrees()
 				+ "AHRS Pitch / Sec: " + ahrs.getPitchDegreesPerSecond()
-		);
+		);*/
 
 		bio.update();
 		mControlScheme.update();
