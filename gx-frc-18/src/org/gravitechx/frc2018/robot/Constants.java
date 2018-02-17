@@ -3,6 +3,7 @@ package org.gravitechx.frc2018.robot;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.gravitechx.frc2018.utils.motorconfigs.PIDConfig;
+import org.gravitechx.frc2018.utils.motorconfigs.PIDFConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
 
@@ -41,7 +42,8 @@ public class Constants {
     public static final boolean RIGHT_DRIVE_MOTOR_REVERSED = false;
 
     /* PID */
-    public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.8, 0.01, .02, .1, .7);
+    public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.7, 0.55, .03, 0.0, .7);
+    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(0.9, 0.0, 0.0, 0.0, 0.0,0.0);
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(0.20, 1.0E-5, 0.15, 0.1, 1.0);
     public static final TalonPIDConfig NO_PID_CONFIG = new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
@@ -76,8 +78,8 @@ public class Constants {
     public static final boolean REVERSE_THROTTLE_STICK = false;
 
     /* LIFT */
-    public static int PRIMARY_LIFT_STICK_PORT = 2;
-    public static int SECONDARY_LIFT_STICK_PORT = 3;
+    public static int MANUAL_LIFT_STICK_PORT = 2;
+    public static int AUTOMATIC_LIFT_STICK_PORT = 3;
     public static double DEFAULT_AXIS_FUSE_RATIO = .75;
     public static int HALL_MID_DIO_CHANNEL = 0;
     public static int HALL_TOP_DIO_CHANNEL = 1;
@@ -86,12 +88,14 @@ public class Constants {
     /* LIFT PIPELINE */
     public static double NOMINAL_UP_VOLTAGE = 3.65;
     public static double LIFT_COMPOUNDING_STEP = .02;
-    public static double LIFT_MAX_TRAVEL_M = 1.28;
+    public static double LIFT_MAX_TRAVEL_M = 1.70;
     public static double LIFT_MIN_TRAVEL_M = 0.0;
 
     public static double LIFT_REST_DECAY_PROPORTIONAL = 0.1;
     public static double LIFT_PERSISTENT_DECAY_PROPORTIONAL = .05;
     public static double QUADRATURE_TO_METER_LIFT = -2.0 * 2.51312e-5 * 1.3123;
+
+    public static double LIFT_POSITION_DEADBAND_M = .03;
 
     /* BIO */
     public static final int BIO_OPEN_PORT = 0;
@@ -158,6 +162,6 @@ public class Constants {
     /* CAMERA */
     /* ====== */
     public static int CAMERA_FPS = 15;
-    public static int TOP_CAM = 0;
+    public static int TOP_CAM = 1;
 
 }

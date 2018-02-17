@@ -8,8 +8,8 @@ import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 public class DefaultControlScheme extends ControlScheme {
     private static Joystick rotationStick;
     private static Joystick throttleStick;
-    private static Joystick primaryLift;
-    private static Joystick secondaryLift;
+    private static Joystick manualLift;
+    private static Joystick automaticLift;
     private boolean isReversed = Constants.REVERSE_THROTTLE_STICK;
     private SwitchingBoolean grabbingBoolean;
 
@@ -20,19 +20,19 @@ public class DefaultControlScheme extends ControlScheme {
     protected DefaultControlScheme(){
         rotationStick = new Joystick(Constants.ROTATION_STICK_PORT);
         throttleStick = new Joystick(Constants.THROTTLE_STICK_PORT);
-        primaryLift = new Joystick(Constants.PRIMARY_LIFT_STICK_PORT);
-        secondaryLift = new Joystick(Constants.SECONDARY_LIFT_STICK_PORT);
+        manualLift = new Joystick(Constants.MANUAL_LIFT_STICK_PORT);
+        automaticLift = new Joystick(Constants.AUTOMATIC_LIFT_STICK_PORT);
         grabbingBoolean = new SwitchingBoolean(true, Constants.BUTTON_SWITCH_SPEED);
     }
 
     @Override
-    public double getLiftPrimaryAxis(){
-        return primaryLift.getY();
+    public double getLiftManualAxis(){
+        if(-manualLift.getY() > 0.0) {return -manualLift.getY(); } else { return 0.0; }
     }
 
     @Override
-    public double getLiftSecondaryAxis(){
-        return secondaryLift.getY();
+    public double getLiftAutomaticAxis(){
+        return automaticLift.getY();
     }
 
     // Returns the throttle of the inputted Joystick (throttle is the Y axis)
@@ -56,13 +56,11 @@ public class DefaultControlScheme extends ControlScheme {
     }
 
     //returns the rotation stick
-
     public static Joystick getRotationStick (){
         return rotationStick;
     }
 
     //returns the throttle stick
-
     public static Joystick getThrottleStick (){
         return throttleStick;
     }
@@ -79,12 +77,12 @@ public class DefaultControlScheme extends ControlScheme {
 
     @Override
     public boolean getInhalingButton() {
-        return primaryLift.getTrigger();
+        return manualLift.getTrigger();
     }
 
     @Override
     public boolean getExhalingButton() {
-        return secondaryLift.getTrigger();
+        return automaticLift.getTrigger();
     }
 
     @Override
@@ -93,7 +91,7 @@ public class DefaultControlScheme extends ControlScheme {
     }
 
     public void update(){
-        if(primaryLift.getTop()){
+        if(manualLift.getTop()){
             grabbingBoolean.switchValue();
         }
     }

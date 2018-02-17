@@ -1,24 +1,23 @@
 package org.gravitechx.frc2018.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.PIDController;
+import org.gravitechx.frc2018.utils.PIDFController;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.drivehelpers.DriveSignal;
 import org.gravitechx.frc2018.utils.lifthelpers.ElevatorHallEffect;
-import org.gravitechx.frc2018.utils.motorconfigs.PIDConfig;
 
 public class Lift extends Subsystem {
     /* MOTOR CONTROLLERS */
     private LiftGearBox leftGearBox;
     private LiftGearBox rightGearBox;
+
+    private double outputScalar = 1.7;
 
     private ElevatorHallEffect mTopHall;
     private ElevatorHallEffect mMidHall;
@@ -31,7 +30,7 @@ public class Lift extends Subsystem {
     /* SINGLETON */
     private static Lift mLift = new Lift();
 
-    private PIDController liftController;
+    private PIDFController liftController;
 
     enum ControlState {NEUTRAL, HOLDING, LIFTING};
 
@@ -43,6 +42,7 @@ public class Lift extends Subsystem {
 
     public void clearQuadature(){
         encoder.setQuadraturePosition(0, 0);
+        liftController.reset(Timer.getFPGATimestamp());
     }
 
     public double getPosition(){
@@ -108,7 +108,7 @@ public class Lift extends Subsystem {
         rightGearBox = new LiftGearBox(new Spark(Constants.RIGHT_LIFT_FRONT_SPARK_PWM_CHANNEL),
                 TalonSRXFactory.createDefaultTalon(Constants.RIGHT_LIFT_TALON_CAN_CHANNEL),
                 new Spark(Constants.RIGHT_LIFT_BACK_SPARK_PWM_CHANNEL));
-        liftController = new PIDController(Constants.LIFT_PID_CONFIG);
+        liftController = new PIDFController(Constants.LIFT_PIDF_CONFIG);
 
         mTopHall = new ElevatorHallEffect(Constants.HALL_TOP_DIO_CHANNEL);
         mMidHall = new ElevatorHallEffect(Constants.HALL_MID_DIO_CHANNEL);
@@ -133,19 +133,27 @@ public class Lift extends Subsystem {
         rightGearBox.set(-M_MAX_VOLTAGE * speed / 12.0);
     }
 
-    public void setSetPoint(double position){
-        liftController.setSetPoint(position);
+    public void setSetPoint(double position, double velocity, double acceleration){
+        liftController.setSetpoints(position, velocity, acceleration);
         liftController.run(getPosition(), Timer.getFPGATimestamp());
-        set(-liftController.get() * 3.0);
+        set(-liftController.get() * outputScalar);
         System.out.print("SET POINT: " + position + "Lift Controller: " + liftController.get() + " DISTANCE: " + getPosition() + "\n");
     }
 
-    public void setRelitivePosition(double position){
-        setSetPoint(position * Constants.LIFT_MAX_TRAVEL_M);
+    public void setRelitivePosition(double position, double velocity, double acceleration){
+        setSetPoint(position * Constants.LIFT_MAX_TRAVEL_M, velocity, acceleration);
     }
 
     @Override
     protected void initDefaultCommand() {
 
+    }
+
+    public double getOutputScalar() {
+        return outputScalar;
+    }
+
+    public void setOutputScalar(double outputScalar) {
+        this.outputScalar = outputScalar;
     }
 }

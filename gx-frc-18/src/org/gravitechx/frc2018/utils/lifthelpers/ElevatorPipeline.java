@@ -1,16 +1,17 @@
 package org.gravitechx.frc2018.utils.lifthelpers;
 
 import org.gravitechx.frc2018.robot.Constants;
+import org.gravitechx.frc2018.utils.looping.Timestamp;
 
 public class ElevatorPipeline {
     private double mDistance_M = 0.0;
     private double mRestDecay = 0.0;
     private double mLastSignal;
-    private boolean mAutofall = true;
+    private boolean mAutofall = false;
 
-    public double apply(double signal){
+    public double apply(double signal, Timestamp timestamp){
 
-        mDistance_M += Constants.LIFT_COMPOUNDING_STEP * signal;
+        mDistance_M += Constants.LIFT_COMPOUNDING_STEP * signal * timestamp.dt();
 
         mRestDecay += Constants.LIFT_REST_DECAY_PROPORTIONAL * mDistance_M + Constants.LIFT_PERSISTENT_DECAY_PROPORTIONAL;
 

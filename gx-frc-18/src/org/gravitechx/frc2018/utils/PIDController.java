@@ -35,10 +35,6 @@ public class PIDController {
 
         accum += dt * error;
 
-        if (accum == Double.NaN){
-            accum = 0.0;
-        }
-
         result = pid.kP * error + pid.kD * (error - lastError) / dt
                 + pid.kI * accum + pid.kF * setPoint;
 
@@ -60,12 +56,12 @@ public class PIDController {
         accum = 0.0;
     }
 
-    public void reset(){
+    public void reset(double time){
         accum = 0.0;
         result = 0.0;
         error = 0.0;
-        lastError = Double.NaN;
-        lastTime = Double.NaN;
+        lastError = 0.0;
+        lastTime = time;
     }
 
     public double get(){

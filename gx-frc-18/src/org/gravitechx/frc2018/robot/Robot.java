@@ -68,11 +68,13 @@ public class Robot extends IterativeRobot {
 
 		mControlScheme = DefaultControlScheme.getInstance();
 
-		cameraServer = CameraServer.getInstance().getServer();
+		lift.clearQuadature();
 
-		topCam = new UsbLifeCam(Constants.TOP_CAM);
+		//cameraServer = CameraServer.getInstance().getServer();
 
-		cameraServer.setSource(topCam.getCamera());
+		//topCam = new UsbLifeCam(Constants.TOP_CAM);
+
+		//cameraServer.setSource(topCam.getCamera());
 	}
 
 	/**
@@ -115,6 +117,8 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+
+		lift.clearQuadature();
 	}
 
 	/**
@@ -133,6 +137,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		lift.clearQuadature();
 	}
 
 	/**
@@ -150,9 +155,9 @@ public class Robot extends IterativeRobot {
 
 		//lift.setDirect(-mControlScheme.getFusedAxis());
 
-		lift.set(-mControlScheme.getFusedAxis());
+		//lift.set(-mControlScheme.getFusedAxis());
 
-		//lift.setRelitivePosition(-mControlScheme.getFusedAxis());
+		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), 0.5, 0.02);
 
 		if(mControlScheme.getInhalingButton() && bio.getControlState() != BIO.ControlState.EXHALING){
 			bio.set(BIO.ControlState.INHALING);

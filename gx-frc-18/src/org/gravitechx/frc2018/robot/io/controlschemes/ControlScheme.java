@@ -15,10 +15,11 @@ public abstract class ControlScheme {
     public abstract boolean getGrabbingButton();
     public abstract void update();
 
-    public abstract double getLiftPrimaryAxis();
-    public abstract double getLiftSecondaryAxis();
+    public abstract double getLiftManualAxis();
+    public abstract double getLiftAutomaticAxis();
+
     public double getFusedAxis(){
-        return fuseAxises(getLiftPrimaryAxis(), getLiftSecondaryAxis(), fuseRatio);
+        return fuseAxises(getLiftAutomaticAxis(), getLiftManualAxis(), fuseRatio);
     }
 
     /**
