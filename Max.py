@@ -4,11 +4,13 @@ import math
 
 
 #white color ranges
-upperwhite = np.array([255, 255, 255])
-lowerwhite= np.array([250, 250, 250])
+upperwhite = np.array([215, 255, 125])
+lowerwhite= np.array([80, 150, 0])
+#upperwhite = np.array([255, 255, 255])
+#lowerwhite = np.array([250, 250, 250])
 
 #image used in program
-im = cv2.imread('C:/Users/GravitechX/Desktop/WhiteTape.jpg', 1)
+im = cv2.imread('C:/Users/GravitechX/Desktop/Green2.jpg', 1)
 
 #set up image
 image = cv2.medianBlur(im, 5)
@@ -69,6 +71,12 @@ ylowaval = contours[y][lowa][0][1]
 
 #cv2.GoodMemes(now)
 
+rect = cv2.minAreaRect(cnt)
+box = cv2.boxPoints(rect)
+box = np.int0(box)
+cv2.drawContours(im, [box], 0, (0,255,255), 5)
+cv2.drawContours(final, [box], 0, (0,255,255), 5)
+
 #DRAWINGS#
 #draws the box contours
 final = cv2.drawContours(final, contours[y], -1, (0, 0, 255), 5)
@@ -114,9 +122,10 @@ cv2.circle(final, (lowaval, ylowaval), 1, (0,255,0), thickness=10, lineType=8, s
 #DO NOT DELETE essential string
 print("I chose to sat there -Nira 1/21/18")
 #nonessential strings
-print(hiya, hiyaval)
-print(lowa, lowaval)
-print(yhiyaval, ylowaval)
+#print(hiya, hiyaval)
+#print(lowa, lowaval)
+#print(yhiyaval, ylowaval)
+print(box)
 
 #displays the images
 cv2.imshow('Start', im)
