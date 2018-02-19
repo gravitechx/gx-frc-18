@@ -8,7 +8,7 @@ upperwhite = np.array([255, 255, 255])
 lowerwhite= np.array([250, 250, 250])
 
 #image used in program
-im = cv2.imread('C:/Users/GravitechX/Desktop/MoreTape.jpg', 1)
+im = cv2.imread('C:/Users/GravitechX/Desktop/WhiteTape.jpg', 1)
 
 #set up image
 image = cv2.medianBlur(im, 5)
@@ -19,7 +19,7 @@ height, width, channels = im.shape
 #do the raaaange
 intermed = cv2.inRange(image, lowerwhite, upperwhite)
 
-#change the colorspaaaace
+#change the colorspace
 final = cv2.cvtColor(intermed, cv2.COLOR_GRAY2BGR)
 
 #sets up contour stuff
@@ -46,7 +46,7 @@ M = cv2.moments(cnt)
 cx = int(M['m10']/M['m00']) #Average x point of contour box
 cy = int(M['m01']/M['m00']) #Average y point of contour box
 
-#finds the biggest and lowest x values and the goo memes
+#finds the biggest and lowest x values and the values 
 hiya = 0
 hiyaval = 0
 lowa = len(contours[y])
@@ -67,30 +67,21 @@ for num in range(0, len(contours[y])):
 yhiyaval = contours[y][hiya][0][1]
 ylowaval = contours[y][lowa][0][1]
 
-#distances from centroid to edges of screen
-#distance_from_left = cx
-#distance_from_right = width - cx
-#distance_from_top = cy
-#distance_from_bottom = height - cy\
+#cv2.GoodMemes(now)
 
 #DRAWINGS#
-#draws the box contour onto final
-final = cv2.drawContours(final, contours[y], -1, (0, 0, 255), 50)
-
-#draws the box contour onto final
+#draws the box contours
 final = cv2.drawContours(final, contours[y], -1, (0, 0, 255), 5)
-
-#draws the centroid onto final
-cv2.circle(final, (cx, cy), 1, (0,255,0), thickness=100, lineType=8, shift=0)
-
-#draws box contour onto hsv and im
 im = cv2.drawContours(im, contours[y], -1, (0, 0, 255), 5)
 
-#draws the centroid onto im
-cv2.circle(im, (cx, cy), 1, (0,255,0), thickness=100, lineType=8, shift=0)
+#draws the centroids
+cv2.circle(final, (cx, cy), 1, (0,255,0), thickness=30, lineType=8, shift=0)
+cv2.circle(im, (cx, cy), 1, (0,255,0), thickness=30, lineType=8, shift=0)
 
-#draws center point of image
-cv2.circle(im, (int(width/2), cy), 1, (255,0,0), thickness=100, lineType=8, shift=0)
+#draws center points
+cv2.circle(im, (int(width/2), cy), 1, (255,0,0), thickness=30, lineType=8, shift=0)
+cv2.circle(final, (int(width/2), cy), 1, (255,0,0), thickness=30, lineType=8, shift=0)
+
 distance = cx - int(width/2)
 
 #END PROCESSES#
@@ -99,27 +90,31 @@ resize = .4
 im = cv2.resize(im, (0,0), fx=resize, fy=resize)
 intermed = cv2.resize(intermed, (0,0), fx=resize, fy=resize)
 final = cv2.resize(final, (0,0), fx=resize, fy=resize)
+
+#finds dimensions of image
 height, width, channels = im.shape
+
+#mitochondria is the powerhouse of the cell
 realcx = cx * resize
 middleline = width / 2
 distancefrom = realcx - middleline
 hiyaval = math.ceil(hiyaval)
 lowaval = math.floor(lowaval)
-ylowaval = ylowaval - (height / 2)
+yhiyaval = yhiyaval * resize
+yhiyaval = math.ceil(yhiyaval)
+ylowaval = ylowaval * resize
 ylowaval = math.floor(ylowaval)
+
+#draws the good circles
 cv2.circle(im, (hiyaval, yhiyaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 cv2.circle(im, (lowaval, ylowaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+cv2.circle(final, (hiyaval, yhiyaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+cv2.circle(final, (lowaval, ylowaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+
 #DO NOT DELETE essential string
 print("I chose to sat there -Nira 1/21/18")
-print("HEIGHT / WIDTH")
-print(height, width)
-print("MIDDLE X VALUE")
-print(middleline)
-print("DISTANCE FROM X VALUE")
-print(distancefrom)
-print("HIYA")
+#nonessential strings
 print(hiya, hiyaval)
-print("LOWA")
 print(lowa, lowaval)
 print(yhiyaval, ylowaval)
 
