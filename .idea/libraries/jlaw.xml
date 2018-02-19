@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jlaw">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/gx-frc-18/jars/jlaw.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

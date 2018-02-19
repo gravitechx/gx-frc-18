@@ -1,12 +1,10 @@
-package org.gravitechx.frc2018.utils.looping;
-
-import edu.wpi.first.wpilibj.Timer;
+package org.gravitechx.frc2018.frames;
 
 /**
  * Represents a time in seconds.
  * Uses getFPGATimestamp from Timer
  */
-public class Timestamp {
+public class LocalTimestamp implements Timestamp {
     private double time_S;
     private double dt_S;
 
@@ -14,15 +12,15 @@ public class Timestamp {
      * Set the time manually.
      * @param time
      */
-    public Timestamp(double time){
+    public LocalTimestamp(double time){
         this.time_S = time;
     }
 
     /**
      * Set the time to the current time from the FPGA.
      */
-    public Timestamp(){
-        time_S = Timer.getFPGATimestamp();
+    public LocalTimestamp(){
+        time_S = System.currentTimeMillis() / 1000.0;
         dt_S = 0.0;
     }
 
@@ -46,7 +44,7 @@ public class Timestamp {
      * Update the time value.
      */
     public void update() {
-        dt_S = Timer.getFPGATimestamp() - time_S;
-        time_S = Timer.getFPGATimestamp();
+        dt_S = System.currentTimeMillis() / 1000.0 - time_S;
+        time_S = System.currentTimeMillis() / 1000.0;
     }
 }
