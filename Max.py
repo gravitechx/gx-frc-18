@@ -64,7 +64,8 @@ for num in range(0, len(contours[y])):
         hiyaval = contours[y][num][0][0] * 0.4
     x += 1
 
-#yhiyaval = contours[y][hiyaval][][0]
+yhiyaval = contours[y][hiya][0][1]
+ylowaval = contours[y][lowa][0][1]
 
 #distances from centroid to edges of screen
 #distance_from_left = cx
@@ -104,8 +105,10 @@ middleline = width / 2
 distancefrom = realcx - middleline
 hiyaval = math.ceil(hiyaval)
 lowaval = math.floor(lowaval)
-cv2.circle(im, (hiyaval, 0), 1, (0,255,0), thickness=10, lineType=8, shift=0)
-cv2.circle(im, (lowaval, 0), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+ylowaval = ylowaval - (height / 2)
+ylowaval = math.floor(ylowaval)
+cv2.circle(im, (hiyaval, yhiyaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+cv2.circle(im, (lowaval, ylowaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 #DO NOT DELETE essential string
 print("I chose to sat there -Nira 1/21/18")
 print("HEIGHT / WIDTH")
@@ -118,6 +121,7 @@ print("HIYA")
 print(hiya, hiyaval)
 print("LOWA")
 print(lowa, lowaval)
+print(yhiyaval, ylowaval)
 
 #displays the images
 cv2.imshow('Start', im)
