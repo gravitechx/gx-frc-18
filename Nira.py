@@ -5,11 +5,11 @@ import math
 CLOSE_AREA  = 233452.5
 
 #yellow color ranges
-lower_yellow = np.array([27, 50, 145])
+lower_yellow = np.array([27, 60, 145]) #CHANGE TO 50 (2nd value)
 upper_yellow = np.array([40, 255, 255])
     
 #image used in program
-im = cv2.imread('C:/Users/GravitechX/Desktop/FiveFeet.jpg', 1)
+im = cv2.imread('C:/Users/GravitechX/Desktop/4FeetPic.jpg', 1)
 
 #changing image colorspace from BmetersGR to HSV
 hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
@@ -27,7 +27,7 @@ print ("Width %s of image" %width)
 
 #blurs the image
 #hsv = cv2.medianBlur (hsv, 5)
-
+ 
 #locates all "yellow" and filters everything else out.  Results in a black and white image
 blite = cv2.inRange(hsv, lower_yellow, upper_yellow)
 
@@ -70,11 +70,6 @@ distance_from_right = width - cx
 distance_from_top = cy
 distance_from_bottom = height - cy
 
-
-
-#draws the centroid onto final
-cv2.circle(final, (cx, cy), 1, (0,255,0), thickness=1, lineType=8, shift=0)
-
 #draws box contour onto hsv and im
 #hsv = cv2.drawContours(hsv, contours[y], -1, (0, 0, 255), 5)
 im = cv2.drawContours(im, contours[y], -1, (0, 0, 255), 5)
@@ -83,6 +78,13 @@ im = cv2.drawContours(im, contours[y], -1, (0, 0, 255), 5)
 oneBox = False
 x,y,w,h = cv2.boundingRect(contours[y])
 cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
+centroid_x = int(x+(w/2))
+centroid_y = int(y+(h/2))
+
+
+#draws the centroid onto final
+cv2.circle(final, (centroid_x, centroid_y), 1, (0,255,0), thickness=1, lineType=8, shift=0)
+
 
 print (w, h)
 print (w/h)
@@ -96,44 +98,29 @@ else:
 #draws center point of image
 xCenter = (int(width/2))
 yCenter = (int(height/2))
-cv2.circle(im, (xCenter, cy), 1, (255,0,0), thickness=10, lineType=8, shift=0)
+cv2.circle(im, (xCenter, centroid_y), 1, (255,0,0), thickness=10, lineType=8, shift=0)
 
-distance_to_center = xCenter - cx
+distance_to_center = xCenter - centroid_x
 
 #draws the centroid onto im
-cv2.circle(im, (cx, cy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+cv2.circle(im, (centroid_x, centroid_y), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 
 ratio = width/w
 print("RATIO: %s" %ratio)
 
-#Using Width Ratio
-WvarX = 1.575778547
-WoriImage = 289
-Wfactor = (WoriImage/width) * WvarX
-#Wfactor = WvarX
-print ("factor: %s" %Wfactor)
-Wdistance = (width/w) * Wfactor
-#Wdistance *= 0.3048
+
+#Using Width Ratio (width = image width; w = box width)
+Wfactpr = 1.012239583                               #Factor used to find distance
+print ("factor: %s" %Wfactor)                       
+Wdistance = (width/w) * Wfactor                     #Calculators Distance
+Wdistance *= 0.3048                                 #Converts feet to meter
 print ("%s meters" %Wdistance)
 
-WdistToCent = (distance_to_center * ((13/12)/w))
+WdistToCent = (distance_to_center * ((13/12)/w))    #Calculates Distance to center in feet 
+WdistToCent *= 0.3048                               #Converts feet to meter
 
-Wdegree = -1*((WdistToCent/(2*math.pi*Wdistance))*360)
+Wdegree = (WdistToCent/(2*math.pi*Wdistance))*360   #Finds Degree needed to turn for the box to be in center
 print ("Degree: %s" %Wdegree)
-
-#Using Height Ratio
-#HvarX = .9287109375
-#HoriImage = 512
-#Hfactor = (height/HoriImage) * HvarX
-#print ("factor: %s" %Hfactor)
-#Hdistance = (height/h) * Hfactor
-#distance *= 0.3048
-#print ("%s meters" %Hdistance)
-
-#HdistToCent = (distance_to_center * ((13/12)/h))
-
-#Hdegree = (HdistToCent/(2*math.pi*Hdistance))*360
-#print ("Degree: %s" %Hdegree)
 
 
 
