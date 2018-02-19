@@ -41,5 +41,8 @@
     <orderEntry type="library" name="CTRLib" level="project" />
     <orderEntry type="library" name="CTRE_Phoenix-sources" level="project" />
     <orderEntry type="library" name="wpilibj-javadoc" level="project" />
+    <orderEntry type="library" name="javax.json-1.0.4" level="project" />
+    <orderEntry type="library" name="junit-jupiter-api-5.0.3" level="project" />
+    <orderEntry type="library" name="jlaw" level="project" />
   </component>
 </module>
