@@ -110,7 +110,7 @@ print("RATIO: %s" %ratio)
 
 
 #Using Width Ratio (width = image width; w = box width)
-Wfactpr = 1.012239583                               #Factor used to find distance
+Wfactor = 1.012239583                               #Factor used to find distance
 print ("factor: %s" %Wfactor)                       
 Wdistance = (width/w) * Wfactor                     #Calculators Distance
 Wdistance *= 0.3048                                 #Converts feet to meter
