@@ -61,47 +61,7 @@ M = cv2.moments(cnt)
 cx = int(M['m10']/M['m00']) #Average x point of contour box
 cy = int(M['m01']/M['m00']) #Average y point of contour box
 
-#variables to be used in for loop below
-#av_len = 0
-#total_lengths = 1
-#puts the box contour in a multidimensional array including all points on the contour
-#contour = np.vstack(contours[y]).squeeze()
-#contour2 = contours[y]
-#new_contour = []
-#stuff = []
-#oldX = []
-#top = 0
-#bottom = 100000meters
-#this = True
-#for x in range(0, len(contour) - 1):
-#    stuff.append(x)
-#    for j in range(x + 1, len(contour) - 1):
-#        if contour[j][0] == contour[x][0]:
-#            stuff.append(j)
-#    for i in range(0, len(stuff) - 1):
-#        if contour[stuff[i]][1] > top:
-#            top = contour[stuff[i]][1]
-#        elif contour[stuff[i]][1] < bottom:
-#            bottom = contour[stuff[i]][1]
-#    for n in range(0, len(contour) - 1):
-#        if contour[n][0] == contour[x][0]:
-#            if contour[n][1] != top and contour[n][1] != bottom:
-#                this = True
-#            else:
-#                np.append(new_contour, [contour[n]])
-#    for h in range(0, len(stuff) - 1):
-#        del stuff[0]
-#    oldX.append(contour[x][0])
-#print(contours[y])
-#print(new_contour)
-#loops through the box contour and finds the average distance from the centroid to the perimeter
-#for x in range(0, len(contour)):
-    #distance formula
-    #av_len += ((contour[x][0] - cx)**2 + (contour[x][1] - cy)**2)**(1/2)
-    #total_lengths +=1
-#finds the average
-#av_len = av_len/total_lengths
-#draws the box contour onto final
+
 final = cv2.drawContours(final, contours[y], -1, (0, 0, 255), 5)
 
 #distances from centroid to edges of screen
@@ -123,10 +83,7 @@ im = cv2.drawContours(im, contours[y], -1, (0, 0, 255), 5)
 oneBox = False
 x,y,w,h = cv2.boundingRect(contours[y])
 cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
-#rect = cv2.minAreaRect(cnt)
-#box = cv2.boxPoints(rect)
-#box = np.int0(box)
-#cv2.drawcontours(img,[box],0,(0,0,255),2)
+
 print (w, h)
 print (w/h)
 
