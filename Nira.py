@@ -9,9 +9,9 @@ lower_yellow = np.array([27, 50, 145])
 upper_yellow = np.array([40, 255, 255])
     
 #image used in program
-im = cv2.imread('C:/Users/GravitechX/Desktop/10ft.jpg', 1)
+im = cv2.imread('C:/Users/GravitechX/Desktop/FiveFeet.jpg', 1)
 
-#changing image colorspace from BGR to HSV
+#changing image colorspace from BmetersGR to HSV
 hsv = cv2.cvtColor(im, cv2.COLOR_BGR2HSV)
 
 #resizes the images to 1/4 the size
@@ -34,7 +34,7 @@ blite = cv2.inRange(hsv, lower_yellow, upper_yellow)
 #changes the colorspace of the filtered image to BGR allowing for the contours to be displayed in color
 final = cv2.cvtColor(blite, cv2.COLOR_GRAY2BGR)
 
-#sets up contour stuff
+#sets up contour stuffmeters
 ret,thresh = cv2.threshold(blite, 255, 255, 255)
 blite, contours, hierarchy = cv2.findContours(thresh,cv2.RETR_TREE,cv2.CHAIN_APPROX_NONE)
 
@@ -71,7 +71,7 @@ cy = int(M['m01']/M['m00']) #Average y point of contour box
 #stuff = []
 #oldX = []
 #top = 0
-#bottom = 100000
+#bottom = 100000meters
 #this = True
 #for x in range(0, len(contour) - 1):
 #    stuff.append(x)
@@ -122,6 +122,11 @@ im = cv2.drawContours(im, contours[y], -1, (0, 0, 255), 5)
 #finds height, width, and other of contour
 oneBox = False
 x,y,w,h = cv2.boundingRect(contours[y])
+cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
+#rect = cv2.minAreaRect(cnt)
+#box = cv2.boxPoints(rect)
+#box = np.int0(box)
+#cv2.drawcontours(img,[box],0,(0,0,255),2)
 print (w, h)
 print (w/h)
 
@@ -144,10 +149,11 @@ cv2.circle(im, (cx, cy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 ratio = width/w
 print("RATIO: %s" %ratio)
 
-#Using Width Ratio to find distance and degrees
+#Using Width Ratio
 WvarX = 1.575778547
 WoriImage = 289
-Wfactor = (width/WoriImage) * WvarX
+Wfactor = (WoriImage/width) * WvarX
+#Wfactor = WvarX
 print ("factor: %s" %Wfactor)
 Wdistance = (width/w) * Wfactor
 #Wdistance *= 0.3048
