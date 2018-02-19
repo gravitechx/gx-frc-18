@@ -11,6 +11,8 @@ public class PIDFController {
     private double lastTime = 0.0;
     private double dt = 0.0;
 
+    private double lastkD = 0.0;
+
     private double positionSetPoint = 0.0;
     private double velocitySetPoint = 0.0;
     private double accelerationSetPoint = 0.0;
@@ -43,10 +45,12 @@ public class PIDFController {
                 + pid.kI * accum + pid.kV * velocitySetPoint +
                 pid.kA * accelerationSetPoint;
 
+        lastkD = pid.kD * (error - lastError) / dt;
+
         if (result > upperBound) {
-            result = lowerBound;
-        } else if (result < lowerBound) {
             result = upperBound;
+        } else if (result < lowerBound) {
+            result = lowerBound;
         }
 
         lastTime = time;
@@ -96,7 +100,7 @@ public class PIDFController {
     }
 
     public double getKD(){
-        return pid.kD * (error - lastError) / dt;
+        return lastkD;
     }
 
     public double getKI(){

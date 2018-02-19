@@ -151,13 +151,15 @@ public class Robot extends IterativeRobot {
 						mControlScheme.getQuickTurnButton())
 		);
 
-		drive.graphEncodersToConsole();
+		//drive.graphEncodersToConsole();
 
 		//lift.setDirect(-mControlScheme.getFusedAxis());
 
 		//lift.set(-mControlScheme.getFusedAxis());
 
 		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), 0.5, 0.02);
+
+		lift.graphPIDOuts();
 
 		if(mControlScheme.getInhalingButton() && bio.getControlState() != BIO.ControlState.EXHALING){
 			bio.set(BIO.ControlState.INHALING);

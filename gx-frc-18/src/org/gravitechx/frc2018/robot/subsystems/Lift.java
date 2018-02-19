@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.PIDController;
 import org.gravitechx.frc2018.utils.PIDFController;
@@ -17,7 +18,7 @@ public class Lift extends Subsystem {
     private LiftGearBox leftGearBox;
     private LiftGearBox rightGearBox;
 
-    private double outputScalar = 1.7;
+    private double outputScalar = 1.6;
 
     private ElevatorHallEffect mTopHall;
     private ElevatorHallEffect mMidHall;
@@ -53,6 +54,11 @@ public class Lift extends Subsystem {
         private Spark mSlaveFront;
         private WPI_TalonSRX mMaster;
         private Spark mSlaveBack;
+        //private double mRampRate = 0.8;
+        private double lastSpeed = 0.0;
+        private double lastTime = 0.0;
+        private double dt = 0.0;
+        private double ds = 0.0;
 
 
         public LiftGearBox(Spark mSlaveFront, WPI_TalonSRX mMaster, Spark mSlaveBack){
@@ -61,10 +67,26 @@ public class Lift extends Subsystem {
             this.mSlaveBack = mSlaveBack;
         }
 
-        public void set(double speed){
+        public void set(double speed, double time){
+            dt = time - lastTime;
+
+            ds = speed - lastSpeed;
+
+            /*
+           if(ds > mRampRate){
+               speed += mRampRate;
+           }else if (ds < -mRampRate){
+               speed -= mRampRate;
+           }*/
+
             mSlaveFront.set(speed);
             mSlaveBack.set(speed);
-            mMaster.set(-speed);
+            //mMaster.set(-speed);
+
+
+            lastTime = time;
+            lastSpeed = speed;
+
             //System.out.print("TOP HALL: " + mTopHall.isPressed() + "MID HALL: " + mMidHall.isPressed() + " BASE HALL" + mBottomHall.isPressed() + "\n");
             //mMaster.set(-speed);
             //System.out.println("SPEED: " + mMaster.getMotorOutputVoltage());
@@ -129,15 +151,15 @@ public class Lift extends Subsystem {
 
     public void setDirect(double speed){
         speed = DriveSignal.limit(speed, 1.0);
-        leftGearBox.set(M_MAX_VOLTAGE * speed / 12.0);
-        rightGearBox.set(-M_MAX_VOLTAGE * speed / 12.0);
+        leftGearBox.set(M_MAX_VOLTAGE * speed / 12.0, Timer.getFPGATimestamp());
+        rightGearBox.set(-M_MAX_VOLTAGE * speed / 12.0, Timer.getFPGATimestamp());
     }
 
     public void setSetPoint(double position, double velocity, double acceleration){
         liftController.setSetpoints(position, velocity, acceleration);
         liftController.run(getPosition(), Timer.getFPGATimestamp());
         set(-liftController.get() * outputScalar);
-        System.out.print("SET POINT: " + position + "Lift Controller: " + liftController.get() + " DISTANCE: " + getPosition() + "\n");
+        System.out.print("SET POINT: " + position + "Lift Controller: " + M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0 + " DISTANCE: " + getPosition() + "\n");
     }
 
     public void setRelitivePosition(double position, double velocity, double acceleration){
@@ -155,5 +177,15 @@ public class Lift extends Subsystem {
 
     public void setOutputScalar(double outputScalar) {
         this.outputScalar = outputScalar;
+    }
+
+    public void graphPIDOuts(){
+        SmartDashboard.putNumber("KP: ", liftController.getKP());
+        SmartDashboard.putNumber("KI: ", liftController.getKI());
+        SmartDashboard.putNumber("KD: ", liftController.getKD());
+        System.out.print(liftController.getKD());
+        SmartDashboard.putNumber("KA: ", liftController.getKA());
+        SmartDashboard.putNumber("KV: ", liftController.getKV());
+        SmartDashboard.putNumber("Error: ", liftController.getError());
     }
 }

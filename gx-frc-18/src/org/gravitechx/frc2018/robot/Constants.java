@@ -43,7 +43,7 @@ public class Constants {
 
     /* PID */
     public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.7, 0.55, .03, 0.0, .7);
-    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(0.9, 0.0, 0.0, 0.0, 0.0,0.0);
+    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(0.6, 0.0, 0.0, 0.0, 0.0,0.0);
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(0.20, 1.0E-5, 0.15, 0.1, 1.0);
     public static final TalonPIDConfig NO_PID_CONFIG = new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
@@ -146,7 +146,7 @@ public class Constants {
     /* MOTOR CONFIGS */
     /* ============= */
 
-    public static double MAX_LIFT_VOLTAGE = 7.0;
+    public static double MAX_LIFT_VOLTAGE = 6.0;
 
     /* Talon on the drive train */
     public static class DriveTalonConfig extends TalonConfig {
