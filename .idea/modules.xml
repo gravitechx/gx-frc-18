@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/driverstation.iml" filepath="$PROJECT_DIR$/.idea/modules/driverstation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/frames.iml" filepath="$PROJECT_DIR$/.idea/modules/frames.iml" />
       <module fileurl="file://$PROJECT_DIR$/gx-frc-18/gx-frc-18.iml" filepath="$PROJECT_DIR$/gx-frc-18/gx-frc-18.iml" />
     </modules>
   </component>

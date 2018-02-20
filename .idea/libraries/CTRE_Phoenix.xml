@@ -1,13 +1,11 @@
 <component name="libraryTable">
   <library name="CTRE_Phoenix">
     <CLASSES>
-      <root url="jar://$USER_HOME$/talons/java/lib/CTRE_Phoenix.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.2.1.1 (1)/java/lib/CTRE_Phoenix.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/talons/java/docs/CTRE_Phoenix-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/talons/java/lib/CTRE_Phoenix-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.2.1.1 (1)/java/lib/CTRE_Phoenix-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
