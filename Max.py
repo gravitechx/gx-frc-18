@@ -4,13 +4,13 @@ import math
 
 
 #white color ranges
-upperwhite = np.array([215, 255, 125])
-lowerwhite= np.array([80, 150, 0])
-#upperwhite = np.array([255, 255, 255])
-#lowerwhite = np.array([250, 250, 250])
+upperwhite = np.array([255, 255, 255]) # <-- white 
+lowerwhite= np.array([250, 250, 250])   # <-- white
+#upperwhite = np.array([215, 255, 125]) #<-- green
+#lowerwhite= np.array([80, 150, 0]) #<-- green
 
 #image used in program
-im = cv2.imread('C:/Users/GravitechX/Desktop/Green2.jpg', 1)
+im = cv2.imread('C:/Users/GravitechX/Desktop/4ftTape.jpg', 1)
 
 #set up image
 image = cv2.medianBlur(im, 5)
@@ -41,7 +41,7 @@ for x in range(0, len(contours)):
         y = x    
     x += 1    
 
-#variables to be used in finding the average point of the box
+#variables to be used in finding the average point of the tape
 cnt = contours[y]
 M = cv2.moments(cnt)
 
@@ -94,7 +94,7 @@ distance = cx - int(width/2)
 
 #END PROCESSES#
 #resizes the images
-resize = .4
+resize = 1
 im = cv2.resize(im, (0,0), fx=resize, fy=resize)
 intermed = cv2.resize(intermed, (0,0), fx=resize, fy=resize)
 final = cv2.resize(final, (0,0), fx=resize, fy=resize)
@@ -113,19 +113,91 @@ yhiyaval = math.ceil(yhiyaval)
 ylowaval = ylowaval * resize
 ylowaval = math.floor(ylowaval)
 
+#set up variables for corners
+realx = 0
+realy = 0
+realxx = 0
+realyy = 0
+
+#comparing the y values of the rectangle to find bottom
+firstheight = box[0][1] - box[1][1]
+secondheight = box[0][1] - box[3][1]
+#sets the bottom corner (x, y) values to the bottom left corner
+if firstheight > secondheight:
+    realx = box[0][0]
+    realy = box[0][1]
+if firstheight < secondheight:
+    realx = box[1][0]
+    realy = box[1][1]
+
+realx = realx * resize
+realy = realy * resize
+
+realx = math.ceil(realx)
+realy = math.ceil(realy)
+
+firstthing = box[3][1] - box[2][1]
+secondthing = box[0][1] - box[3][1]
+#does the same thing as above but with bottom right corner
+if firstthing > secondthing:
+    realxx = box[3][0]
+    realyy = box[3][1]
+if firstthing < secondthing:
+    realxx = box[0][0]
+    realyy = box[0][1]
+
+realxx = realxx * resize
+realyy = realyy * resize
+
+realxx = math.ceil(realxx)
+realyy = math.ceil(realyy)
+
+#finds the top left corner of the bounding rectangle (x, y) and the width and height (h and w)
+x,y,w,h = cv2.boundingRect(cnt)
+#adjust to image resize value to conform to social convention
+x = x * resize
+y = y * resize
+w = w * resize
+h = h * resize
+#round so that it doesn't give you an error due to float value
+x = math.ceil(x)
+y = math.ceil(y)
+w = math.ceil(w)
+h = math.ceil(h)
+#draws the good rectangles
+cv2.rectangle(final,(x,y),(x+w,y+h),(0,255,0),2)
+cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
+
+factor = 0.3149331777342597     
+factor = factor / 2             #factor used in finding distance from tape to robot
+
+firstsquare = math.pow(realxx - realx, 2)   #used to find width of tape in pixels
+secondsquare = math.pow(realyy - realy, 2)  #used to find width of tape in pixels
+
+widthoftape = math.sqrt(firstsquare + secondsquare) #Pythagorean Theorem to find width of tape
+
+distance = (width/widthoftape) * factor     #Finds distance from robot to tape
+distance_in_meters = distance * 0.3048      #Converts distance to meters
+
+cent_of_img = (width/2)                     #Finds center of image
+
+dist_to_cent = ((cx-cent_of_img) * ((1/6)/widthoftape))     #Finds arc distance (used for finding degrees)
+
+degree = (dist_to_cent/(math.pi * 2 * distance)) * 360      #Finds degree (positive = right)
+
 #draws the good circles
 cv2.circle(im, (hiyaval, yhiyaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 cv2.circle(im, (lowaval, ylowaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 cv2.circle(final, (hiyaval, yhiyaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 cv2.circle(final, (lowaval, ylowaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 
+cv2.circle(im, (realx, realy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+cv2.circle(final, (realx, realy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+cv2.circle(im, (realxx, realyy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+cv2.circle(final, (realxx, realyy), 1, (0,255,0), thickness=10, lineType=8, shift=0)
+
 #DO NOT DELETE essential string
 print("I chose to sat there -Nira 1/21/18")
-#nonessential strings
-#print(hiya, hiyaval)
-#print(lowa, lowaval)
-#print(yhiyaval, ylowaval)
-print(box)
 
 #displays the images
 cv2.imshow('Start', im)
@@ -135,3 +207,4 @@ cv2.imshow('Finish', final)
 #kills the windows when a key is pressed
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+#mitochondria is still the powerhouse of the cell
