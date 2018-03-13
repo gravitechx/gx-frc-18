@@ -2,7 +2,8 @@ package org.gravitechx.frc2018.frames;
 
 public enum FrameType {
     STATUS (0, "STATUS"),
-    AMP (1, "AMP");
+    AMP (1, "AMP"),
+    VISION (2, "VISION");
 
     private final int id;
     private final String label;

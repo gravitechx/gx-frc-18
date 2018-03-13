@@ -1,5 +1,7 @@
-package org.gravitechx.frc2018.robot.io.controlschemes;
+package org.gravitechx.frc2018.robot.io;
 
+import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +12,7 @@ class ControlSchemeTest {
 
         /* Simple [-1, 1] to [0, 1] translation */
 
-        assertEquals(0.5,
+        Assertions.assertEquals(0.5,
                 ControlScheme.transformSignal(0,
                         -1,
                         1,

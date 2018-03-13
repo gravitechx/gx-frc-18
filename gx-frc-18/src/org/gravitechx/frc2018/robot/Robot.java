@@ -2,20 +2,27 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.gravitechx.frc2018.frames.AmpFrame;
+import org.gravitechx.frc2018.frames.VisionFrame;
 import org.gravitechx.frc2018.robot.commands.ExampleCommand;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
-import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
+import org.gravitechx.frc2018.utils.looping.RemoteTimestamp;
 
+import javax.json.*;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 
 /**
@@ -35,6 +42,9 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
 	DrivePipeline pipe = new DrivePipeline();
+	RobotServer rs;
+	Thread serverThread;
+
 
 
 
@@ -51,6 +61,10 @@ public class Robot extends IterativeRobot {
 		drive = Drive.getInstance();
 		dPipe = new DrivePipeline();
 
+		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
+		serverThread = new Thread(rs);
+		System.out.println("right before start");
+		serverThread.start();
 		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
@@ -101,7 +115,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
 		Scheduler.getInstance().run();
+
 	}
 
 	@Override
@@ -124,7 +140,6 @@ public class Robot extends IterativeRobot {
 						new RotationalDriveSignal(mControlScheme.getThrottle(), mControlScheme.getWheel()),
 						mControlScheme.getQuickTurnButton())
 		);
-
 		drive.graphEncodersToConsole();
 
 	}

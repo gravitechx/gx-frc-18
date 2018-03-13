@@ -50,6 +50,9 @@ abstract public class Frame {
             case AMP:
                 frame = new AmpFrame(baseObject);
                 break;
+            case VISION:
+                frame = new VisionFrame(baseObject);
+                break;
             default:
                 frame = new ErrorFrame(new LocalTimestamp(), "No frame ID.");
         }

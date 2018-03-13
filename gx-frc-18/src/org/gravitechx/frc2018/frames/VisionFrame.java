@@ -4,8 +4,10 @@ import javax.json.JsonObject;
 import javax.json.stream.JsonGenerator;
 
 public class VisionFrame extends Frame {
-    double offset;
-    double distance;
+    private double boxOffset;
+    private double boxDistance;
+    private double tapeOffset;
+    private double tapeDistance;
 
     /*------------------------------------------------------------.
     |          T I M E S T A M P    C O N S T R U C T O R         |
@@ -17,20 +19,29 @@ public class VisionFrame extends Frame {
 
     public VisionFrame(JsonObject baseObject){
         super(baseObject);
-        offset = baseObject.getJsonNumber("OFFSET").doubleValue();
-        distance = baseObject.getJsonNumber("DISTANCE").doubleValue();
+        boxOffset = baseObject.getJsonNumber("BOX_OFFSET").doubleValue();
+        boxDistance = baseObject.getJsonNumber("BOX_DISTANCE").doubleValue();
+        tapeOffset = baseObject.getJsonNumber("TAPE_OFFSET").doubleValue();
+        tapeDistance = baseObject.getJsonNumber("TAPE_DISTANCE").doubleValue();
+        System.out.println( boxOffset + ", " + boxDistance + ", " + tapeOffset+ ", " + tapeDistance);
     }
     @Override
     protected JsonGenerator encode(JsonGenerator generator) {
-        return generator.write("OFFSET", offset)
-                .write("DISTANCE", distance);
+        return generator.write("BOX_OFFSET", boxOffset)
+                .write("BOX_DISTANCE", boxDistance).write("TAPE_OFFSET", tapeOffset).write("TAPE_DISTANCE", tapeDistance);
     }
 
-    public double getOffset() {
-        return offset;
+    public double getBoxOffset() {
+        return boxOffset;
     }
-    public double getDistance(){
-        return distance;
+    public double getBoxDistance(){
+        return boxDistance;
+    }
+    public double getTapeOffset(){
+        return tapeOffset;
+    }
+    public double getTapeDistance(){
+        return tapeDistance;
     }
 }
 
