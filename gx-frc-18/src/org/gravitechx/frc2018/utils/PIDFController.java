@@ -29,7 +29,7 @@ public class PIDFController {
     }
 
     public void run(double accPosition, double time) {
-        error = accPosition - positionSetPoint;
+        error = positionSetPoint - accPosition;
 
         dt = time - lastTime;
 

@@ -37,7 +37,6 @@ public class Robot extends IterativeRobot {
 	public static DrivePipeline dPipe;
 	public static Lift lift;
 	public static BIO bio;
-	public static GravAHRS ahrs;
 	public boolean isGrabbing;
 	public VideoSink cameraServer;
 	public UsbLifeCam topCam;
@@ -64,11 +63,10 @@ public class Robot extends IterativeRobot {
 		dPipe = new DrivePipeline();
 		bio = BIO.getInstance();
 		//pdp  = new PowerDistributionPanel(0);
-		ahrs = new GravAHRS(SPI.Port.kMXP);
 
 		mControlScheme = DefaultControlScheme.getInstance();
 
-		lift.clearQuadature();
+		lift.zeroPosition();
 
 		//cameraServer = CameraServer.getInstance().getServer();
 
@@ -118,7 +116,7 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null)
 			autonomousCommand.start();
 
-		lift.clearQuadature();
+		lift.zeroPosition();
 	}
 
 	/**
@@ -127,6 +125,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		drive.driveDistance(0.3);
 	}
 
 	@Override
@@ -137,7 +136,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		lift.clearQuadature();
+		lift.zeroPosition();
 	}
 
 	/**
@@ -157,7 +156,7 @@ public class Robot extends IterativeRobot {
 
 		//lift.set(-mControlScheme.getFusedAxis());
 
-		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), 0.5, 0.02);
+		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), 0.0, 0.0);
 
 		lift.graphPIDOuts();
 
@@ -181,6 +180,8 @@ public class Robot extends IterativeRobot {
 			bio.grasp(BIO.GraspingStatus.OPEN);
 		}
 
+		lift.loop();
+
 		//System.out.printf("DISTANCE TRAVELED: " + lift.getPosition() + "\n");
 		/*System.out.print(
 				"AHRS Yaw: " + ahrs.getYawDegrees()
@@ -199,6 +200,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		drive.test();
+		lift.setDirect(.2);
 	}
 }

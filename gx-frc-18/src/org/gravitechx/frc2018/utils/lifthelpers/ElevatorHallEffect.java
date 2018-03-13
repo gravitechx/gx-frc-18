@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Counter;
 import org.gravitechx.frc2018.robot.Constants;
 
 public class ElevatorHallEffect extends Counter {
-    public double mOffset = 0.0;
+    private double mOffset = 0.0;
 
     public ElevatorHallEffect(int dioChannel, double mOffset){
         this(dioChannel);
