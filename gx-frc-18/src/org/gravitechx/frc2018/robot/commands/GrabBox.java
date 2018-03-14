@@ -10,27 +10,29 @@ import org.gravitechx.frc2018.robot.subsystems.BIO;
 /**
  *
  */
-public class ExampleCommand extends Command {
-	boolean boxgragged=false;
-	BIO bio;
-	public ExampleCommand() {
+public class GrabBox extends Command {
+	private boolean finished;
+	private BIO bio;
+	public GrabBox() {
 		// Might also need to use custom Drive.setControlState. Ask Alex.
 		requires(Robot.drive);
 		bio = BIO.getInstance();
+		finished=false;
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		
-		// Posibly a new object of Katie's class? How does grabbing a varaible from another running class/thread work?
+		// Possibly a new object of Katie's class? How does grabbing a varaible from another running class/thread work?
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		double boxdistance=8;//INSERT VARIABLE FROM KATIE HERE
+		double boxdistance=4;//INSERT VARIABLE FROM KATIE HERE
 		double boxoffset=8;//INSERT VARIABLE FROM KATIE HERE
+        double boxangle=5;//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
 		if(boxdistance<=Constants.DISTANCE_TO_CLOSE_BIO_AT) {//Run if box is within grabbing distance
 			bio.grasp(GraspingStatus.CLOSED);
 			end();
@@ -49,7 +51,7 @@ public class ExampleCommand extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	@Override
 	protected boolean isFinished() {
-		return boxgrabbed;
+		return finished;
 	}
 
 	// Called once after isFinished returns true
@@ -57,7 +59,7 @@ public class ExampleCommand extends Command {
 	protected void end() {
 		//Possibly release Katie's class
 		//Possibly change Drive.setControlState. Ask Alex.
-		boxgrabbed=true;
+		finished=true;
 	}
 
 	// Called when another command which requires one or more of the same

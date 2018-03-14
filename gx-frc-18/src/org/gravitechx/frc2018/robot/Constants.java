@@ -126,6 +126,8 @@ public class Constants {
     public static final DoubleSolenoid.Value BIO_ROTATOR_UP_SOLENOID_POSITION = DoubleSolenoid.Value.kReverse;
     public static final DoubleSolenoid.Value BIO_ROTATOR_DOWN_SOLENOID_POSITION = DoubleSolenoid.Value.kForward;
 
+    /* Autonomous */
+    public static final double DISTANCE_TO_CLOSE_BIO_AT = 0.5; //In meters
     /* Control System Joystick Functions */
     public static final UnaryOperator<Double> THROTTLE_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {
         @Override
