@@ -60,12 +60,6 @@ public class Robot extends IterativeRobot {
 
 		drive = Drive.getInstance();
 		dPipe = new DrivePipeline();
-
-		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
-		serverThread = new Thread(rs);
-		System.out.println("right before start");
-		serverThread.start();
-		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
 	/**
@@ -97,7 +91,14 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-
+		
+		//Initialize server code
+		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
+		serverThread = new Thread(rs);
+		System.out.println("right before start");
+		serverThread.start();
+		mControlScheme = DefaultControlScheme.getInstance();
+		
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
