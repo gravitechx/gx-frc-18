@@ -145,7 +145,7 @@ public class Drive extends Subsystem implements TestableSystem {
         SmartDashboard.putNumber("Displacement", ahrs.getmXDisplacement());
 
         if(distance <= ahrs.getmXDisplacement()){
-            set(new RotationalDriveSignal(0.1, 0.0).toDifferencialDriveSignal());
+            set(new RotationalDriveSignal(0.1, 0.0).toDifferentialDriveSignal());
         }
     }
 

@@ -3,9 +3,10 @@ package org.gravitechx.frc2018.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
-import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.robot.Robot;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
+import org.gravitechx.frc2018.robot.subsystems.Lift;
 
 /**
  *
@@ -13,38 +14,38 @@ import org.gravitechx.frc2018.robot.subsystems.BIO;
 public class GrabBox extends Command {
 	private boolean finished;
 	private BIO bio;
+	private Drive drive;
+	private Lift lift;
+	private RotationalDriveSignal way_to_move;
 	public GrabBox() {
 		// Might also need to use custom Drive.setControlState. Ask Alex.
 		requires(Robot.drive);
+		//requires(Robot.bio);
 		bio = BIO.getInstance();
+		drive = Drive.getInstance();
+		lift = Lift.getInstance();
 		finished=false;
+		lift.zeroPosition(); //Set the elevator to the bottom "zero" position
+		bio.set(BIO.ControlState.NEUTRAL); //Set BIO to open
 	}
 
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
 		
-		// Possibly a new object of Katie's class? How does grabbing a varaible from another running class/thread work?
+		// Possibly a new object of Katie's class? How does grabbing a variable from another running class/thread work?
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		double boxdistance=4;//INSERT VARIABLE FROM KATIE HERE
-		double boxoffset=8;//INSERT VARIABLE FROM KATIE HERE
         double boxangle=5;//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
 		if(boxdistance<=Constants.DISTANCE_TO_CLOSE_BIO_AT) {//Run if box is within grabbing distance
-			bio.grasp(GraspingStatus.CLOSED);
-			end();
+			end(); //End command
 		} else {
-			//bio.set(ControlState.NEUTRAL);
-			DifferentialDriveSignal way_to_move;
-			if(boxoffset<0) {//If the box is to the left
-				way_to_move = new DifferentialDriveSignal(boxdistance*DISTANCE_TO_POWER_RATIO-Math.abs(boxoffset)*TURN_TOWARDS_BOX_RATIO*boxdistance,boxdistance*DISTANCE_TO_POWER_RATIO);//Need to figure out what max motor output is. Multiply by boxdistance so that corrections are smaller when closer to the box.
-			} else {//If the box is to the right
-				way_to_move = new DifferentialDriveSignal(boxdistance*DISTANCE_TO_POWER_RATIO,boxdistance*DISTANCE_TO_POWER_RATIO-boxoffset*TURN_TOWARDS_BOX_RATIO*boxdistance);//Need to figure out what max motor output is.
-			}
-			Drive.set(way_to_move);
+			way_to_move = new RotationalDriveSignal(boxdistance*Constants.DISTANCE_TO_POWER_RATIO,boxangle*Constants.ANGLE_TO_ROTATION_RATIO); //Create mew drivesignal (Rotational) that uses the vision distance and angle. Tune with constants.
+			drive.set(way_to_move.toDifferentialDriveSignal());
 		}
 	}
 	
@@ -58,8 +59,9 @@ public class GrabBox extends Command {
 	@Override
 	protected void end() {
 		//Possibly release Katie's class
-		//Possibly change Drive.setControlState. Ask Alex.
-		finished=true;
+		drive.set(new RotationalDriveSignal(0,0).toDifferentialDriveSignal()); //Stops the robot from moving
+		bio.grasp(BIO.GraspingStatus.CLOSED); //Closes BIO
+		finished=true; //Command now finished
 	}
 
 	// Called when another command which requires one or more of the same
