@@ -132,6 +132,12 @@ def tape_vision():
 
 					#cv2.GoodMemes(now)
 
+					rect = cv2.minAreaRect(cnt)
+                                        box = cv2.boxPoints(rect)
+                                        box = np.int0(box)
+                                        cv2.drawContours(im, [box], 0, (0,255,255), 5)
+                                        cv2.drawContours(final, [box], 0, (0,255,255), 5)
+
 					#DRAWINGS#
 					#draws the box contours
 					final = cv2.drawContours(final, contours[y], -1, (0, 0, 255), 5)
@@ -149,7 +155,7 @@ def tape_vision():
 
 					#END PROCESSES#
 					#resizes the images
-					resize = .4
+					resize = 1
 					im = cv2.resize(im, (0,0), fx=resize, fy=resize)
 					intermed = cv2.resize(intermed, (0,0), fx=resize, fy=resize)
 					final = cv2.resize(final, (0,0), fx=resize, fy=resize)
@@ -163,13 +169,92 @@ def tape_vision():
 					info_lock.acquire()
 					tape_offset=realcx - middleline
 					info_lock.release()
-					#distancefrom = realcx - middleline
+					distancefrom = realcx - middleline
 					hiyaval = int(math.ceil(hiyaval))
 					lowaval = int(math.floor(lowaval))
 					yhiyaval = yhiyaval * resize
 					yhiyaval = int(math.ceil(yhiyaval))
 					ylowaval = ylowaval * resize
 					ylowaval = int(math.floor(ylowaval))
+
+					#sets up variables for corners
+					realx = 0
+                                        realy = 0
+                                        realxx = 0
+                                        realyy = 0
+
+                                        #comparing the y values of the rectangle to find bottom
+                                        firstheight = box[0][1] - box[1][1]
+                                        secondheight = box[0][1] - box[3][1]
+
+                                        #sets the bottom corner (x, y) values to the bottom left corner
+                                        if firstheight > secondheight:
+                                            realx = box[0][0]
+                                            realy = box[0][1]
+                                        if firstheight < secondheight:
+                                            realx = box[1][0]
+                                            realy = box[1][1]
+                                        
+                                        realx = realx * resize
+                                        realy = realy * resize
+                                        
+                                        realx = math.ceil(realx)
+                                        realy = math.ceil(realy)
+                                        
+                                        firstthing = box[3][1] - box[2][1]
+                                        secondthing = box[0][1] - box[3][1]
+                                        #does the same thing as above but with bottom right corner
+                                        if firstthing > secondthing:
+                                            realxx = box[3][0]
+                                            realyy = box[3][1]
+                                        if firstthing < secondthing:
+                                            realxx = box[0][0]
+                                            realyy = box[0][1]
+                                        
+                                        realxx = realxx * resize
+                                        realyy = realyy * resize
+                                        
+                                        realxx = math.ceil(realxx)
+                                        realyy = math.ceil(realyy)
+                                        
+                                        #finds the top left corner of the bounding rectangle (x, y) and the width and height (h and w)
+                                        x,y,w,h = cv2.boundingRect(cnt)
+                                        #adjust to image resize value to conform to social convention
+                                        x = x * resize
+                                        y = y * resize
+                                        w = w * resize
+                                        h = h * resize
+                                        #round so that it doesn't give you an error due to float value
+                                        x = math.ceil(x)
+                                        y = math.ceil(y)
+                                        w = math.ceil(w)
+                                        h = math.ceil(h)
+                                        #draws the good rectangles
+                                        cv2.rectangle(final,(x,y),(x+w,y+h),(0,255,0),2)
+                                        cv2.rectangle(im,(x,y),(x+w,y+h),(0,255,0),2)
+
+                                        factor = 0.3149331777342597     
+                                        factor = factor / 2             #factor used in finding distance from tape to robot
+
+                                        firstsquare = math.pow(realxx - realx, 2)   #used to find width of tape in pixels
+                                        secondsquare = math.pow(realyy - realy, 2)  #used to find width of tape in pixels
+
+                                        widthoftape = math.sqrt(firstsquare + secondsquare) #Pythagorean Theorem to find width of tape
+
+                                        distance = (width/widthoftape) * factor     #Finds distance from robot to tape
+                                        distance_in_meters = distance * 0.3048      #Converts distance to meters
+
+                                        cent_of_img = (width/2)                     #Finds center of image
+
+                                        dist_to_cent = ((cx-cent_of_img) * ((1/6)/widthoftape))     #Finds arc distance (used for finding degrees)
+
+                                        degree = (dist_to_cent/(math.pi * 2 * distance)) * 360      #Finds degree (positive = right)
+
+
+                                        print ("Degree = %s" %degree)
+                                        print ("Distance = %s" %distance)
+
+
 
 					#draws the good circles
 					cv2.circle(im, (hiyaval, yhiyaval), 1, (0,255,0), thickness=10, lineType=8, shift=0)
