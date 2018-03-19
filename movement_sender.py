@@ -252,7 +252,7 @@ def tape_vision():
 
 
                                         print ("Degree = %s" %degree)
-                                        print ("Distance = %s" %distance)
+                                        print ("Distance = %s" %distance_in_meters)
 
 
 
