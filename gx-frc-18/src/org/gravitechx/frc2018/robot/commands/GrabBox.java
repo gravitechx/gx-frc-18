@@ -7,18 +7,16 @@ import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.robot.Robot;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Lift;
+import org.gravitechx.frc2018.utils.visionhelpers.VisionInfo;
 
-/**
- *
- */
 public class GrabBox extends Command {
 	private boolean finished;
 	private BIO bio;
 	private Drive drive;
 	private Lift lift;
 	private RotationalDriveSignal way_to_move;
+	private VisionInfo visioninfo;
 	public GrabBox() {
-		// Might also need to use custom Drive.setControlState. Ask Alex.
 		requires(Robot.drive);
 		//requires(Robot.bio);
 		bio = BIO.getInstance();
@@ -32,15 +30,15 @@ public class GrabBox extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		
+		boxdistance=katiesnumber
 		// Possibly a new object of Katie's class? How does grabbing a variable from another running class/thread work?
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		double boxdistance=4;//INSERT VARIABLE FROM KATIE HERE
-        double boxangle=5;//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
+		boxdistance=boxdistance*4/5 + newboxdi;//INSERT VARIABLE FROM KATIE HERE
+        boxangle=boxangle*4/5 + katiesnumber;//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
 		if(boxdistance<=Constants.DISTANCE_TO_CLOSE_BIO_AT) {//Run if box is within grabbing distance
 			end(); //End command
 		} else {

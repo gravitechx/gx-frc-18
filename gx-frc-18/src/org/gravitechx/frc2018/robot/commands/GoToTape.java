@@ -14,7 +14,6 @@ public class GoToTape extends Command {
     private Drive drive;
     private RotationalDriveSignal way_to_move;
     public GoToTape() {
-        // Might also need to use custom Drive.setControlState. Ask Alex.
         requires(Robot.drive);
         drive = Drive.getInstance();
         finished=false;
