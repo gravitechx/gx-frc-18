@@ -57,15 +57,10 @@ public class Robot extends IterativeRobot {
 		chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
-
 		drive = Drive.getInstance();
 		dPipe = new DrivePipeline();
-
 		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
-		serverThread = new Thread(rs);
-		System.out.println("right before start");
-		serverThread.start();
-		mControlScheme = DefaultControlScheme.getInstance();
+
 	}
 
 	/**
@@ -108,6 +103,10 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+
+		serverThread = new Thread(rs);
+		serverThread.start();
+		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
 	/**
@@ -128,6 +127,9 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
+		serverThread = new Thread(rs);
+		serverThread.start();
+		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
 	/**
