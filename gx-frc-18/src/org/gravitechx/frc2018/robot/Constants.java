@@ -130,7 +130,7 @@ public class Constants {
     public static final double DISTANCE_TO_CLOSE_BIO_AT = 0.5; //In meters
     public static final double DISTANCE_TO_POWER_RATIO = 0.2; //Meters to 0-1 power range
     public static final double ANGLE_TO_ROTATION_RATIO = 0.2; //Degrees to 0-1 rotation range
-    public static final double TAPE_CLOSE_ENOUGH_DISTANCE = 0.5; //When Tape is close enough to stop moving towards it
+    public static final double AT_TAPE_DISTANCE = 0.7; //When Tape is close enough to stop moving towards it
 
     /* Control System Joystick Functions */
     public static final UnaryOperator<Double> THROTTLE_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {
