@@ -15,7 +15,7 @@ import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
-import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
+import org.gravitechx.frc2018.robot.subsystems.Lift;
 import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
@@ -43,7 +43,6 @@ public class Robot extends IterativeRobot {
 	public static BIO bio;
 	public boolean isGrabbing;
 	public VideoSink cameraServer;
-	public UsbLifeCam topCam;
 
 	//public static PowerDistributionPanel pdp;
 
