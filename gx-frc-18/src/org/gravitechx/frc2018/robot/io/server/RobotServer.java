@@ -4,6 +4,8 @@ import org.gravitechx.frc2018.frames.AmpFrame;
 import org.gravitechx.frc2018.frames.Frame;
 import org.gravitechx.frc2018.frames.StatusFrame;
 import org.gravitechx.frc2018.frames.VisionFrame;
+import org.gravitechx.frc2018.utils.visionhelpers.VisionInfo;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -76,6 +78,7 @@ public class RobotServer implements Runnable {
                             double tapeOffset = ((VisionFrame) frame).getTapeOffset();
                             double tapeDistance = ((VisionFrame) frame).getTapeDistance();
                             double tapeAngle = ((VisionFrame) frame).getTapeAngle();
+                            VisionInfo visionInfo = ((VisionFrame) frame).getVisionInfo();
                             System.out.println("BOX_OFFSET:" + boxOffset + ", BOX_DISTANCE:" + boxDistance + ", BOX_ANGLE: " + boxAngle + ", TAPE_OFFSET: " + tapeOffset + ", TAPE_DISTANCE: " + tapeDistance + ", TAPE_ANGLE: " + tapeAngle );
 
                             break;
