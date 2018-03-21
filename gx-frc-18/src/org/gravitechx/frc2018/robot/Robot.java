@@ -16,6 +16,7 @@ import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.Lift;
+import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
 import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
@@ -36,6 +37,8 @@ import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
  * directory.
  */
 public class Robot extends IterativeRobot {
+
+	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 
 	public static Drive drive;
 	public static DrivePipeline dPipe;
@@ -61,6 +64,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		chooser.addDefault("Default Auto", new ExampleCommand());
 		//chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		drive = Drive.getInstance();
