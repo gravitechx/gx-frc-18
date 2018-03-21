@@ -37,8 +37,8 @@ public class LoopScheduler {
     }
 
     // Singleton
-    private static LoopScheduler mThreadRegistry;
-    public LoopScheduler getInstance() {
+    private static LoopScheduler mThreadRegistry = new LoopScheduler(.05);
+    public static LoopScheduler getInstance() {
         return mThreadRegistry;
     }
 
@@ -58,6 +58,7 @@ public class LoopScheduler {
            loop.initalize();
         }
         mNotifier.startPeriodic(mPeriod);
+        System.out.print("Looping");
     }
 
     /**
