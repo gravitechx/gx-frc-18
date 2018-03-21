@@ -72,6 +72,11 @@ public class Constants {
     public static final int THROTTLE_STICK_PORT = 1;
     public static final int IO_QUICK_TURN_BUTTON = 2;
 
+
+    //natan
+    public static final int PORT = 5800;
+    public static final int SERVER_WAIT_MS = 500;
+
     /* Control System Deadband */
     public static final double THROTTLE_DEADBAND = 0.04;
     public static final double WHEEL_DEADBAND = 0.02;

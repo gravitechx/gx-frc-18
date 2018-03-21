@@ -1,5 +1,7 @@
 package org.gravitechx.frc2018.utils.looping;
 
+import org.gravitechx.frc2018.frames.Timestamp;
+
 /**
  * Contructs a loop that will run concurrently on a runnable thread.
  */

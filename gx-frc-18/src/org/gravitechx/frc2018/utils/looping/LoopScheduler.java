@@ -13,7 +13,7 @@ public class LoopScheduler {
     private Notifier mNotifier;
     private boolean mRunning;
     private double mPeriod;
-    private Timestamp ts;
+    private RemoteTimestamp ts;
 
     /**
      * Constructs a loop scheduler using the run period
@@ -21,7 +21,7 @@ public class LoopScheduler {
      */
     private LoopScheduler(double runPeriod) {
         mLoops = new ArrayList<>();
-        ts = new Timestamp();
+        ts = new RemoteTimestamp();
         mNotifier = new Notifier(
                 () -> {
                     if(mRunning){

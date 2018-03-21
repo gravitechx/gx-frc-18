@@ -1,8 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8fe4b921-3c44-458a-b429-ee3d3e1370f5" name="Default" comment="" />
+    <list default="true" id="8fe4b921-3c44-458a-b429-ee3d3e1370f5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/CTRE_Phoenix.xml" afterPath="$PROJECT_DIR$/.idea/libraries/CTRE_Phoenix.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build.properties" afterPath="$PROJECT_DIR$/gx-frc-18/build.properties" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/jars/CTRE_Phoenix.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/jars/WPILib.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/jars/cscore.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/jars/ntcore.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/jars/opencv.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/jars/wpiutil.jar" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/Constants$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/Constants$2.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/Constants$DriveTalonConfig.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/Constants.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/EncoderTest.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/Robot.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/commands/ExampleCommand.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/io/controlschemes/ControlScheme.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/io/controlschemes/DefaultControlScheme.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/subsystems/Drive$DriveControlStates.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/subsystems/Drive.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/subsystems/ExampleSubsystem.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/robot/subsystems/TestableSystem.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/TalonSRXFactory.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/VictorSPFactory.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/drivehelpers/DifferentialDriveSignal.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/drivehelpers/DrivePipeline.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/drivehelpers/DriveSignal.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/drivehelpers/RotationalDriveSignal.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/looping/Loop.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/looping/LoopScheduler.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/looping/Timestamp.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/motorconfigs/MotorConfig.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/motorconfigs/PIDConfig.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/motorconfigs/TalonConfig.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/motorconfigs/TalonPIDConfig.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/motorconfigs/VictorSPConfig.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/wrappers/EfficientTalonSRX.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/build/org/gravitechx/frc2018/utils/wrappers/MasterTalonSRX.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/gx-frc-18/dist/FRCUserProgram.jar" afterPath="" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/frames/.gradle/" />
+    <ignored path="$PROJECT_DIR$/frames/build/" />
+    <ignored path="$PROJECT_DIR$/driverstation/.gradle/" />
+    <ignored path="$PROJECT_DIR$/driverstation/build/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -10,19 +55,62 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/driverstation">
+      <ProjectState />
+    </projectState>
+    <projectState path="$PROJECT_DIR$/frames">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="driverstation" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="driverstation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="driverstation" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GoToTape.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/commands/GoToTape.java">
+      <file leaf-file-name="RemoteTimestamp.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/looping/RemoteTimestamp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
+            <state relative-caret-position="663">
+              <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
               <folding>
-                <element signature="e#2547#2548#0" expanded="true" />
-                <element signature="e#2578#2579#0" expanded="true" />
-                <element signature="e#3033#3034#0" expanded="true" />
-                <element signature="e#3054#3055#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EncoderTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/EncoderTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -30,18 +118,8 @@
       <file leaf-file-name="Constants.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="122" column="24" lean-forward="true" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GrabBox.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/commands/GrabBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="41" lean-forward="true" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+            <state relative-caret-position="258">
+              <caret line="68" column="35" lean-forward="false" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
               <folding>
                 <element signature="e#2656#2657#0" expanded="true" />
                 <element signature="e#2678#2679#0" expanded="true" />
@@ -52,25 +130,32 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VisionInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/visionhelpers/VisionInfo.java">
+      <file leaf-file-name="Robot.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/Robot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-              <folding>
-                <element signature="e#562#563#0" expanded="true" />
-                <element signature="e#597#598#0" expanded="true" />
-                <element signature="e#632#633#0" expanded="true" />
-                <element signature="e#664#665#0" expanded="true" />
-                <element signature="e#700#701#0" expanded="true" />
-                <element signature="e#733#734#0" expanded="true" />
-                <element signature="e#771#772#0" expanded="true" />
-                <element signature="e#807#808#0" expanded="true" />
-                <element signature="e#842#843#0" expanded="true" />
-                <element signature="e#875#876#0" expanded="true" />
-                <element signature="e#911#912#0" expanded="true" />
-                <element signature="e#945#946#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="102">
+              <caret line="21" column="54" lean-forward="false" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gx-frc-18/build.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gx-frc-18/build.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,6 +185,242 @@
     </option>
   </component>
   <component name="GradleLocalSettings">
+    <option name="myGradleHomes">
+      <map>
+        <entry key="$PROJECT_DIR$/driverstation" value="C:\Users\GravitechX\.gradle\wrapper\dists\gradle-4.0-bin\3p92xsbhik5vmig8i90n16yxc\gradle-4.0\wrapper\dists\gradle-4.0-bin\3p92xsbhik5vmig8i90n16yxc\gradle-4.0" />
+        <entry key="$PROJECT_DIR$/frames" value="C:\Users\GravitechX\.gradle\wrapper\dists\gradle-4.0-bin\3p92xsbhik5vmig8i90n16yxc\gradle-4.0" />
+      </map>
+    </option>
+    <option name="myGradleVersions">
+      <map>
+        <entry key="$PROJECT_DIR$/driverstation" value="4.0" />
+        <entry key="$PROJECT_DIR$/frames" value="4.0" />
+      </map>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="driverstation" />
+              <option name="path" value="$PROJECT_DIR$/driverstation" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="driverstation" />
+                <option name="path" value="$PROJECT_DIR$/driverstation" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="frames" />
+              <option name="path" value="$PROJECT_DIR$/frames" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="frames" />
+                <option name="path" value="$PROJECT_DIR$/frames" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="availableTasks">
+      <map>
+        <entry key="$PROJECT_DIR$/driverstation">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Initializes a new Gradle build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="init" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by root project 'driverstation'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of root project 'driverstation'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the dependent components of components in root project 'driverstation'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="dependentComponents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'driverstation'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="buildEnvironment" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in root project 'driverstation'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="dependencyInsight" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Gradle wrapper files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in root project 'driverstation'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of root project 'driverstation'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="model" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of root project 'driverstation'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from root project 'driverstation'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/driverstation" />
+                <option name="name" value="tasks" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frames">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Initializes a new Gradle build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="init" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by root project 'frames'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of root project 'frames'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the dependent components of components in root project 'frames'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="dependentComponents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'frames'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="buildEnvironment" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in root project 'frames'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="dependencyInsight" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Gradle wrapper files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in root project 'frames'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of root project 'frames'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="model" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of root project 'frames'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from root project 'frames'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/frames" />
+                <option name="name" value="tasks" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectBuildClasspath">
+      <map>
+        <entry key="$PROJECT_DIR$/driverstation">
+          <value>
+            <ExternalProjectBuildClasspathPojo>
+              <option name="modulesBuildClasspath">
+                <map>
+                  <entry key="$PROJECT_DIR$/driverstation">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="path" value="$PROJECT_DIR$/driverstation" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="name" value="driverstation" />
+              <option name="projectBuildClasspath">
+                <list>
+                  <option value="$PROJECT_DIR$/driverstation/buildSrc/src/main/java" />
+                  <option value="$PROJECT_DIR$/driverstation/buildSrc/src/main/groovy" />
+                </list>
+              </option>
+            </ExternalProjectBuildClasspathPojo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/frames">
+          <value>
+            <ExternalProjectBuildClasspathPojo>
+              <option name="modulesBuildClasspath">
+                <map>
+                  <entry key="$PROJECT_DIR$/frames">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="path" value="$PROJECT_DIR$/frames" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="name" value="frames" />
+              <option name="projectBuildClasspath">
+                <list>
+                  <option value="$PROJECT_DIR$/frames/buildSrc/src/main/java" />
+                  <option value="$PROJECT_DIR$/frames/buildSrc/src/main/groovy" />
+                </list>
+              </option>
+            </ExternalProjectBuildClasspathPojo>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="externalProjectsViewState">
       <projects_view />
     </option>
@@ -117,12 +438,9 @@
         <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/TalonSRXFactory.java" />
         <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/io/controlschemes/DefaultControlScheme.java" />
         <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/motorconfigs/PIDConfig.java" />
-        <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/drivehelpers/RotationalDriveSignal.java" />
-        <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/subsystems/Drive.java" />
-        <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/commands/GrabBox.java" />
-        <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/visionhelpers/VisionInfo.java" />
+        <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/looping/RemoteTimestamp.java" />
         <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/Constants.java" />
-        <option value="$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/commands/GoToTape.java" />
+        <option value="$PROJECT_DIR$/gx-frc-18/build.properties" />
       </list>
     </option>
   </component>
@@ -133,10 +451,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="72" />
-    <option name="y" value="-8" />
-    <option name="width" value="1213" />
-    <option name="height" value="1036" />
+    <option name="x" value="35" />
+    <option name="y" value="-16" />
+    <option name="width" value="1300" />
+    <option name="height" value="1044" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -154,21 +472,85 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+              <item name="robot" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+              <item name="robot" type="1f31426a:PackageElementNode" />
+              <item name="commands" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+              <item name="robot" type="1f31426a:PackageElementNode" />
+              <item name="io" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+              <item name="robot" type="1f31426a:PackageElementNode" />
+              <item name="io" type="1f31426a:PackageElementNode" />
+              <item name="controlschemes" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+              <item name="robot" type="1f31426a:PackageElementNode" />
+              <item name="io" type="1f31426a:PackageElementNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+              <item name="robot" type="1f31426a:PackageElementNode" />
+              <item name="io" type="1f31426a:PackageElementNode" />
+              <item name="server" type="1f31426a:PackageElementNode" />
+              <item name="frames" type="1f31426a:PackageElementNode" />
+            </path>
+            <path>
+              <item name="gx-frc-18" type="58d84e3e:PackageViewProjectNode" />
+              <item name="gx-frc-18" type="616d4139:PackageViewModuleNode" />
+              <item name="org.gravitechx.frc2018" type="1f31426a:PackageElementNode" />
+              <item name="utils" type="1f31426a:PackageElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scratches" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
+              <item name="frames" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
               <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
               <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="doc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
@@ -188,73 +570,18 @@
               <item name="frc2018" type="462c0819:PsiDirectoryNode" />
               <item name="robot" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="frc2018" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="frc2018" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="drivehelpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="frc2018" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="lifthelpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="frc2018" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="looping" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="frc2018" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="motorconfigs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="frc2018" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="visionhelpers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="gx-frc-18" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="gx-frc-18" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/talons/java/docs/CTRE_Phoenix-javadoc.jar!/" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/CTRE_Phoenix_FRCLibs_NON-WINDOWS_v5.2.1.1 (1)/java/lib/CTRE_Phoenix.jar!/" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -328,6 +655,18 @@
       </option>
       <envs />
       <patterns />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="driverstation" />
+      <envs />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
@@ -411,33 +750,33 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27912623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26618123" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26618123" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840237" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32840237" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3611111" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1553398" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1553398" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -525,6 +864,36 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/TalonSRXFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1088">
+          <caret line="71" column="0" lean-forward="false" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/looping/Loop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/looping/LoopScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="33" lean-forward="false" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/io/controlschemes/ControlScheme.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/subsystems/Drive.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -537,7 +906,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="1" lean-forward="false" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -555,7 +926,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -641,13 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/build.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="9" lean-forward="false" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gx-frc-18/.classpath" />
     <entry file="file://$PROJECT_DIR$/gx-frc-18/.project" />
     <entry file="file://$PROJECT_DIR$/gx-frc-18/gx-frc-18.iml">
@@ -657,20 +1023,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/build.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/gx-frc-18/src/gx-frc-18.iml" />
     <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/drivehelpers/DriveSignal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/subsystems/Drive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/drivehelpers/RotationalDriveSignal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="64" lean-forward="false" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -706,14 +1079,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="19" column="21" lean-forward="false" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/EncoderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -759,9 +1124,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/looping/LoopScheduler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="25" column="20" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-          <folding />
+        <state relative-caret-position="85">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
         </state>
       </provider>
     </entry>
@@ -778,55 +1142,42 @@
         <state relative-caret-position="0">
           <caret line="6" column="22" lean-forward="false" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
           <folding>
-            <marker date="1521062144097" expanded="true" signature="1854:1861" ph="{...}" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/subsystems/BIO.java">
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/looping/Timestamp.java" />
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/motorconfigs/PIDConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="5" column="36" lean-forward="true" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+        <state relative-caret-position="323">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/subsystems/Drive.java">
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/looping/RemoteTimestamp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="36" column="58" lean-forward="true" selection-start-line="36" selection-start-column="58" selection-end-line="36" selection-end-column="58" />
+        <state relative-caret-position="663">
+          <caret line="46" column="29" lean-forward="false" selection-start-line="46" selection-start-column="29" selection-end-line="46" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/EncoderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="19" column="36" lean-forward="false" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/drivehelpers/RotationalDriveSignal.java">
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="60" lean-forward="false" selection-start-line="10" selection-start-column="60" selection-end-line="10" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/Robot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="37" column="28" lean-forward="true" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/subsystems/Lift.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="46" column="30" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/utils/visionhelpers/VisionInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+        <state relative-caret-position="258">
+          <caret line="68" column="35" lean-forward="false" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
           <folding>
             <element signature="e#562#563#0" expanded="true" />
             <element signature="e#597#598#0" expanded="true" />
@@ -844,37 +1195,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/Constants.java">
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="122" column="24" lean-forward="true" selection-start-line="122" selection-start-column="24" selection-end-line="122" selection-end-column="24" />
+        <state relative-caret-position="510">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/commands/GoToTape.java">
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/build.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" lean-forward="false" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-          <folding>
-            <element signature="e#2547#2548#0" expanded="true" />
-            <element signature="e#2578#2579#0" expanded="true" />
-            <element signature="e#3033#3034#0" expanded="true" />
-            <element signature="e#3054#3055#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/commands/GrabBox.java">
+    <entry file="file://$PROJECT_DIR$/gx-frc-18/src/org/gravitechx/frc2018/robot/Robot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="41" lean-forward="true" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
-          <folding>
-            <element signature="e#2656#2657#0" expanded="true" />
-            <element signature="e#2678#2679#0" expanded="true" />
-            <element signature="e#3144#3145#0" expanded="true" />
-            <element signature="e#3156#3157#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="21" column="54" lean-forward="false" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -955,7 +1296,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>cscore</last-edited>
+          <last-edited>CTRE_Phoenix</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
