@@ -1,13 +1,18 @@
 package org.gravitechx.frc2018.frames;
 
+import org.gravitechx.frc2018.utils.visionhelpers.VisionInfo;
+
 import javax.json.JsonObject;
 import javax.json.stream.JsonGenerator;
 
 public class VisionFrame extends Frame {
     private double boxOffset;
     private double boxDistance;
+    private double boxAngle;
     private double tapeOffset;
     private double tapeDistance;
+    private double tapeAngle;
+    private VisionInfo visionInfo;
 
     /*------------------------------------------------------------.
     |          T I M E S T A M P    C O N S T R U C T O R         |
@@ -21,9 +26,13 @@ public class VisionFrame extends Frame {
         super(baseObject);
         boxOffset = baseObject.getJsonNumber("BOX_OFFSET").doubleValue();
         boxDistance = baseObject.getJsonNumber("BOX_DISTANCE").doubleValue();
+        boxAngle = baseObject.getJsonNumber("BOX_ANGLE").doubleValue();
         tapeOffset = baseObject.getJsonNumber("TAPE_OFFSET").doubleValue();
         tapeDistance = baseObject.getJsonNumber("TAPE_DISTANCE").doubleValue();
-        System.out.println( boxOffset + ", " + boxDistance + ", " + tapeOffset+ ", " + tapeDistance);
+        tapeAngle = baseObject.getJsonNumber("TAPE_ANGLE").doubleValue();
+        visionInfo = new VisionInfo(boxDistance, boxAngle, boxOffset, tapeDistance, tapeAngle, tapeOffset);
+        System.out.println( boxOffset + ", " + boxDistance + ", " + boxAngle + ", " + tapeOffset+ ", " + tapeDistance + ", " + tapeAngle);
+
     }
     @Override
     protected JsonGenerator encode(JsonGenerator generator) {
@@ -37,11 +46,21 @@ public class VisionFrame extends Frame {
     public double getBoxDistance(){
         return boxDistance;
     }
+    public double getBoxAngle() {
+        return boxAngle;
+    }
     public double getTapeOffset(){
         return tapeOffset;
     }
     public double getTapeDistance(){
         return tapeDistance;
+    }
+    public double getTapeAngle(){
+        return tapeAngle;
+    }
+
+    public VisionInfo getVisionInfo() {
+        return visionInfo;
     }
 }
 
