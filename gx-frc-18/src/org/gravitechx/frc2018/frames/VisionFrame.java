@@ -46,18 +46,14 @@ public class VisionFrame extends Frame {
     public double getBoxDistance(){
         return boxDistance;
     }
-    public double getBoxAngle() {
-        return boxAngle;
-    }
+    public double getBoxAngle() { return boxAngle; }
     public double getTapeOffset(){
         return tapeOffset;
     }
     public double getTapeDistance(){
         return tapeDistance;
     }
-    public double getTapeAngle(){
-        return tapeAngle;
-    }
+    public double getTapeAngle(){ return tapeAngle; }
 
     public VisionInfo getVisionInfo() {
         return visionInfo;
