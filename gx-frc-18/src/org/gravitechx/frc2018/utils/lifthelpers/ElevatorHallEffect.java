@@ -9,6 +9,7 @@ public class ElevatorHallEffect extends Counter {
     public ElevatorHallEffect(int dioChannel, double mOffset){
         this(dioChannel);
         this.mOffset = mOffset;
+        this.setMaxPeriod(.25);
     }
 
     public ElevatorHallEffect(int dioChannel){
