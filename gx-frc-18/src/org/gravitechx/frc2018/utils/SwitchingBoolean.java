@@ -1,15 +1,15 @@
 package org.gravitechx.frc2018.utils;
 
-import org.gravitechx.frc2018.utils.looping.Timestamp;
+import org.gravitechx.frc2018.utils.looping.RemoteTimestamp;
 
 public class SwitchingBoolean {
     boolean value;
-    Timestamp timestamp;
+    RemoteTimestamp timestamp;
     double timestep;
 
     public SwitchingBoolean(boolean value, double timestamp){
         this.value = value;
-        this.timestamp = new Timestamp();
+        this.timestamp = new RemoteTimestamp();
         this.timestep = timestamp;
     }
 
