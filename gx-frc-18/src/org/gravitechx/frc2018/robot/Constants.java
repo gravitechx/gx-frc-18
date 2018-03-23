@@ -30,14 +30,8 @@ public class Constants {
     // ARM Motor Controllers
     public static final int JANKEY_SENSOR_TALON = 0;
 
-    public static final int MID_LIFT_LEFT_PWM_CHANNEL = 4;
-    public static final int MID_LIFT_RIGHT_PWM_CHANNEL = 5;
-
-    public static final int LEFT_LIFT_FRONT_SPARK_PWM_CHANNEL = 0;
-    public static final int LEFT_LIFT_BACK_SPARK_PWM_CHANNEL = 1;
-
-    public static final int RIGHT_LIFT_FRONT_SPARK_PWM_CHANNEL = 2;
-    public static final int RIGHT_LIFT_BACK_SPARK_PWM_CHANNEL = 3;
+    public static final int MID_LIFT_LEFT_PWM_CHANNEL = 1;
+    public static final int MID_LIFT_RIGHT_PWM_CHANNEL = 0;
 
     // Is reversed
     public static final boolean LEFT_DRIVE_MOTOR_REVERSED = false;
@@ -45,12 +39,14 @@ public class Constants {
 
     /* PID */
     //public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.7, 0.55, .03, 0.0, .7);
-    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(.65, 0.08, 0.007, 0.0, 0.0,0.0);
+    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(.30, 0.00, 0.000, 0.0, 0.0,0.0);
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(0.20, 1.0E-5, 0.15, 0.1, 1.0);
     public static final TalonPIDConfig NO_PID_CONFIG = new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
 
-    public static final double DRIVE_ENCODER_MOTIFIER =  4096.0 * 500.0 / 600.0 * 2.0;
+    public static final double DRIVE_ENCODER_MOTIFIER =  4096.0 * 500.0 / 600.0 * 2.0; // 3415.0
+
+    public static final double DRIVE_TO_M_ENCODER_MOTIFIER =  7.7922e-5; // 12.566in diff from enc mot (10699.0)
 
     /* NEGATIVE INERTIA CONSTANTS */
     public static final double NEG_INERTIA_TURN_SCALAR = 2.5;
@@ -92,9 +88,11 @@ public class Constants {
     public static double HALL_TOP_DISTANCE = 1.72;
     public static double HALL_BOTTOM_DISTANCE = 0.0699262;
 
+    public static double MAX_AMPERAGE = 26.0;
+
 
     /* LIFT PIPELINE */
-    public static double NOMINAL_UP_VOLTAGE = 2.9;
+    public static double NOMINAL_UP_VOLTAGE = 0.0; // 2.9
     public static double LIFT_COMPOUNDING_STEP = .02;
     public static double LIFT_MAX_TRAVEL_M = 1.70;
     public static double LIFT_MIN_TRAVEL_M = 0.0;
@@ -102,7 +100,7 @@ public class Constants {
 
     public static double LIFT_REST_DECAY_PROPORTIONAL = 0.1;
     public static double LIFT_PERSISTENT_DECAY_PROPORTIONAL = .05;
-    public static double QUADRATURE_TO_METER_LIFT = -2.0 * 2.51312e-5 * 1.3123;
+    public static double QUADRATURE_TO_METER_LIFT = 2.0 * 2.51312e-5 * 1.3123;
 
     public static double LIFT_POSITION_DEADBAND_M = .03;
 
@@ -156,7 +154,7 @@ public class Constants {
     /* MOTOR CONFIGS */
     /* ============= */
 
-    public static double MAX_LIFT_VOLTAGE = 5.0;
+    public static double MAX_LIFT_VOLTAGE = 12.0;
 
     /* Talon on the drive train */
     public static class DriveTalonConfig extends TalonConfig {

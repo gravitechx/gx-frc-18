@@ -2,10 +2,7 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.cscore.VideoSink;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
-import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -16,6 +13,7 @@ import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.Lift;
 import org.gravitechx.frc2018.utils.UsbLifeCam;
+import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.utils.looping.Loop;
@@ -40,6 +38,8 @@ public class Robot extends IterativeRobot {
 	public boolean isGrabbing;
 	public VideoSink cameraServer;
 	public UsbLifeCam topCam;
+
+	public Timer autonTimer;
 
 	//public static PowerDistributionPanel pdp;
 
@@ -117,15 +117,20 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.start();
 
 		lift.zeroPosition();
+		autonTimer = new Timer();
+		autonTimer.start();
 	}
 
 	/**
-	 * This function is called periodically during autonomous
+	 * This function is called periodically during autonom  ous
 	 */
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		drive.driveDistance(0.3);
+		while(autonTimer.get() < 4.0)
+		drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
+
+		drive.set(new DifferentialDriveSignal(0.0, 0.0));
 	}
 
 	@Override
@@ -156,9 +161,13 @@ public class Robot extends IterativeRobot {
 
 		//lift.set(-mControlScheme.getFusedAxis());
 
-		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), 0.0, 0.0);
+		//lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), 0.0, 0.0);
 
-		lift.graphPIDOuts();
+		lift.set(mControlScheme.getLiftManualAxis());
+
+		SmartDashboard.putNumber("Axis", mControlScheme.getLiftManualAxis());
+
+		//lift.graphPIDOuts();
 
 		if(mControlScheme.getInhalingButton() && bio.getControlState() != BIO.ControlState.EXHALING){
 			bio.set(BIO.ControlState.INHALING);

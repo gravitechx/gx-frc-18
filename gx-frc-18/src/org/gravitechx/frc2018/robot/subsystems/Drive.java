@@ -75,8 +75,6 @@ public class Drive extends Subsystem implements TestableSystem {
 
         ahrs.reset();
 
-        xDisplacement = ahrs.getmAHRS().getDisplacementY();
-
         mCurrentState = DriveControlStates.CLOSED_LOOP;
     }
 
@@ -121,6 +119,14 @@ public class Drive extends Subsystem implements TestableSystem {
         return leftDrive.getSelectedSensorPosition(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
+    public double getRightEncoderPositionM(){
+        return getRightEncoderPosition() * Constants.DRIVE_TO_M_ENCODER_MOTIFIER;
+    }
+
+    public double getLeftEncoderPositionM(){
+        return getLeftEncoderPosition() * Constants.DRIVE_TO_M_ENCODER_MOTIFIER;
+    }
+
     public int getLeftEncoderVelocity() {
         return leftDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
@@ -137,15 +143,15 @@ public class Drive extends Subsystem implements TestableSystem {
         return rightDrive.getClosedLoopError(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
-    public double xDisplacement = 0.0;
-
     public void driveDistance(double distance){
         System.out.println("Displacement: " + ahrs.getmXDisplacement());
 
         SmartDashboard.putNumber("Displacement", ahrs.getmXDisplacement());
+        double accumulatedDistance = 0.0;
 
-        if(distance <= ahrs.getmXDisplacement()){
-            set(new RotationalDriveSignal(0.1, 0.0).toDifferencialDriveSignal());
+        if(distance <= accumulatedDistance){
+            double angle = ahrs.getYawRad();
+            set(new RotationalDriveSignal(0.05, 0.0).toDifferencialDriveSignal());
         }
     }
 

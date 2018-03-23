@@ -38,6 +38,7 @@ public class BIO {
         mControlState = ControlState.NEUTRAL;
         mShouldExhale = false;
 
+        grasp(GraspingStatus.CLOSED);
         mLeftIntake.setNeutralMode(NeutralMode.Coast);
         mRightIntake.setNeutralMode(NeutralMode.Coast);
     }
@@ -90,7 +91,7 @@ public class BIO {
 
     public void setIntake(double speed){
         mLeftIntake.set(speed);
-        mRightIntake.set(speed);
+        mRightIntake.set(-speed);
     }
 
     public boolean isShouldExhale() {
