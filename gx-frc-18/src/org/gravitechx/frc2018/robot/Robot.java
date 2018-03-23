@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.qpi.first.wpilibj.DriverStation;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
@@ -47,7 +48,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
 
-
+	String gameData;
 
 	/**
 	 * This function is run when the robot is first startedex up and should be
@@ -117,6 +118,16 @@ public class Robot extends IterativeRobot {
 			autonomousCommand.start();
 
 		lift.zeroPosition();
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+                if(gameData != null && gameData.length() > 0)
+                {
+		  if(gameData.charAt(0) == 'L')
+		  {
+			//Put left auto code here
+		  } else {
+			//Put right auto code here
+		  }
+                }
 	}
 
 	/**
