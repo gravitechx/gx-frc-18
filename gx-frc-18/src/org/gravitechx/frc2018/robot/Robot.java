@@ -127,9 +127,7 @@ public class Robot extends IterativeRobot {
 		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
-		serverThread = new Thread(rs);
-		serverThread.start();
-		mControlScheme = DefaultControlScheme.getInstance();
+
 	}
 
 	/**
