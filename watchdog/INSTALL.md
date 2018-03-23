@@ -1,4 +1,4 @@
 #How to install
 
-gcc watchdog.c -o start
+gcc watchdog.c -pthread -o start
 ./start
