@@ -1,6 +1,7 @@
 package org.gravitechx.frc2018.utils.visionhelpers;
 
 public class VisionInfo {
+
     private double box_distance,tape_distance;
     private double box_angle,tape_angle;
     private double box_offset, tape_offset;

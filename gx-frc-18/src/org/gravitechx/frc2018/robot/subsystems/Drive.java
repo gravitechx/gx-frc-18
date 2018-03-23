@@ -10,9 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
-import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
-import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
 
 /**
  * Implements the drive subsystem. This contains the DriveTrain and primitive drive functions.
@@ -22,8 +20,6 @@ public class Drive extends Subsystem implements TestableSystem {
     public static Drive getInstance(){
         return mInstance;
     }
-
-    public GravAHRS ahrs;
 
     // Motor controllers
     private WPI_TalonSRX leftDrive;
@@ -71,11 +67,6 @@ public class Drive extends Subsystem implements TestableSystem {
         leftDrive = TalonSRXFactory.configurePID(leftDrive, Constants.DRIVE_PID_CONFIG);
         rightDrive = TalonSRXFactory.configurePID(rightDrive, Constants.DRIVE_PID_CONFIG);
 
-        ahrs = GravAHRS.getInstance();
-
-        ahrs.reset();
-
-        xDisplacement = ahrs.getmAHRS().getDisplacementY();
 
         mCurrentState = DriveControlStates.CLOSED_LOOP;
     }
@@ -113,19 +104,11 @@ public class Drive extends Subsystem implements TestableSystem {
 
     }
 
-    public double getRightEncoderPosition() {
-        return rightDrive.getSelectedSensorPosition(Constants.DRIVE_PID_CONFIG.PID_ID);
-    }
-
-    public double getLeftEncoderPosition() {
-        return leftDrive.getSelectedSensorPosition(Constants.DRIVE_PID_CONFIG.PID_ID);
-    }
-
-    public int getLeftEncoderVelocity() {
+    public int getLeftEncoder() {
         return leftDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
-    public int getRightEncoderVelocity() {
+    public int getRightEncoder() {
         return rightDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
@@ -137,18 +120,6 @@ public class Drive extends Subsystem implements TestableSystem {
         return rightDrive.getClosedLoopError(Constants.DRIVE_PID_CONFIG.PID_ID);
     }
 
-    public double xDisplacement = 0.0;
-
-    public void driveDistance(double distance){
-        System.out.println("Displacement: " + ahrs.getmXDisplacement());
-
-        SmartDashboard.putNumber("Displacement", ahrs.getmXDisplacement());
-
-        if(distance <= ahrs.getmXDisplacement()){
-            set(new RotationalDriveSignal(0.1, 0.0).toDifferentialDriveSignal());
-        }
-    }
-
     @Override
     public void test() {
 
@@ -158,9 +129,9 @@ public class Drive extends Subsystem implements TestableSystem {
      * Creates a graph of the left and right encoder output and errors for debug.
      */
     public void graphEncodersToConsole(){
-        SmartDashboard.putNumber("Left Encoder: ", getLeftEncoderVelocity());
+        SmartDashboard.putNumber("Left Encoder: ", getLeftEncoder());
         SmartDashboard.putNumber("Left Error: ", getLeftPIDError());
-        SmartDashboard.putNumber("Right Encoder: ", getRightEncoderVelocity());
+        SmartDashboard.putNumber("Right Encoder: ", getRightEncoder());
         SmartDashboard.putNumber("Right Error: ", getRightPIDError());
     }
 }

@@ -1,8 +1,6 @@
 
 package org.gravitechx.frc2018.robot;
 
-import edu.wpi.cscore.VideoSink;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -13,9 +11,7 @@ import org.gravitechx.frc2018.frames.VisionFrame;
 import org.gravitechx.frc2018.robot.commands.ExampleCommand;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
-import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
-import org.gravitechx.frc2018.robot.subsystems.Lift;
 import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
 import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
@@ -39,15 +35,8 @@ import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
-
 	public static Drive drive;
 	public static DrivePipeline dPipe;
-	public static Lift lift;
-	public static BIO bio;
-	public boolean isGrabbing;
-	public VideoSink cameraServer;
-
-	//public static PowerDistributionPanel pdp;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
@@ -58,6 +47,7 @@ public class Robot extends IterativeRobot {
 
 
 
+
 	/**
 	 * This function is run when the robot is first startedex up and should be
 	 * used for any initialization code.
@@ -65,12 +55,12 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		chooser.addDefault("Default Auto", new ExampleCommand());
-		//chooser.addObject("My Auto", new MyAutoCommand());
+		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 		drive = Drive.getInstance();
-		lift = Lift.getInstance();
 		dPipe = new DrivePipeline();
 		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
+
 	}
 
 	/**
@@ -102,14 +92,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
-		
-		//Initialize server code
-		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
-		serverThread = new Thread(rs);
-		System.out.println("right before start");
-		serverThread.start();
-		mControlScheme = DefaultControlScheme.getInstance();
-		
+
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -120,6 +103,10 @@ public class Robot extends IterativeRobot {
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
+
+		serverThread = new Thread(rs);
+		serverThread.start();
+		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
 	/**
@@ -127,7 +114,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
 		Scheduler.getInstance().run();
+
 	}
 
 	@Override
@@ -155,8 +144,6 @@ public class Robot extends IterativeRobot {
 		);
 		drive.graphEncodersToConsole();
 
-		bio.update();
-		mControlScheme.update();
 	}
 
 	/**
@@ -165,6 +152,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		lift.setDirect(.2);
+		drive.test();
 	}
 }
