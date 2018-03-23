@@ -35,14 +35,15 @@ public class RobotServer implements Runnable {
     class FramesSocket implements Runnable {
         BufferedReader in;
         PrintWriter out;
+        boolean mClientIsRunning;
         String inputLine;
         Socket clientSocket;
-//	Timer  clientTimer;
-	boolean recff; //Recieved first frame
+	    boolean recff; //Recieved first frame
 
         public FramesSocket(Socket clientSocket) {
             this.clientSocket = clientSocket;
-	    recff=false;
+            mClientIsRunning = true;
+	        recff=false;
             try {
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 out = new PrintWriter(clientSocket.getOutputStream());
@@ -54,6 +55,7 @@ public class RobotServer implements Runnable {
 
         @Override
         public void run() { //Called from other run() in this class
+
             while (true) {
                 try { //Try to call the next line of information
                     inputLine = in.readLine();
@@ -80,7 +82,6 @@ public class RobotServer implements Runnable {
                             double tapeAngle = ((VisionFrame) frame).getTapeAngle();
                             VisionInfo visionInfo = ((VisionFrame) frame).getVisionInfo(); //Have a local version of the VisionInfo object with all of the above information inside of it
                             System.out.println("BOX_OFFSET:" + boxOffset + ", BOX_DISTANCE:" + boxDistance + ", BOX_ANGLE: " + boxAngle + ", TAPE_OFFSET: " + tapeOffset + ", TAPE_DISTANCE: " + tapeDistance + ", TAPE_ANGLE: " + tapeAngle );
-
                             break;
                         case STATUS:
                             String msg = ((StatusFrame) frame).getmStatusCode().getMessage();
@@ -90,7 +91,7 @@ public class RobotServer implements Runnable {
                 } //End if statement
 		else if (recff==true) { //Close down and break out of the infinite while loop if the connection is closed
                     System.out.println("Server : Bye bye now. (Connection Dropped)");
-                    mIsRunning = false;
+                    mClientIsRunning = false;
                     break;
                 }
 
