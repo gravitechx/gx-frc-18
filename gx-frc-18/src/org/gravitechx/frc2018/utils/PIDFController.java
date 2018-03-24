@@ -1,0 +1,153 @@
+package org.gravitechx.frc2018.utils;
+
+import org.gravitechx.frc2018.utils.motorconfigs.PIDFConfig;
+
+public class PIDFController {
+    private PIDFConfig pid;
+    private double accum = 0.0;
+    private double result = 0.0;
+    private double error = 0.0;
+    private double lastError = 0.0;
+    private double lastTime = 0.0;
+    private double dt = 0.0;
+
+    private double lastkD = 0.0;
+
+    private double positionSetPoint = 0.0;
+    private double velocitySetPoint = 0.0;
+    private double accelerationSetPoint = 0.0;
+
+    private double velocityRampRate = 1.0;
+    private double accelerationRampRate = 1.0;
+
+
+    private double upperBound = 1.0, lowerBound = -1.0;
+
+
+    public PIDFController(PIDFConfig pid) {
+        this.pid = pid;
+    }
+
+    public void run(double accPosition, double time) {
+        error = positionSetPoint - accPosition;
+
+        dt = time - lastTime;
+
+        if (dt < 1E-6)
+            dt = 1E-6;
+
+        accum += dt * error;
+
+        if (velocitySetPoint >= velocityRampRate) velocitySetPoint = velocityRampRate;
+        if (accelerationSetPoint >= accelerationRampRate) accelerationSetPoint = accelerationRampRate;
+
+        result = pid.kP * error + pid.kD * (error - lastError) / dt
+                + pid.kI * accum + pid.kV * velocitySetPoint +
+                pid.kA * accelerationSetPoint;
+
+        lastkD = pid.kD * (error - lastError) / dt;
+
+        if (result > upperBound) {
+            result = upperBound;
+        } else if (result < lowerBound) {
+            result = lowerBound;
+        }
+
+        lastTime = time;
+        lastError = error;
+    }
+
+    public void setSetpoints(double positionSetPoint, double velocitySetPoint, double accelerationSetPoint){
+        this.positionSetPoint = positionSetPoint;
+        this.velocitySetPoint = velocitySetPoint;
+        this.accelerationSetPoint = accelerationSetPoint;
+    }
+
+    public void resetIntegralAccumulator(){
+        accum = 0.0;
+    }
+
+    public void reset(double time){
+        accum = 0.0;
+        result = 0.0;
+        error = 0.0;
+        lastError = 0.0;
+        lastTime = time;
+    }
+
+    public double get(){
+        return result;
+    }
+
+    public double getError() {
+        return error;
+    }
+
+    public double getUpperBound() {
+        return upperBound;
+    }
+
+    public void setUpperBound(double upperBound) {
+        this.upperBound = upperBound;
+    }
+
+    public double getLowerBound() {
+        return lowerBound;
+    }
+
+    public double getKP(){
+        return pid.kP * error;
+    }
+
+    public double getKD(){
+        return lastkD;
+    }
+
+    public double getKI(){
+        return pid.kI * accum;
+    }
+
+    public double getKV() { return pid.kV * velocitySetPoint; }
+
+    public double getKA() { return pid.kA * accelerationSetPoint; }
+
+    public double getPositionSetPoint() {
+        return positionSetPoint;
+    }
+
+    public void setPositionSetPoint(double positionSetPoint) {
+        this.positionSetPoint = positionSetPoint;
+    }
+
+    public double getVelocitySetPoint() {
+        return velocitySetPoint;
+    }
+
+    public void setVelocitySetPoint(double velocitySetPoint) {
+        this.velocitySetPoint = velocitySetPoint;
+    }
+
+    public double getAccelerationSetPoint() {
+        return accelerationSetPoint;
+    }
+
+    public void setAccelerationSetPoint(double accelerationSetPoint) {
+        this.accelerationSetPoint = accelerationSetPoint;
+    }
+
+    public double getVelocityRampRate() {
+        return velocityRampRate;
+    }
+
+    public void setVelocityRampRate(double velocityRampRate) {
+        this.velocityRampRate = velocityRampRate;
+    }
+
+    public double getAccelerationRampRate() {
+        return accelerationRampRate;
+    }
+
+    public void setAccelerationRampRate(double accelerationRampRate) {
+        this.accelerationRampRate = accelerationRampRate;
+    }
+}
