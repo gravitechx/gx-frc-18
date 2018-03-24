@@ -30,9 +30,6 @@ class PIDFConfigTest {
             double speed = -outputScalar * pidfController.get(); // Regulate to real value
 
             speed = DriveSignal.limit(speed, 1.0);
-            speed += Constants.NOMINAL_UP_VOLTAGE / 12.0;
-
-            speed = DriveSignal.limit(speed, 1.0);
             speed = Constants.MAX_LIFT_VOLTAGE * speed / 12.0;
 
             realValue_M += 0.042  * speed * 12.0 * dt; // Integrate to get real response assuming the motor moves 1.1 meter

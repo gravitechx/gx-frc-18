@@ -38,8 +38,6 @@ public class Robot extends IterativeRobot {
 	public static Lift lift;
 	public static BIO bio;
 	public boolean isGrabbing;
-	public VideoSink cameraServer;
-	public UsbLifeCam topCam;
 
 	public Timer autonTimer;
 
@@ -50,11 +48,10 @@ public class Robot extends IterativeRobot {
 		RIGHT()
 	}
 
-	Command autonomousCommand;
 	SendableChooser<AutonOptions> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
 
-
+	String gameData;
 
 	/**
 	 * This function is run when the robot is first startedex up and should be
@@ -141,7 +138,6 @@ public class Robot extends IterativeRobot {
 				autoIsAGo = false;
 			}
 		}
-
 	}
 
 	boolean autoIsAGo = false;
@@ -165,12 +161,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		if (autonomousCommand != null)
-			autonomousCommand.cancel();
 		lift.zeroPosition();
 	}
 
