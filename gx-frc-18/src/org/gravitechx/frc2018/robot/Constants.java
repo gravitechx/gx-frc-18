@@ -3,7 +3,8 @@ package org.gravitechx.frc2018.robot;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
-
+import org.gravitechx.frc2018.utils.motorconfigs.PIDFConfig;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import java.util.function.UnaryOperator;
 
 /**
@@ -122,6 +123,12 @@ public class Constants {
 
     public static final DoubleSolenoid.Value BIO_ROTATOR_UP_SOLENOID_POSITION = DoubleSolenoid.Value.kReverse;
     public static final DoubleSolenoid.Value BIO_ROTATOR_DOWN_SOLENOID_POSITION = DoubleSolenoid.Value.kForward;
+
+    /* Autonomous Vision */
+    public static final double DISTANCE_TO_POWER_RATIO = 0.5;
+    public static final double ANGLE_TO_ROTATION_RATIO = 1.0;
+    public static final double AT_TAPE_DISTANCE = 0.5;
+    public static final double DISTANCE_TO_CLOSE_BIO_AT = 0.3;
 
     /* Control System Joystick Functions */
     public static final UnaryOperator<Double> THROTTLE_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {

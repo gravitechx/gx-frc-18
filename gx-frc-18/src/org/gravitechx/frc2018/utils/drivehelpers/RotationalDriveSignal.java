@@ -49,7 +49,7 @@ public class RotationalDriveSignal extends DriveSignal {
      * @param rotationIsOverpowered specifies whether the rotation should be reduced.
      * @return
      */
-    public DifferentialDriveSignal toDifferencialDriveSignal(){
+    public DifferentialDriveSignal toDifferentialDriveSignal(){
         double leftMotorOutput = xSpeed + zRotation;
         double rightMotorOutput = xSpeed - zRotation;
 

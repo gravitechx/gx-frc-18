@@ -21,6 +21,7 @@ import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
 import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
+import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.utils.looping.RemoteTimestamp;
 import java.util.stream.StreamSupport;
 import javax.json.*;
@@ -152,7 +153,7 @@ public class Robot extends IterativeRobot {
 
 		Scheduler.getInstance().run();
 		if (autonTimer.get() < 5.5) {
-			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
+			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferentialDriveSignal());
 		} else if (autonTimer.get() >= 5.5 && autonTimer.get() < 6.5) {
 			if(autoIsAGo)
 			bio.setIntake(-0.25);
