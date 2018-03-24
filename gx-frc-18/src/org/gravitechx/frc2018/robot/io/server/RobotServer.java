@@ -137,16 +137,10 @@ public class RobotServer implements Runnable {
                     e.printStackTrace();
                 }
             }
+            server.close();
+            System.out.println("Server stopped");
         }catch(Exception e){
             e.printStackTrace();
-        }finally(){
-            try {
-                server.close();
-                System.out.println("Server stopped");
-
-            }catch(Exception E) {
-                e.printStackTrade();
-            }
         }
     }
 

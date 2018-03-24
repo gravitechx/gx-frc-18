@@ -42,7 +42,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
 	DrivePipeline pipe = new DrivePipeline();
-	RobotServer rs;
+	public static RobotServer rs;
 	Thread serverThread;
 
 
