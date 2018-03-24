@@ -6,7 +6,7 @@ import org.gravitechx.frc2018.frames.StatusFrame;
 import org.gravitechx.frc2018.frames.VisionFrame;
 import org.gravitechx.frc2018.utils.visionhelpers.VisionInfo;
 //import java.util.Timer;
-
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,6 +20,9 @@ public class RobotServer implements Runnable {
     private final int UPDATE_TIME;
     private final int PORT;
     private Stack<Frame> frameStack;
+    public FramesSocket visionsocket;
+    private ArrayList<FramesSocket> unsorted; //List of unsorted frames
+
 
     public RobotServer(int port, int update){
         this.PORT = port;
@@ -39,9 +42,12 @@ public class RobotServer implements Runnable {
         String inputLine;
         Socket clientSocket;
 	    boolean recff; //Recieved first frame
+        String type; //Holds what type of socket this is
+        Frame frame; //Is the most recent frame recieved
 
         public FramesSocket(Socket clientSocket) {
             this.clientSocket = clientSocket;
+            type="UNKNOWN";
             mClientIsRunning = true;
 	        recff=false;
             try {
@@ -52,7 +58,7 @@ public class RobotServer implements Runnable {
             }
 
         }
-
+        public String getType() { return type;}
         @Override
         public void run() { //Called from other run() in this class
 
@@ -65,15 +71,16 @@ public class RobotServer implements Runnable {
 
                 if (inputLine != null) { //If the line isn't nothing (null)
                     System.out.println(inputLine);
-		    recff=true;
+		            recff=true;
 
-                    Frame frame = Frame.toFrame(inputLine); //Create new frame with the line
+                    frame = Frame.toFrame(inputLine); //Create new frame with the line
                     switch (frame.getType()) { //See what type of frame the line is (now inside of a frame object) and take action accordingly
                         case AMP:
                             double amp = ((AmpFrame) frame).getAmps();
                             System.out.println("AMP: " + amp);
                             break;
                         case VISION: //If the frame is for vision
+                            //Possibly comment out the below because it can be derived from the class field frame
                             double boxOffset = ((VisionFrame) frame).getBoxOffset(); //Set all of the frame's information to local variables
                             double boxDistance = ((VisionFrame) frame).getBoxDistance();
                             double boxAngle = ((VisionFrame) frame).getBoxAngle();
@@ -82,6 +89,7 @@ public class RobotServer implements Runnable {
                             double tapeAngle = ((VisionFrame) frame).getTapeAngle();
                             VisionInfo visionInfo = ((VisionFrame) frame).getVisionInfo(); //Have a local version of the VisionInfo object with all of the above information inside of it
                             System.out.println("BOX_OFFSET:" + boxOffset + ", BOX_DISTANCE:" + boxDistance + ", BOX_ANGLE: " + boxAngle + ", TAPE_OFFSET: " + tapeOffset + ", TAPE_DISTANCE: " + tapeDistance + ", TAPE_ANGLE: " + tapeAngle );
+                            type="VISION";
                             break;
                         case STATUS:
                             String msg = ((StatusFrame) frame).getmStatusCode().getMessage();
@@ -114,8 +122,17 @@ public class RobotServer implements Runnable {
                 try (
                         Socket clientSocket = server.accept();
                 ) {
+                    for(int i = unsorted.size()-1;i>=0;i--) {
+                        if (unsorted.get(i).getType()=="VISION") {
+                            visionsocket = unsorted.get(i);
+                            unsorted.remove(i);
+                        }
+                    }
                     System.out.println("before input!");
-                    (new Thread(new FramesSocket(clientSocket))).run();
+                    FramesSocket testsocket = new FramesSocket(clientSocket);
+                    Thread testthread = new Thread(testsocket);
+                    testthread.start();
+                    unsorted.add(testsocket);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -131,6 +148,13 @@ public class RobotServer implements Runnable {
                 e.printStackTrade();
             }
         }
+    }
+
+    public VisionInfo getVisionInfo() { //((VisionFrame) frame).getVisionInfo()
+        if (visionsocket.frame != null) {
+            return ((VisionFrame) (visionsocket.frame)).getVisionInfo();
+        }
+        return null;
     }
 
     public synchronized void setIsRunning(boolean isRunning){
