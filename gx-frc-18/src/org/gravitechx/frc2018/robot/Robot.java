@@ -15,13 +15,14 @@ import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
-import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
+import org.gravitechx.frc2018.robot.subsystems.Lift;
 import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.utils.looping.RemoteTimestamp;
+import org.gravitechx.frc2018.utils.UsbLifeCam;
 
-import javax.json.*;
+//import javax.json.*;
 
 import java.util.Collection;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class Robot extends IterativeRobot {
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
 	DrivePipeline pipe = new DrivePipeline();
-	RobotServer rs;
+	public static RobotServer rs;
 	Thread serverThread;
 
 

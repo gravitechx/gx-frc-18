@@ -17,7 +17,6 @@ public class GrabBox extends Command {
 	private Lift lift;
 	private RotationalDriveSignal way_to_move;
 	private double boxdistance,boxangle;
-	private CHANGE jetsonserver;
 	public GrabBox() {
 		requires(Robot.drive);
 		//requires(Robot.bio);
@@ -26,7 +25,6 @@ public class GrabBox extends Command {
 		lift = Lift.getInstance(); //Get lift instance
 		finished=false; //The command isn't finished yet
 		num_of_terms_to_average = 5;
-		jetsonserver = JETSONSERVERINSTANCE;
 	}
 
 	// Called just before this Command runs the first time
@@ -34,7 +32,7 @@ public class GrabBox extends Command {
 	protected void initialize(){
 		lift.zeroPosition(); //Set the elevator to the bottom "zero" position
 		bio.set(BIO.ControlState.NEUTRAL); //Set BIO to open
-		VisionInfo info = jetsonserver.getInfo();
+		VisionInfo info = Robot.rs.getVisionInfo();
 		boxdistance = info.getBoxDistance()*num_of_terms_to_average;
 		boxangle = info.getBoxAngle()*num_of_terms_to_average;
 		// Possibly a new object of Katie's class? How does grabbing a variable from another running class/thread work?
@@ -43,7 +41,7 @@ public class GrabBox extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		VisionInfo info = jetsonserver.getInfo();
+		VisionInfo info = Robot.rs.getVisionInfo();
 		boxdistance=boxdistance*(num_of_terms_to_average-1)/num_of_terms_to_average + info.getBoxDistance();//INSERT VARIABLE FROM KATIE HERE
         boxangle=boxangle*(num_of_terms_to_average-1)/num_of_terms_to_average + info.getBoxAngle();//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
 		if(boxdistance/num_of_terms_to_average<=Constants.DISTANCE_TO_CLOSE_BIO_AT) {//Run if box is within grabbing distance

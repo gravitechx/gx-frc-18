@@ -15,19 +15,19 @@ public class GoToTape extends Command {
     private Drive drive;
     private RotationalDriveSignal way_to_move;
     private double tapedistance,tapeangle;
-    private CHANGE jetsonserver;
+    //private CHANGE jetsonserver;
     public GoToTape() {
         requires(Robot.drive);
         drive = Drive.getInstance(); //Get drive instance
         finished=false; //The command isn't finished yet
         num_of_terms_to_average = 5;
-        jetsonserver = JETSONSERVERINSTANCE;
+        //jetsonserver = JETSONSERVERINSTANCE;
     }
 
     // Called just before this Command runs the first time
     @Override
     protected void initialize(){
-        VisionInfo info = jetsonserver.getInfo();
+        VisionInfo info = Robot.rs.getVisionInfo();
         tapedistance = info.getTapeDistance()*num_of_terms_to_average;
         tapeangle = info.getTapeAngle()*num_of_terms_to_average;
         // Possibly a new object of Katie's class? How does grabbing a variable from another running class/thread work?
@@ -36,7 +36,7 @@ public class GoToTape extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        VisionInfo info = jetsonserver.getInfo();
+        VisionInfo info = Robot.rs.getVisionInfo();
         tapedistance=tapedistance*(num_of_terms_to_average-1)/num_of_terms_to_average + info.getTapeDistance();//INSERT VARIABLE FROM KATIE HERE
         tapeangle=tapeangle*(num_of_terms_to_average-1)/num_of_terms_to_average + info.getTapeAngle();//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
         if(tapedistance/num_of_terms_to_average<=Constants.AT_TAPE_DISTANCE) {//Run if box is within grabbing distance

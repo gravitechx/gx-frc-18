@@ -65,7 +65,7 @@ public class RobotServer implements Runnable {
                         double boxDistance = ((VisionFrame) frame).getBoxDistance();
                         double tapeOffset = ((VisionFrame) frame).getTapeOffset();
                         double tapeDistance = ((VisionFrame) frame).getTapeDistance();
-                        System.out.println("BOX_OFFSET:" + boxOffset + ", BOX_DISTANCE:" + boxDistance + ", TAPE_OFFSET:" + tapeOffset + ", TAPE_DISTANCE:" + tapeDistance);
+                        System.out.printlniukj("BOX_OFFSET:" + boxOffset + ", BOX_DISTANCE:" + boxDistance + ", TAPE_OFFSET:" + tapeOffset + ", TAPE_DISTANCE:" + tapeDistance);
                         break;
                     case STATUS:
                         String msg = ((StatusFrame) frame).getmStatusCode().getMessage();
