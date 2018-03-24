@@ -39,7 +39,7 @@ public class Constants {
 
     /* PID */
     //public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.7, 0.55, .03, 0.0, .7);
-    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(.30, 0.00, 0.000, 0.0, 0.0,0.0);
+    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(.35, 0.04, 0.003, 0.0, 0.0,0.0);
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(0.20, 1.0E-5, 0.15, 0.1, 1.0);
     public static final TalonPIDConfig NO_PID_CONFIG = new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
@@ -92,7 +92,6 @@ public class Constants {
 
 
     /* LIFT PIPELINE */
-    public static double NOMINAL_UP_VOLTAGE = 0.0; // 2.9
     public static double LIFT_COMPOUNDING_STEP = .02;
     public static double LIFT_MAX_TRAVEL_M = 1.70;
     public static double LIFT_MIN_TRAVEL_M = 0.0;
@@ -100,7 +99,7 @@ public class Constants {
 
     public static double LIFT_REST_DECAY_PROPORTIONAL = 0.1;
     public static double LIFT_PERSISTENT_DECAY_PROPORTIONAL = .05;
-    public static double QUADRATURE_TO_METER_LIFT = 2.0 * 2.51312e-5 * 1.3123;
+    public static double QUADRATURE_TO_METER_LIFT = -2.0 * 2.51312e-5 * 1.3123;
 
     public static double LIFT_POSITION_DEADBAND_M = .03;
 

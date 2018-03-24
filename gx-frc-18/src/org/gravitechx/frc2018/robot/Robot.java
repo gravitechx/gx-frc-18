@@ -20,6 +20,8 @@ import org.gravitechx.frc2018.utils.looping.Loop;
 import org.gravitechx.frc2018.utils.looping.LoopScheduler;
 import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
 
+import java.util.stream.StreamSupport;
+
 import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 
 /**
@@ -42,9 +44,14 @@ public class Robot extends IterativeRobot {
 	public Timer autonTimer;
 
 	//public static PowerDistributionPanel pdp;
+	enum AutonOptions{
+		LEFT(),
+		GOFORWARD(),
+		RIGHT()
+	}
 
 	Command autonomousCommand;
-	SendableChooser<Command> chooser = new SendableChooser<>();
+	SendableChooser<AutonOptions> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
 
 
@@ -55,7 +62,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
-		//chooser.addObject("My Auto", new MyAutoCommand());
+		chooser.addDefault("Left", AutonOptions.LEFT);
+		chooser.addObject("Go Forward", AutonOptions.GOFORWARD);
+		chooser.addObject("Right", AutonOptions.RIGHT);
 		SmartDashboard.putData("Auto mode", chooser);
 
 		drive = Drive.getInstance();
@@ -103,8 +112,9 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		autonomousCommand = chooser.getSelected();
-
+		AutonOptions selected;
+		selected = chooser.getSelected();
+		System.out.println("left: " + AutonOptions.LEFT + " right: "+ AutonOptions.RIGHT);
 		/*
 		 * String autoSelected = SmartDashboard.getString("Auto Selector",
 		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
@@ -113,13 +123,28 @@ public class Robot extends IterativeRobot {
 		 */
 
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null)
-			autonomousCommand.start();
 
 		lift.zeroPosition();
 		autonTimer = new Timer();
 		autonTimer.start();
+
+		String gameData;
+
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+
+		if(gameData != null && gameData.length() > 0){
+			if(AutonOptions.LEFT == selected && gameData.charAt(0) == 'L'){
+				autoIsAGo = true;
+			}else if(AutonOptions.RIGHT == selected && gameData.charAt(0) == 'R'){
+				autoIsAGo = true;
+			}else{
+				autoIsAGo = false;
+			}
+		}
+
 	}
+
+	boolean autoIsAGo = false;
 
 	/**
 	 * This function is called periodically during autonom  ous
@@ -127,10 +152,15 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		while(autonTimer.get() < 4.0)
-		drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
-
-		drive.set(new DifferentialDriveSignal(0.0, 0.0));
+		if (autonTimer.get() < 5.5) {
+			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
+		} else if (autonTimer.get() >= 5.5 && autonTimer.get() < 6.5) {
+			if(autoIsAGo)
+			bio.setIntake(-0.25);
+		} else {
+			drive.set(new DifferentialDriveSignal(0.0, 0.0));
+			bio.setIntake(0.0);
+		}
 	}
 
 	@Override
@@ -150,24 +180,19 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+
 		drive.set(dPipe.apply(
 						new RotationalDriveSignal(mControlScheme.getThrottle(), mControlScheme.getWheel()),
 						mControlScheme.getQuickTurnButton())
 		);
 
-		//drive.graphEncodersToConsole();
-
-		//lift.setDirect(-mControlScheme.getFusedAxis());
-
-		//lift.set(-mControlScheme.getFusedAxis());
-
-		//lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), 0.0, 0.0);
-
 		lift.set(mControlScheme.getLiftManualAxis());
+
+		lift.setRelitivePosition(-mControlScheme.getLiftManualAxis(), 0.0, 0.0);
 
 		SmartDashboard.putNumber("Axis", mControlScheme.getLiftManualAxis());
 
-		//lift.graphPIDOuts();
+		lift.graphPIDOuts();
 
 		if(mControlScheme.getInhalingButton() && bio.getControlState() != BIO.ControlState.EXHALING){
 			bio.set(BIO.ControlState.INHALING);
@@ -177,11 +202,9 @@ public class Robot extends IterativeRobot {
 			bio.set(BIO.ControlState.NEUTRAL);
 		}
 
-		if(bio.getControlState() == BIO.ControlState.EXHALING && mControlScheme.getInhalingButton()){
-			bio.setShouldExhale(true);
-		}else{
-			bio.setShouldExhale(false);
-		}
+		bio.setShouldExhale(
+				bio.getControlState() == BIO.ControlState.EXHALING && mControlScheme.getInhalingButton()
+		);
 
 		if(mControlScheme.getGrabbingButton()){
 			bio.grasp(BIO.GraspingStatus.CLOSED);
@@ -190,14 +213,6 @@ public class Robot extends IterativeRobot {
 		}
 
 		lift.loop();
-
-		//System.out.printf("DISTANCE TRAVELED: " + lift.getPosition() + "\n");
-		/*System.out.print(
-				"AHRS Yaw: " + ahrs.getYawDegrees()
-				+ "AHRS Yaw / Sec: " + ahrs.getYawRateDegreesPerSecond()
-				+ "AHRS Pitch: " + ahrs.getPitchDegrees()
-				+ "AHRS Pitch / Sec: " + ahrs.getPitchDegreesPerSecond()
-		);*/
 
 		bio.update();
 		mControlScheme.update();

@@ -17,7 +17,7 @@ public class Lift extends Subsystem {
     private LiftGearBox leftGearBox;
     private LiftGearBox rightGearBox;
 
-    private double outputScalar = 1.6;
+    private double outputScalar = 0.8;
 
     //private ElevatorHallEffect mTopHall;
     //private ElevatorHallEffect mMidHall;
@@ -27,7 +27,7 @@ public class Lift extends Subsystem {
 
     private double M_MAX_VOLTAGE = Constants.MAX_LIFT_VOLTAGE;
 
-    //private double mPosition = 0.0;
+    private double mPosition = 0.0;
 
     /* SINGLETON */
     private static Lift mLift = new Lift();
@@ -38,32 +38,32 @@ public class Lift extends Subsystem {
 
     private ControlState mControlMode;
 
-    //private int mLastQuadature = 0;
+    private int mLastQuadature = 0;
 
     public static Lift getInstance(){
         return mLift;
     }
 
     public void zeroPosition(){
-        //mPosition = 0.0;
+        mPosition = 0.0;
         encoder.setQuadraturePosition(0, 0);
-        //mLastQuadature = encoder.getQuadraturePosition();
+        mLastQuadature = encoder.getQuadraturePosition();
     }
 
     public void setPosition(double position){
-        //mPosition = position;
-        //mLastQuadature = encoder.getQuadraturePosition();
+        mPosition = position;
+        mLastQuadature = encoder.getQuadraturePosition();
     }
 
     public void getPosition(){
-        //mPosition += getDQ();
+        mPosition += getDQ();
     }
 
-    /*public double getDQ(){
-        //double dq = (encoder.getQuadraturePosition() - mLastQuadature);
-        //mLastQuadature = encoder.getQuadraturePosition();
-        //return dq * Constants.QUADRATURE_TO_METER_LIFT;
-    }*/
+    public double getDQ(){
+        double dq = (encoder.getQuadraturePosition() - mLastQuadature);
+        mLastQuadature = encoder.getQuadraturePosition();
+        return dq * Constants.QUADRATURE_TO_METER_LIFT;
+    }
 
     public class LiftGearBox {
         private Spark spark;
@@ -114,7 +114,7 @@ public class Lift extends Subsystem {
     public void set(double speed){
         if(mControlMode != ControlState.NEUTRAL) {
             speed = DriveSignal.limit(speed, 1.0);
-            speed += Constants.NOMINAL_UP_VOLTAGE / 12.0;
+            //speed += Constants.NOMINAL_UP_VOLTAGE / 12.0;
             setDirect(speed);
         }
     }
@@ -128,11 +128,11 @@ public class Lift extends Subsystem {
     }
 
     public void setSetPoint(double position, double velocity, double acceleration){
-        //System.out.println("SIGNAL: " + position + " REAL: " + mPosition);
+        System.out.println("SIGNAL: " + position + " REAL: " + mPosition);
         liftController.setSetpoints(position, velocity, acceleration);
-        //liftController.run(mPosition, Timer.getFPGATimestamp());
+        liftController.run(mPosition, Timer.getFPGATimestamp());
         set(liftController.get() * outputScalar);
-        //System.out.print("SET POINT: " + position + "Lift Controller: " + (M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0) + " DISTANCE: " + mPosition + "\n");
+        System.out.print("SET POINT: " + position + "Lift Controller: " + (M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0) + " DISTANCE: " + mPosition + "\n");
     }
 
     public void setRelitivePosition(double position, double velocity, double acceleration){
@@ -153,7 +153,7 @@ public class Lift extends Subsystem {
     }
 
     public void loop(){
-        //getPosition();
+        getPosition();
         /*
         double hallPosition = getHallPosition();
         if(hallPosition >= 0.0) {

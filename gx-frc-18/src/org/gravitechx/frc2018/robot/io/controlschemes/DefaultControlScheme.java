@@ -27,11 +27,10 @@ public class DefaultControlScheme extends ControlScheme {
 
     @Override
     public double getLiftManualAxis(){
-        if(manualLift.getY() < 0.0) {
+        if(-manualLift.getY() < -.5){
+            return -0.5;
+        }else{
             return -manualLift.getY();
-        }
-        else {
-            return 0.0;
         }
     }
 
