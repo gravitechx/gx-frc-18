@@ -3,25 +3,30 @@ package org.gravitechx.frc2018.robot;
 
 import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.gravitechx.frc2018.frames.AmpFrame;
+import org.gravitechx.frc2018.frames.VisionFrame;
+import org.gravitechx.frc2018.robot.commands.ExampleCommand;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
-import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.Lift;
 import org.gravitechx.frc2018.utils.UsbLifeCam;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
+import org.gravitechx.frc2018.robot.subsystems.ExampleSubsystem;
+import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
-import org.gravitechx.frc2018.utils.looping.Loop;
-import org.gravitechx.frc2018.utils.looping.LoopScheduler;
-import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
-
+import org.gravitechx.frc2018.utils.looping.RemoteTimestamp;
 import java.util.stream.StreamSupport;
-
+import javax.json.*;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 
 /**
@@ -33,6 +38,7 @@ import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
  */
 public class Robot extends IterativeRobot {
 
+	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static Drive drive;
 	public static DrivePipeline dPipe;
 	public static Lift lift;
@@ -50,6 +56,10 @@ public class Robot extends IterativeRobot {
 
 	SendableChooser<AutonOptions> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
+	DrivePipeline pipe = new DrivePipeline();
+	public static RobotServer rs;
+	Thread serverThread;
+
 
 	String gameData;
 
@@ -63,22 +73,10 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Go Forward", AutonOptions.GOFORWARD);
 		chooser.addObject("Right", AutonOptions.RIGHT);
 		SmartDashboard.putData("Auto mode", chooser);
-
 		drive = Drive.getInstance();
-		lift = Lift.getInstance();
 		dPipe = new DrivePipeline();
-		bio = BIO.getInstance();
-		//pdp  = new PowerDistributionPanel(0);
+		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
 
-		mControlScheme = DefaultControlScheme.getInstance();
-
-		lift.zeroPosition();
-
-		//cameraServer = CameraServer.getInstance().getServer();
-
-		//topCam = new UsbLifeCam(Constants.TOP_CAM);
-
-		//cameraServer.setSource(topCam.getCamera());
 	}
 
 	/**
@@ -138,6 +136,9 @@ public class Robot extends IterativeRobot {
 				autoIsAGo = false;
 			}
 		}
+		serverThread = new Thread(rs);
+		serverThread.start();
+		mControlScheme = DefaultControlScheme.getInstance();
 	}
 
 	boolean autoIsAGo = false;
@@ -147,6 +148,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+
 		Scheduler.getInstance().run();
 		if (autonTimer.get() < 5.5) {
 			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
@@ -175,6 +177,7 @@ public class Robot extends IterativeRobot {
 						new RotationalDriveSignal(mControlScheme.getThrottle(), mControlScheme.getWheel()),
 						mControlScheme.getQuickTurnButton())
 		);
+		drive.graphEncodersToConsole();
 
 		lift.set(mControlScheme.getLiftManualAxis());
 
@@ -214,6 +217,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		lift.setDirect(.2);
+		drive.test();
 	}
 }

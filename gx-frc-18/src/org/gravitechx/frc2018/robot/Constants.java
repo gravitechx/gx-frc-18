@@ -1,9 +1,6 @@
 package org.gravitechx.frc2018.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import org.gravitechx.frc2018.utils.motorconfigs.PIDConfig;
-import org.gravitechx.frc2018.utils.motorconfigs.PIDFConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
 
@@ -20,9 +17,7 @@ public class Constants {
     /* ========================== */
     /* Motor controller constants */
     /* ========================== */
-
-    // Drive Motor Controllers
-    public static final int LEFT_TALON_CAN_CHANNEL = 3;
+    public static final int LEFT_TALON_CAN_CHANNEL = 0;
     public static final int RIGHT_TALON_CAN_CHANNEL = 1;
     public static final int LEFT_VICTOR_CAN_CHANNEL = 1;
     public static final int RIGHT_VICTOR_CAN_CHANNEL = 3;
@@ -35,7 +30,7 @@ public class Constants {
 
     // Is reversed
     public static final boolean LEFT_DRIVE_MOTOR_REVERSED = false;
-    public static final boolean RIGHT_DRIVE_MOTOR_REVERSED = false;
+    public static final boolean RIGHT_DRIVE_MOTOR_REVERSED = true;
 
     /* PID */
     //public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.7, 0.55, .03, 0.0, .7);
@@ -56,8 +51,8 @@ public class Constants {
 
     /* QUICK STOP */
     public static final double QUICK_STOP_DEADBAND =  0.16;
-    public static final double QUICK_STOP_WEIGHT = 0.7;
-    public static final double QUICK_STOP_SCALAR = .1;
+    public static final double QUICK_STOP_WEIGHT = 0.2;
+    public static final double QUICK_STOP_SCALAR = 5.0;
 
     /* == */
     /* IO */
@@ -67,6 +62,11 @@ public class Constants {
     public static final int ROTATION_STICK_PORT = 0;
     public static final int THROTTLE_STICK_PORT = 1;
     public static final int IO_QUICK_TURN_BUTTON = 2;
+
+
+    //natan
+    public static final int PORT = 5800;
+    public static final int SERVER_WAIT_MS = 500;
 
     /* Control System Deadband */
     public static final double THROTTLE_DEADBAND = 0.04;
@@ -127,17 +127,12 @@ public class Constants {
     public static final UnaryOperator<Double> THROTTLE_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {
         @Override
         public Double apply(Double signal) {
-            if(signal > 0.0){
-                return signal * signal;
-            }else{
-                return - 1 * signal * signal;
-            }
+            return signal;
         }
     };
 
     /* Control System Transposition Function for Wheel */
     public static final double WHEEL_NONLINEARITY = 0.3;
-
     public static final UnaryOperator<Double> WHEEL_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {
         final double denominator = Math.sin(Math.PI / 2.0 *  WHEEL_NONLINEARITY);
 
@@ -160,21 +155,8 @@ public class Constants {
         public DriveTalonConfig(){
             super();
             this.BREAK_MODE = NeutralMode.Coast;
-            this.CLOSED_LOOP_RAMP_RATE_SEC = .35;
-            this.OPEN_LOOP_RAMP_RATE_SEC = .35;
+            this.CLOSED_LOOP_RAMP_RATE_SEC = 4.0;
+            this.OPEN_LOOP_RAMP_RATE_SEC = 4.0;
         }
     }
-
-    public static class ElevatorTalonConfig extends TalonConfig {
-        public ElevatorTalonConfig(){
-            super();
-            this.BREAK_MODE = NeutralMode.Coast;
-        }
-    }
-
-    /* ====== */
-    /* CAMERA */
-    /* ====== */
-    public static int CAMERA_FPS = 15;
-    public static int TOP_CAM = 1;
 }
