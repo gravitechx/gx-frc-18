@@ -3,7 +3,7 @@ package org.gravitechx.frc2018.robot;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonPIDConfig;
-import org.gravitechx.frc2018.utils.motorconfigs.PIDFConfig;
+
 import java.util.function.UnaryOperator;
 
 /**
