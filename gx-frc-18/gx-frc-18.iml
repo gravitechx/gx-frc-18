@@ -43,5 +43,9 @@
     <orderEntry type="library" name="opencv" level="project" />
     <orderEntry type="library" name="WPILib" level="project" />
     <orderEntry type="library" name="wpiutil" level="project" />
+    <orderEntry type="library" name="javax.json-1.0.4-sources" level="project" />
+    <orderEntry type="library" name="javax.json-1.0.4" level="project" />
+    <orderEntry type="library" name="javax.json-api-1.0-sources" level="project" />
+    <orderEntry type="library" name="javax.json-api-1.0" level="project" />
   </component>
 </module>
