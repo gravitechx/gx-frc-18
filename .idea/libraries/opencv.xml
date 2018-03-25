@@ -1,11 +1,9 @@
 <component name="libraryTable">
   <library name="opencv">
     <CLASSES>
-      <root url="jar://$USER_HOME$/wpilib/java/current/lib/opencv.jar!/" />
+      <root url="jar://$USER_HOME$/IntelliJ Project Jars/master/opencv.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/wpilib/java/current/lib/opencv-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

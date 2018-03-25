@@ -151,7 +151,7 @@ public class Drive extends Subsystem implements TestableSystem {
 
         if(distance <= accumulatedDistance){
             double angle = ahrs.getYawRad();
-            set(new RotationalDriveSignal(0.05, 0.0).toDifferencialDriveSignal());
+            set(new RotationalDriveSignal(0.05, 0.0).toDifferentialDriveSignal());
         }
     }
 

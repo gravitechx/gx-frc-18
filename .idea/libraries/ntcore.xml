@@ -1,11 +1,9 @@
 <component name="libraryTable">
   <library name="ntcore">
     <CLASSES>
-      <root url="jar://$USER_HOME$/wpilib/java/current/lib/ntcore.jar!/" />
+      <root url="jar://$USER_HOME$/IntelliJ Project Jars/master/ntcore.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/wpilib/java/current/lib/ntcore-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

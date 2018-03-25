@@ -1,13 +1,9 @@
 <component name="libraryTable">
   <library name="CTRE_Phoenix">
     <CLASSES>
-      <root url="jar://$USER_HOME$/talons/java/lib/CTRE_Phoenix.jar!/" />
+      <root url="jar://$USER_HOME$/IntelliJ Project Jars/master/CTRE_Phoenix.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$USER_HOME$/talons/java/docs/CTRE_Phoenix-javadoc.jar!/" />
-    </JAVADOC>
-    <SOURCES>
-      <root url="jar://$USER_HOME$/talons/java/lib/CTRE_Phoenix-sources.jar!/" />
-    </SOURCES>
+    <JAVADOC />
+    <SOURCES />
   </library>
 </component>

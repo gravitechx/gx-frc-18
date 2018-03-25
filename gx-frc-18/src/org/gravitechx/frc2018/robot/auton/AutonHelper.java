@@ -23,7 +23,7 @@ public class AutonHelper {
 
         public DifferentialDriveSignal proportionalDistanceLoop(double measuredDistance, double yaw) {
             if (measuredDistance - currentDistance < targetDistance) {
-                return new RotationalDriveSignal(targetSpeed, kP * yaw).toDifferencialDriveSignal();
+                return new RotationalDriveSignal(targetSpeed, kP * yaw).toDifferentialDriveSignal();
             }
 
             running = false;

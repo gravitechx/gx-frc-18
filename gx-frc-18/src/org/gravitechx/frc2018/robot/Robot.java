@@ -1,7 +1,6 @@
 
 package org.gravitechx.frc2018.robot;
 
-import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -12,17 +11,10 @@ import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.robot.subsystems.Lift;
-import org.gravitechx.frc2018.utils.UsbLifeCam;
+import org.gravitechx.frc2018.robot.io.server.RobotServer;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
 import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
-import org.gravitechx.frc2018.utils.looping.Loop;
-import org.gravitechx.frc2018.utils.looping.LoopScheduler;
-import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
-
-import java.util.stream.StreamSupport;
-
-import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,6 +42,8 @@ public class Robot extends IterativeRobot {
 
 	SendableChooser<AutonOptions> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
+	public static RobotServer rs;
+	Thread serverThread;
 
 	String gameData;
 
@@ -73,6 +67,8 @@ public class Robot extends IterativeRobot {
 		mControlScheme = DefaultControlScheme.getInstance();
 
 		lift.zeroPosition();
+		
+		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
 
 		//cameraServer = CameraServer.getInstance().getServer();
 
@@ -124,6 +120,8 @@ public class Robot extends IterativeRobot {
 		lift.zeroPosition();
 		autonTimer = new Timer();
 		autonTimer.start();
+		serverThread = new Thread(rs);
+		serverThread.start();
 
 		String gameData;
 
@@ -149,7 +147,7 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 		if (autonTimer.get() < 5.5) {
-			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
+			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferentialDriveSignal());
 		} else if (autonTimer.get() >= 5.5 && autonTimer.get() < 6.5) {
 			if(autoIsAGo)
 			bio.setIntake(-0.25);

@@ -59,15 +59,15 @@ class RotationalDriveSignalTest {
     }
 
     @Test
-    void toDifferencialDriveSignal() {
+    void toDifferentialDriveSignal() {
         RotationalDriveSignal drive = new RotationalDriveSignal(0.6, -.2);
-        DifferentialDriveSignal diffDrive = drive.toDifferencialDriveSignal();
+        DifferentialDriveSignal diffDrive = drive.toDifferentialDriveSignal();
 
         assertEquals(diffDrive.getLeftMotorOutput(), 0.6 -.2, 1.0e-6);
         assertEquals(diffDrive.getRightMotorOutput(), 0.6 + .2, 1.0e-6);
 
         drive = new RotationalDriveSignal(1.0, -.2);
-        diffDrive = drive.toDifferencialDriveSignal();
+        diffDrive = drive.toDifferentialDriveSignal();
         diffDrive.limitRotation();
 
         assertEquals(.6, diffDrive.getLeftMotorOutput(), 1.0e-6);
