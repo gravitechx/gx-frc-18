@@ -11,13 +11,14 @@ import org.gravitechx.frc2018.utils.PIDFController;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.drivehelpers.DriveSignal;
 import org.gravitechx.frc2018.utils.lifthelpers.ElevatorHallEffect;
+import org.gravitechx.frc2018.utils.looping.Timestamp;
 
 public class Lift extends Subsystem {
     /* MOTOR CONTROLLERS */
     private LiftGearBox leftGearBox;
     private LiftGearBox rightGearBox;
 
-    private double outputScalar = 0.8;
+    private double outputScalar = 0.7;
 
     //private ElevatorHallEffect mTopHall;
     //private ElevatorHallEffect mMidHall;
@@ -44,7 +45,7 @@ public class Lift extends Subsystem {
         return mLift;
     }
 
-    public void zeroPosition(){
+    public void zeroPosition() {
         mPosition = 0.0;
         encoder.setQuadraturePosition(0, 0);
         mLastQuadature = encoder.getQuadraturePosition();
@@ -130,9 +131,13 @@ public class Lift extends Subsystem {
     public void setSetPoint(double position, double velocity, double acceleration){
         System.out.println("SIGNAL: " + position + " REAL: " + mPosition);
         liftController.setSetpoints(position, velocity, acceleration);
-        liftController.run(mPosition, Timer.getFPGATimestamp());
+
+        System.out.print("Error: " + liftController.getError() + " PIDI: " + Constants.LIFT_PIDF_CONFIG.kI + "\n");
+
+        liftController.run(mPosition, (new Timestamp()).get());
+
         set(liftController.get() * outputScalar);
-        System.out.print("SET POINT: " + position + "Lift Controller: " + (M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0) + " DISTANCE: " + mPosition + "\n");
+        System.out.print("SET POINT: " + liftController.getPositionSetPoint() + "Lift Controller: " + (M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0) + " DISTANCE: " + mPosition + "\n");
     }
 
     public void setRelitivePosition(double position, double velocity, double acceleration){

@@ -13,7 +13,8 @@ public abstract class ControlScheme {
     public abstract boolean getInhalingButton();
     public abstract boolean getExhalingButton();
     public abstract boolean getGrabbingButton();
-    public abstract void update();
+    public abstract void update(double time);
+    public abstract double getDAxis();
 
     public abstract double getLiftManualAxis();
     public abstract double getLiftAutomaticAxis();

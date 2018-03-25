@@ -28,6 +28,8 @@ public class PIDFController {
         this.pid = pid;
     }
 
+    public double daccum = 0.0;
+
     public void run(double accPosition, double time) {
         error = positionSetPoint - accPosition;
 
@@ -37,6 +39,7 @@ public class PIDFController {
             dt = 1E-6;
 
         accum += dt * error;
+
 
         if (velocitySetPoint >= velocityRampRate) velocitySetPoint = velocityRampRate;
         if (accelerationSetPoint >= accelerationRampRate) accelerationSetPoint = accelerationRampRate;
@@ -110,6 +113,12 @@ public class PIDFController {
     public double getKV() { return pid.kV * velocitySetPoint; }
 
     public double getKA() { return pid.kA * accelerationSetPoint; }
+
+    public void setKP(double kp) { pid.kP = kp; }
+    public void setKD(double kd) { pid.kD = kd; }
+    public void setKI(double ki){ pid.kI = ki; }
+    public void setKV(double kv){ pid.kV = kv; }
+    public void setKA(double ka){ pid.kA = ka; }
 
     public double getPositionSetPoint() {
         return positionSetPoint;

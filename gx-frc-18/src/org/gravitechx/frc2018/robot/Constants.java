@@ -37,9 +37,11 @@ public class Constants {
     public static final boolean LEFT_DRIVE_MOTOR_REVERSED = false;
     public static final boolean RIGHT_DRIVE_MOTOR_REVERSED = false;
 
+    public static final double LIFT_DEAD_BAND = 0.1;
+
     /* PID */
     //public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.7, 0.55, .03, 0.0, .7);
-    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(.35, 0.04, 0.003, 0.0, 0.0,0.0);
+    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(2.9, 0.02, 0.042, 0.00, 0.0,0.0);
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(0.20, 1.0E-5, 0.15, 0.1, 1.0);
     public static final TalonPIDConfig NO_PID_CONFIG = new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
@@ -113,7 +115,7 @@ public class Constants {
     public static final int RIGHT_BIO_MOTOR_CAN_PORT = 2;
 
     public static final double BIO_INHALE_SPEED = .45;
-    public static final double BIO_EXHALE_SPEED = -.27;
+    public static final double BIO_EXHALE_SPEED = -.27 * 1.5;
 
     public static final double BUTTON_SWITCH_SPEED = .2;
 

@@ -18,6 +18,7 @@ import org.gravitechx.frc2018.utils.drivehelpers.DrivePipeline;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
 import org.gravitechx.frc2018.utils.looping.Loop;
 import org.gravitechx.frc2018.utils.looping.LoopScheduler;
+import org.gravitechx.frc2018.utils.looping.Timestamp;
 import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
 
 import java.util.stream.StreamSupport;
@@ -176,9 +177,9 @@ public class Robot extends IterativeRobot {
 						mControlScheme.getQuickTurnButton())
 		);
 
-		lift.set(mControlScheme.getLiftManualAxis());
+		//lift.set(mControlScheme.getLiftManualAxis());
 
-		lift.setRelitivePosition(-mControlScheme.getLiftManualAxis(), 0.0, 0.0);
+		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), mControlScheme.getDAxis(), 0.0);
 
 		SmartDashboard.putNumber("Axis", mControlScheme.getLiftManualAxis());
 
@@ -205,7 +206,7 @@ public class Robot extends IterativeRobot {
 		lift.loop();
 
 		bio.update();
-		mControlScheme.update();
+		mControlScheme.update((new Timestamp()).get());
 	}
 
 	/**
@@ -214,6 +215,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void testPeriodic() {
-		lift.setDirect(.2);
+		//lift.setDirect(.2);
 	}
 }

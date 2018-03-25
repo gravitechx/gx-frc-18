@@ -12,7 +12,7 @@ class PIDFConfigTest {
 
     @Test
     public void PIDEndBehavior(){
-        double setpoint_M = 0.9; // About 3ft
+        double setpoint_M = 0.0; // About 3ft
         double realValue_M = 0.0;
         double time_S = 0.0;
         double dt = .03; // Possible runtime for our code
@@ -21,7 +21,7 @@ class PIDFConfigTest {
         PIDFController pidfController = new PIDFController(Constants.LIFT_PIDF_CONFIG);
 
         for (int i = 0; i < 2000; i++){
-            setpoint_M += 0.0075 / 2; // Move the controller (tell it to move a little less than 1/2 ft/s )
+            setpoint_M += 0.000000000007 / 2; // Move the controller (tell it to move a little less than 1/2 ft/s )
 
             pidfController.setSetpoints(setpoint_M, 0.1, 0.02); // Same values as real code
 
@@ -37,7 +37,7 @@ class PIDFConfigTest {
             time_S += dt;
 
             if(i % 20 == 0) { // Only log evey 20
-                System.out.printf("%f, %f\n", time_S, speed * 12.0);
+                System.out.printf("%f, %f, %f\n", time_S, speed * 12.0, pidfController.getError());
             }
         }
     }

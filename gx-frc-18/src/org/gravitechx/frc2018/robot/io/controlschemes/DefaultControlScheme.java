@@ -13,6 +13,10 @@ public class DefaultControlScheme extends ControlScheme {
     private boolean isReversed = Constants.REVERSE_THROTTLE_STICK;
     private SwitchingBoolean grabbingBoolean;
 
+    private static double lastManualAxis = 0.0;
+    private static double lastTime = 0.0;
+    private static double dAxis = 0.0;
+
     //singleton pattern to prevent multiple instances of DefaultControlScheme
     private static DefaultControlScheme mInstance = new DefaultControlScheme();
     public static DefaultControlScheme getInstance() { return mInstance; }
@@ -23,6 +27,10 @@ public class DefaultControlScheme extends ControlScheme {
         manualLift = new Joystick(Constants.MANUAL_LIFT_STICK_PORT);
         automaticLift = new Joystick(Constants.AUTOMATIC_LIFT_STICK_PORT);
         grabbingBoolean = new SwitchingBoolean(true, Constants.BUTTON_SWITCH_SPEED);
+    }
+
+    public double getDAxis(){
+        return dAxis;
     }
 
     @Override
@@ -94,9 +102,12 @@ public class DefaultControlScheme extends ControlScheme {
         return grabbingBoolean.getValue();
     }
 
-    public void update(){
+    public void update(double time){
         if(manualLift.getTop()){
             grabbingBoolean.switchValue();
         }
+        dAxis = (getLiftManualAxis() - lastManualAxis) /(time - lastTime);
+        lastManualAxis = getLiftManualAxis();
+        lastTime = time;
     }
 }
