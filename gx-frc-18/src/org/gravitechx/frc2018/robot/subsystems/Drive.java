@@ -8,9 +8,13 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.gravitechx.frc2018.robot.Constants;
+import org.gravitechx.frc2018.utils.PIDFController;
+import org.gravitechx.frc2018.utils.SchuhPDFController;
 import org.gravitechx.frc2018.utils.TalonSRXFactory;
 import org.gravitechx.frc2018.utils.drivehelpers.DifferentialDriveSignal;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
+import org.gravitechx.frc2018.utils.looping.Timestamp;
+import org.gravitechx.frc2018.utils.motorconfigs.PIDFConfig;
 import org.gravitechx.frc2018.utils.motorconfigs.TalonConfig;
 import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
 
@@ -34,7 +38,10 @@ public class Drive extends Subsystem implements TestableSystem {
 
     // Drive state modeling
     private DriveControlStates mCurrentState;
+
     public enum DriveControlStates {CLOSED_LOOP, AUTO, OPEN_LOOP};
+
+    private SchuhPDFController autoControllerLeft , autoControllerRight;
 
     /**
      * Sets the up PID and drive train
@@ -76,6 +83,9 @@ public class Drive extends Subsystem implements TestableSystem {
         ahrs.reset();
 
         mCurrentState = DriveControlStates.CLOSED_LOOP;
+
+        autoControllerLeft = new SchuhPDFController(Constants.AUTON_DRIVE_CONFIG);
+        autoControllerRight = new SchuhPDFController(Constants.AUTON_DRIVE_CONFIG);
     }
 
     /**
@@ -84,13 +94,35 @@ public class Drive extends Subsystem implements TestableSystem {
      * @see DifferentialDriveSignal
      */
     public void set(DifferentialDriveSignal differentialDriveSignal){
-        if(mCurrentState == DriveControlStates.CLOSED_LOOP) {
+        if(mCurrentState == DriveControlStates.CLOSED_LOOP || mCurrentState == DriveControlStates.AUTO) {
             leftDrive.set(ControlMode.Velocity, differentialDriveSignal.getLeftMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
-            rightDrive.set(ControlMode.Velocity, -1 * differentialDriveSignal.getRightMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
+            rightDrive.set(ControlMode.Velocity, -differentialDriveSignal.getRightMotorOutput() * Constants.DRIVE_ENCODER_MOTIFIER);
         }else{
             leftDrive.set(ControlMode.PercentOutput, differentialDriveSignal.getLeftMotorOutput());
-            rightDrive.set(ControlMode.PercentOutput, -1 * differentialDriveSignal.getRightMotorOutput());
+            rightDrive.set(ControlMode.PercentOutput, -differentialDriveSignal.getRightMotorOutput());
         }
+    }
+
+    public void set(DifferentialDriveSignal velocity, DifferentialDriveSignal acceleration){
+        // Set setpoints
+        autoControllerLeft.setSetpoints(velocity.getLeftMotorOutput(),
+                velocity.getLeftMotorOutput(),
+                acceleration.getLeftMotorOutput());
+        autoControllerRight.setSetpoints(velocity.getRightMotorOutput(),
+                velocity.getRightMotorOutput(),
+                acceleration.getRightMotorOutput());
+
+        // Run
+        autoControllerLeft.run(
+                leftDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID),
+                (new Timestamp()).get());
+        autoControllerRight.run(
+                rightDrive.getSelectedSensorVelocity(Constants.DRIVE_PID_CONFIG.PID_ID),
+                (new Timestamp()).get());
+
+        // Set the drive to PID outs
+        leftDrive.set(ControlMode.PercentOutput, autoControllerLeft.get());
+        rightDrive.set(ControlMode.PercentOutput, autoControllerRight.get());
     }
 
     /**
@@ -141,18 +173,6 @@ public class Drive extends Subsystem implements TestableSystem {
 
     public int getRightPIDError() {
         return rightDrive.getClosedLoopError(Constants.DRIVE_PID_CONFIG.PID_ID);
-    }
-
-    public void driveDistance(double distance){
-        System.out.println("Displacement: " + ahrs.getmXDisplacement());
-
-        SmartDashboard.putNumber("Displacement", ahrs.getmXDisplacement());
-        double accumulatedDistance = 0.0;
-
-        if(distance <= accumulatedDistance){
-            double angle = ahrs.getYawRad();
-            set(new RotationalDriveSignal(0.05, 0.0).toDifferencialDriveSignal());
-        }
     }
 
     @Override
