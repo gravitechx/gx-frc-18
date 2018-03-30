@@ -72,6 +72,6 @@ public class DrivePipeline {
             }
         }
 
-        return rotationalDriveSignal.toDifferencialDriveSignal();
+        return rotationalDriveSignal.toDifferentialDriveSignal();
     }
 }

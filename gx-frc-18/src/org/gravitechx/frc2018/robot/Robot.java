@@ -2,7 +2,9 @@
 package org.gravitechx.frc2018.robot;
 
 import edu.wpi.cscore.VideoSink;
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -20,7 +22,9 @@ import org.gravitechx.frc2018.utils.looping.Loop;
 import org.gravitechx.frc2018.utils.looping.LoopScheduler;
 import org.gravitechx.frc2018.utils.looping.Timestamp;
 import org.gravitechx.frc2018.utils.wrappers.GravAHRS;
-
+import org.gravitechx.frc2018.robot.io.server.RobotServer;
+import org.gravitechx.frc2018.robot.commands.GrabBox;
+import org.gravitechx.frc2018.robot.commands.GoToTape;
 import java.util.stream.StreamSupport;
 
 import static org.gravitechx.frc2018.utils.drivehelpers.DriveSignal.limit;
@@ -39,7 +43,8 @@ public class Robot extends IterativeRobot {
 	public static Lift lift;
 	public static BIO bio;
 	public boolean isGrabbing;
-
+	Command grabthebox;
+	Command gototape;
 	public Timer autonTimer;
 
 	//public static PowerDistributionPanel pdp;
@@ -51,6 +56,8 @@ public class Robot extends IterativeRobot {
 
 	SendableChooser<AutonOptions> chooser = new SendableChooser<>();
 	private ControlScheme mControlScheme;
+	public static RobotServer rs;
+	Thread serverThread;
 
 	String gameData;
 
@@ -75,6 +82,10 @@ public class Robot extends IterativeRobot {
 
 		lift.zeroPosition();
 
+		grabthebox = new GrabBox();
+		gototape = new GoToTape();
+		
+		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
 		//cameraServer = CameraServer.getInstance().getServer();
 
 		//topCam = new UsbLifeCam(Constants.TOP_CAM);
@@ -125,6 +136,9 @@ public class Robot extends IterativeRobot {
 		lift.zeroPosition();
 		autonTimer = new Timer();
 		autonTimer.start();
+		serverThread = new Thread(rs);
+		System.out.println("Starting robotserver");
+		serverThread.start();
 
 		String gameData;
 
@@ -154,7 +168,7 @@ public class Robot extends IterativeRobot {
 		double reqHeight = 0.0;
 		double lastTimer = 0.0;
 		if (autonTimer.get() < 5.5) {
-			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
+			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferentialDriveSignal());
 			if(reqHeight < .7) reqHeight += .7/5.5 * (autonTimer.get() - lastTimer);
 			lastTimer = autonTimer.get();
 			lift.setSetPoint(reqHeight, 0.0, 0.0);
@@ -176,6 +190,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		lift.zeroPosition();
+		grabthebox.start();
 	}
 
 	/**
