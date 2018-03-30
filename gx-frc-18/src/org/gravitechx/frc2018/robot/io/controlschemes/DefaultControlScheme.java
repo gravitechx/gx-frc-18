@@ -44,7 +44,7 @@ public class DefaultControlScheme extends ControlScheme {
 
     @Override
     public double getLiftAutomaticAxis(){
-        return automaticLift.getY();
+        return -automaticLift.getY();
     }
 
     // Returns the throttle of the inputted Joystick (throttle is the Y axis)

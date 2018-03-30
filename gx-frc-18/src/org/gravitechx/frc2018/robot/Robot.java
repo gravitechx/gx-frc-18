@@ -89,7 +89,7 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void disabledInit() {
-
+		bio.grasp(BIO.GraspingStatus.CLOSED);
 	}
 
 	@Override
@@ -139,6 +139,8 @@ public class Robot extends IterativeRobot {
 				autoIsAGo = false;
 			}
 		}
+
+		bio.grasp(BIO.GraspingStatus.CLOSED);
 	}
 
 	boolean autoIsAGo = false;
@@ -151,12 +153,15 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		if (autonTimer.get() < 5.5) {
 			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
-		} else if (autonTimer.get() >= 5.5 && autonTimer.get() < 6.5) {
+		} else if(autonTimer.get() >= 5.5 && autonTimer.get() < 6.0){
+			bio.rotate(false);
+		} else if (autonTimer.get() >= 6.0 && autonTimer.get() < 7.0) {
 			if(autoIsAGo)
-			bio.setIntake(-0.25);
+			bio.setIntake(-0.5);
 		} else {
 			drive.set(new DifferentialDriveSignal(0.0, 0.0));
 			bio.setIntake(0.0);
+			bio.rotate(true);
 		}
 	}
 
@@ -186,22 +191,30 @@ public class Robot extends IterativeRobot {
 
 		lift.graphPIDOuts();
 
-		if(mControlScheme.getInhalingButton() && bio.getControlState() != BIO.ControlState.EXHALING){
-			bio.set(BIO.ControlState.INHALING);
-		}else if (mControlScheme.getExhalingButton()){
+		if(mControlScheme.getLiftAutomaticAxis() > -.1 && mControlScheme.getLiftAutomaticAxis() < .1){
+			bio.set(BIO.ControlState.NEUTRAL);
+		}else if(mControlScheme.getLiftAutomaticAxis() > .1 && mControlScheme.getLiftAutomaticAxis() < .5){
 			bio.set(BIO.ControlState.EXHALING);
-		}else{
+		}else if(mControlScheme.getLiftAutomaticAxis() > .5){
+			bio.set(BIO.ControlState.EXHALING_FAST);
+		}else if(mControlScheme.getLiftAutomaticAxis() < -.1){
+			bio.set(BIO.ControlState.INHALING);
+		}else {
 			bio.set(BIO.ControlState.NEUTRAL);
 		}
 
-		bio.setShouldExhale(
-				bio.getControlState() == BIO.ControlState.EXHALING && mControlScheme.getInhalingButton()
-		);
+		System.out.println(bio.getControlState());
 
 		if(mControlScheme.getGrabbingButton()){
 			bio.grasp(BIO.GraspingStatus.CLOSED);
 		}else{
 			bio.grasp(BIO.GraspingStatus.OPEN);
+		}
+
+		if(mControlScheme.getInhalingButton()){
+			bio.rotate(false);
+		}else{
+			bio.rotate(true);
 		}
 
 		lift.loop();

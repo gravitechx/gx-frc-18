@@ -110,16 +110,17 @@ public class Constants {
     public static double LIFT_POSITION_DEADBAND_M = .03;
 
     /* BIO */
-    public static final int BIO_OPEN_PORT = 0;
-    public static final int BIO_CLOSE_PORT = 1;
+    public static final int BIO_OPEN_PORT = 1;
+    public static final int BIO_CLOSE_PORT = 0;
     public static final int ROTATOR_PORT = 2;
     public static final int NULL_PORT = 7;
 
     public static final int LEFT_BIO_MOTOR_CAN_PORT = 0;
     public static final int RIGHT_BIO_MOTOR_CAN_PORT = 2;
 
-    public static final double BIO_INHALE_SPEED = .45;
-    public static final double BIO_EXHALE_SPEED = -.27 * 1.5;
+    public static final double BIO_INHALE_SPEED =  0.45;
+    public static final double BIO_EXHALE_SPEED = -0.35;
+    public static final double BIO_EXHALE_SPEED_FAST =  -.60;
 
     public static final double BUTTON_SWITCH_SPEED = .2;
 
@@ -183,4 +184,7 @@ public class Constants {
     /* ====== */
     public static int CAMERA_FPS = 15;
     public static int TOP_CAM = 1;
+
+    /* AUTO FILES */
+    public static String left_switch = "motion/_left_test.csv";
 }

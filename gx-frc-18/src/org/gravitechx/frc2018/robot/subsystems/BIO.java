@@ -5,17 +5,17 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import org.gravitechx.frc2018.robot.Constants;
 
+import java.util.function.Consumer;
+
 public class BIO {
     private DoubleSolenoid mGripper;
     private DoubleSolenoid mRotator;
 
     private WPI_VictorSPX mRightIntake;
     private WPI_VictorSPX mLeftIntake;
-    
-    private ControlState mControlState;
 
     public enum ControlState {
-        NEUTRAL, INHALING, EXHALING
+        NEUTRAL, INHALING, EXHALING, EXHALING_FAST
     }
 
     public enum GraspingStatus {
@@ -23,6 +23,7 @@ public class BIO {
     }
 
     private GraspingStatus mGraspingStatus;
+    private ControlState mControlState;
 
     private boolean mShouldExhale;
 
@@ -37,8 +38,6 @@ public class BIO {
         mLeftIntake = new WPI_VictorSPX(Constants.LEFT_BIO_MOTOR_CAN_PORT);
         mControlState = ControlState.NEUTRAL;
         mShouldExhale = false;
-
-        grasp(GraspingStatus.CLOSED);
         mLeftIntake.setNeutralMode(NeutralMode.Coast);
         mRightIntake.setNeutralMode(NeutralMode.Coast);
     }
@@ -49,21 +48,7 @@ public class BIO {
         return mBIO;
     }
 
-    public void set(ControlState cState){
-        if(mControlState == cState) { return; } // Don't double set values
-        switch (cState){
-            case NEUTRAL:
-                rotate(true);
-                break;
-            case EXHALING:
-                rotate(false);
-                grasp(GraspingStatus.OPEN);
-            case INHALING:
-                rotate(false);
-                grasp(GraspingStatus.OPEN);
-        }
-        mControlState = cState;
-    }
+    /* BASE FUNCTIONS */
 
     public void grasp(GraspingStatus graspingStatus){
         if(graspingStatus != mGraspingStatus) {
@@ -81,6 +66,11 @@ public class BIO {
         }
     }
 
+    public void setIntake(double speed){
+        mLeftIntake.set(speed);
+        mRightIntake.set(-speed);
+    }
+
     public void rotate(boolean isUp){
         if(isUp){
             mRotator.set(Constants.BIO_ROTATOR_UP_SOLENOID_POSITION);
@@ -89,17 +79,11 @@ public class BIO {
         }
     }
 
-    public void setIntake(double speed){
-        mLeftIntake.set(speed);
-        mRightIntake.set(-speed);
-    }
+    /* STATES */
 
-    public boolean isShouldExhale() {
-        return mShouldExhale;
-    }
-
-    public void setShouldExhale(boolean mShouldExhale) {
-        this.mShouldExhale = mShouldExhale;
+    public void set(ControlState cState){
+        if(mControlState == cState) { return; } // Don't double set values
+        mControlState = cState;
     }
 
     public void update(){
@@ -108,11 +92,10 @@ public class BIO {
                 setIntake(Constants.BIO_INHALE_SPEED);
                 break;
             case EXHALING:
-                if(mShouldExhale) {
-                    setIntake(Constants.BIO_EXHALE_SPEED);
-                }else{
-                    setIntake(0.0);
-                }
+                setIntake(Constants.BIO_EXHALE_SPEED);
+                break;
+            case EXHALING_FAST:
+                setIntake(Constants.BIO_EXHALE_SPEED_FAST);
                 break;
             default:
                 setIntake(0.0);
