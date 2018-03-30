@@ -128,11 +128,11 @@ public class Lift extends Subsystem {
     }
 
     public void setSetPoint(double position, double velocity, double acceleration){
-        System.out.println("SIGNAL: " + position + " REAL: " + mPosition);
+        //System.out.println("SIGNAL: " + position + " REAL: " + mPosition);
         liftController.setSetpoints(position, velocity, acceleration);
         liftController.run(mPosition, Timer.getFPGATimestamp());
         set(liftController.get() * outputScalar);
-        System.out.print("SET POINT: " + position + "Lift Controller: " + (M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0) + " DISTANCE: " + mPosition + "\n");
+        //System.out.print("SET POINT: " + position + "Lift Controller: " + (M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0) + " DISTANCE: " + mPosition + "\n");
     }
 
     public void setRelitivePosition(double position, double velocity, double acceleration){

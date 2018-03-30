@@ -1,11 +1,14 @@
 
 package org.gravitechx.frc2018.robot;
 
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.gravitechx.frc2018.robot.commands.GrabBox;
 import org.gravitechx.frc2018.robot.io.controlschemes.ControlScheme;
 import org.gravitechx.frc2018.robot.io.controlschemes.DefaultControlScheme;
 import org.gravitechx.frc2018.robot.subsystems.BIO;
@@ -30,6 +33,7 @@ public class Robot extends IterativeRobot {
 	public static Lift lift;
 	public static BIO bio;
 	public boolean isGrabbing;
+	Command grabthebox;
 
 	public Timer autonTimer;
 
@@ -67,7 +71,7 @@ public class Robot extends IterativeRobot {
 		mControlScheme = DefaultControlScheme.getInstance();
 
 		lift.zeroPosition();
-		
+		grabthebox = new GrabBox();
 		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
 
 		//cameraServer = CameraServer.getInstance().getServer();
@@ -121,6 +125,7 @@ public class Robot extends IterativeRobot {
 		autonTimer = new Timer();
 		autonTimer.start();
 		serverThread = new Thread(rs);
+		System.out.println("Starting robotserver");
 		serverThread.start();
 
 		String gameData;
@@ -160,6 +165,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopInit() {
 		lift.zeroPosition();
+		grabthebox.start();
 	}
 
 	/**
@@ -211,7 +217,5 @@ public class Robot extends IterativeRobot {
 	 */
 
 	@Override
-	public void testPeriodic() {
-		lift.setDirect(.2);
-	}
+	public void testPeriodic() {}
 }

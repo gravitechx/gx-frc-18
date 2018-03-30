@@ -28,23 +28,33 @@ public class GoToTape extends Command {
     @Override
     protected void initialize(){
         VisionInfo info = Robot.rs.getVisionInfo();
-        tapedistance = info.getTapeDistance()*num_of_terms_to_average;
-        tapeangle = info.getTapeAngle()*num_of_terms_to_average;
-        // Possibly a new object of Katie's class? How does grabbing a variable from another running class/thread work?
+        if(info != null) {
+            tapedistance = info.getTapeDistance() * num_of_terms_to_average;
+            tapeangle = info.getTapeAngle() * num_of_terms_to_average;
+        }// Possibly a new object of Katie's class? How does grabbing a variable from another running class/thread work?
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
         VisionInfo info = Robot.rs.getVisionInfo();
-        tapedistance=tapedistance*(num_of_terms_to_average-1)/num_of_terms_to_average + info.getTapeDistance();//INSERT VARIABLE FROM KATIE HERE
-        tapeangle=tapeangle*(num_of_terms_to_average-1)/num_of_terms_to_average + info.getTapeAngle();//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
-        if(tapedistance/num_of_terms_to_average<=Constants.AT_TAPE_DISTANCE) {//Run if box is within grabbing distance
+        if (tapedistance == 0 && tapeangle == 0 && info != null) {
+            tapedistance = info.getTapeDistance() * num_of_terms_to_average;
+            tapeangle = info.getTapeAngle() * num_of_terms_to_average;
+        } else if (info != null) {
+            tapedistance = tapedistance * (num_of_terms_to_average - 1) / num_of_terms_to_average + info.getTapeDistance();//INSERT VARIABLE FROM KATIE HERE
+            tapeangle = tapeangle * (num_of_terms_to_average - 1) / num_of_terms_to_average + info.getTapeAngle();//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
+            System.out.println("New tape distance: " + info.getTapeDistance() + " , Average value: " + (tapedistance/num_of_terms_to_average));
+            System.out.println("New tape angle: " + info.getTapeAngle() + " , Average value: " + (tapeangle/num_of_terms_to_average));
+        }
+        /*if(tapedistance/num_of_terms_to_average<=Constants.AT_TAPE_DISTANCE) {//Run if box is within grabbing distance
             end(); //End command
-        } else {
+        } else if (tapedistance/num_of_terms_to_average*Constants.DISTANCE_TO_POWER_RATIO <=1 && tapeangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO < 90) {
             way_to_move = new RotationalDriveSignal(tapedistance/num_of_terms_to_average*Constants.DISTANCE_TO_POWER_RATIO,tapeangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO); //Create mew drivesignal (Rotational) that uses the vision distance and angle. Tune with constants.
             drive.set(way_to_move.toDifferentialDriveSignal());
-        }
+        } else {
+            System.out.println("GoToTape not driving; too crazy of numbers")
+        }*/
     }
 
     // Make this return true when this Command no longer needs to run execute()

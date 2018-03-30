@@ -5,6 +5,8 @@ import org.gravitechx.frc2018.frames.Frame;
 import org.gravitechx.frc2018.frames.StatusFrame;
 import org.gravitechx.frc2018.frames.VisionFrame;
 import org.gravitechx.frc2018.utils.visionhelpers.VisionInfo;
+
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +17,7 @@ import java.net.Socket;
 import java.util.Stack;
 
 public class RobotServer implements Runnable {
-    private boolean mIsRunning;
+    private boolean ServerRunning;
     private final int UPDATE_TIME;
     private final int PORT;
     private Stack<Frame> frameStack;
@@ -26,7 +28,7 @@ public class RobotServer implements Runnable {
     public RobotServer(int port, int update){
         this.PORT = port;
         this.UPDATE_TIME = update;
-        mIsRunning = true;
+        ServerRunning = true;
         frameStack = new Stack<>();
         unsorted = new ArrayList<>();
     }
@@ -35,17 +37,69 @@ public class RobotServer implements Runnable {
         frameStack.push(frame);
     }
 
+    
+    @Override
+    public void run() {
+        try {
+            ServerSocket server = new ServerSocket(PORT);
+            server.setSoTimeout(100);
+            while (ServerRunning) {
+                //System.out.println("Server running!");
+                for(int i = unsorted.size()-1;i>=0;i--) {
+                    if (unsorted.get(i).getType()=="VISION") {
+                        if(visionsocket!=null) {
+                            visionsocket.close();
+                        }
+                        visionsocket = unsorted.get(i);
+                        unsorted.remove(i);
+                    }
+                }
+                try {
+                    //System.out.println("Trying to accept new connection");
+                    Socket newClientSocket = server.accept();
+                    FramesSocket testsocket = new FramesSocket(newClientSocket);
+                    Thread testthread = new Thread(testsocket);
+                    testthread.start();
+                    unsorted.add(testsocket);
+                } catch (SocketTimeoutException e) {
+                    //Do nothing, this is normal.
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            server.close();
+            System.out.println("Server stopped");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public int getnumber() {
+        return 5;
+    }
+
+    public VisionInfo getVisionInfo() { //((VisionFrame) frame).getVisionInfo()
+        if (visionsocket != null && visionsocket.frame != null) {
+            return ((VisionFrame) visionsocket.frame).getVisionInfo();
+        }
+        return null;
+    }
+
+    public synchronized void setIsRunning(boolean isRunning){
+        this.ServerRunning = isRunning;
+    }
+    
     class FramesSocket implements Runnable {
         BufferedReader in;
         PrintWriter out;
         boolean mClientIsRunning;
         String inputLine;
         Socket clientSocket;
-	    boolean recff; //Recieved first frame
+        boolean recff; //Recieved first frame
         String type; //Holds what type of socket this is
-        Frame frame; //Is the most recent frame recieved
+        public Frame frame; //Is the most recent frame recieved
 
-        public FramesSocket(Socket clientSocket) {
+        public FramesSocket(Socket clientSocket) throws IOException {
             this.clientSocket = clientSocket;
             type="UNKNOWN";
             mClientIsRunning = true;
@@ -56,23 +110,21 @@ public class RobotServer implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
+        public void close() { mClientIsRunning=false; }
         public String getType() { return type; }
         @Override
         public void run() { //Called from other run() in this class
-
-            while (true) {
+           while (mClientIsRunning) {
                 try { //Try to call the next line of information
+                    //System.out.println(in);
                     inputLine = in.readLine();
                 } catch (IOException ioe) {
+                    //mClientIsRunning=false;
                     ioe.printStackTrace();
                 }
-
                 if (inputLine != null) { //If the line isn't nothing (null)
-                    System.out.println(inputLine);
-		            recff=true;
-
+                    recff=true;
                     frame = Frame.toFrame(inputLine); //Create new frame with the line
                     switch (frame.getType()) { //See what type of frame the line is (now inside of a frame object) and take action accordingly
                         case AMP:
@@ -87,8 +139,8 @@ public class RobotServer implements Runnable {
                             double tapeOffset = ((VisionFrame) frame).getTapeOffset();
                             double tapeDistance = ((VisionFrame) frame).getTapeDistance();
                             double tapeAngle = ((VisionFrame) frame).getTapeAngle();
-                            //VisionInfo visionInfo = ((VisionFrame) frame).getVisionInfo(); //Have a local version of the VisionInfo object with all of the above information inside of it
-                            System.out.println("BOX_OFFSET:" + boxOffset + ", BOX_DISTANCE:" + boxDistance + ", BOX_ANGLE: " + boxAngle + ", TAPE_OFFSET: " + tapeOffset + ", TAPE_DISTANCE: " + tapeDistance + ", TAPE_ANGLE: " + tapeAngle );
+                            VisionInfo visionInfo = ((VisionFrame) frame).getVisionInfo(); //Have a local version of the VisionInfo object with all of the above information inside of it
+                            System.out.println("BOX_OFFSET:" + visionInfo.getBoxOffset() + ", BOX_DISTANCE:" + boxDistance + ", BOX_ANGLE: " + boxAngle + ", TAPE_OFFSET: " + tapeOffset + ", TAPE_DISTANCE: " + tapeDistance + ", TAPE_ANGLE: " + tapeAngle );
                             type="VISION";
                             break;
                         case STATUS:
@@ -97,79 +149,18 @@ public class RobotServer implements Runnable {
                             break;
                     } //End switch statement
                 } //End if statement
-		else if (recff==true) { //Close down and break out of the infinite while loop if the connection is closed
-                    System.out.println("Server : Bye bye now. (Connection Dropped)");
+                    else if (recff==true) { //Close down and break out of the infinite while loop if the connection is closed
+                    System.out.println("Client Thread : Bye bye now. (Connection Dropped)");
                     mClientIsRunning = false;
                     break;
                 }
-
-
             } //End of infinite while loop
-            System.out.println("Haha Katie, I've bypassed your puny statements. :D Hahahahahahahaha............");
             try {
                 clientSocket.close();
+                System.out.println("Client Socket closed.");
             } catch (Exception ignored) {
                 ignored.printStackTrace();
             }
         }
     }
-    @Override
-    public void run() {
-        System.out.println("You've gotten here!");
-        try {
-            ServerSocket server = new ServerSocket(PORT);
-            while (mIsRunning) {
-                try (
-                        Socket clientSocket = server.accept();
-                ) {
-                    for(int i = unsorted.size()-1;i>=0;i--) {
-                        if (unsorted.get(i).getType()=="VISION") {
-                            visionsocket = unsorted.get(i);
-                            unsorted.remove(i);
-                        }
-                    }
-                    System.out.println("before input!");
-                    FramesSocket testsocket = new FramesSocket(clientSocket);
-                    Thread testthread = new Thread(testsocket);
-                    testthread.start();
-                    unsorted.add(testsocket);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            server.close();
-            System.out.println("Server stopped");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public VisionInfo getVisionInfo() { //((VisionFrame) frame).getVisionInfo()
-        if (visionsocket.frame != null) {
-            return ((VisionFrame) (visionsocket.frame)).getVisionInfo();
-        }
-        return null;
-    }
-
-    public synchronized void setIsRunning(boolean isRunning){
-        this.mIsRunning = isRunning;
-    }
-
-                /*
-                ---- s e n d i n g ----
-        System.out.println("Starting up the server...");
-
-        (new StatusFrame(new LocalTimestamp(), StatusCode.START)).send(out);
-
-        while(mIsRunning){
-            if(!frameStack.isEmpty()){
-                frameStack.pop().send(out);
-            }
-            System.out.printf("Stack is empty: %b\n", frameStack.isEmpty());
-            Thread.sleep(UPDATE_TIME);
-        }
-        (new StatusFrame(new LocalTimestamp(), StatusCode.STOP)).send(out);
-        System.out.println("Connection with client ended.");
-
-        */
 }
