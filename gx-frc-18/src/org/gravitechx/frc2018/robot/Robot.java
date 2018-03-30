@@ -177,9 +177,10 @@ public class Robot extends IterativeRobot {
 						mControlScheme.getQuickTurnButton())
 		);
 
-		lift.set(mControlScheme.getLiftManualAxis());
+		//lift.set(mControlScheme.getLiftManualAxis());
 
-		//lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), mControlScheme.getDAxis(), 0.0);
+		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), mControlScheme.getDAxis(), 0.0);
+
 
 		SmartDashboard.putNumber("Axis", mControlScheme.getLiftManualAxis());
 

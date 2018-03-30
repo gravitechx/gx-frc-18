@@ -41,15 +41,18 @@ public class Constants {
 
     /* PID */
     //public static final PIDConfig LIFT_PID_CONFIG = new PIDConfig(.7, 0.55, .03, 0.0, .7);
-    public static final PIDFConfig LIFT_PIDF_CONFIG = new PIDFConfig(2.9, 0.02, 0.042, 0.00, 0.0,0.0);
-    public static final PIDFConfig AUTON_DRIVE_CONFIG = new PIDFConfig(2.9, 0.0, 0.042, 0.00, 0.0,0.0);
+    public static final PIDFConfig LIFT_PIDF_CONFIG =
+            new PIDFConfig(5.0, 0.0176, 0.0265, 0.0, 0.0, 0.0);
+    public static final PIDFConfig AUTON_DRIVE_CONFIG =
+            new PIDFConfig(2.9, 0.0, 0.042, 0.00, 0.0, 0.0);
     public static final TalonPIDConfig DRIVE_PID_CONFIG =
             new TalonPIDConfig(0.20, 1.0E-5, 0.15, 0.1, 1.0);
-    public static final TalonPIDConfig NO_PID_CONFIG = new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
+    public static final TalonPIDConfig NO_PID_CONFIG =
+            new TalonPIDConfig(0.0, 0.0, 0.0, 0.0, 0.0);
+    public static final double DRIVE_ENCODER_MOTIFIER = 4096.0 * 500.0 / 600.0 * 2.0; // 3415.0
+    public static final double DRIVE_TO_M_ENCODER_MOTIFIER = 7.7922e-5; // 12.566in diff from enc mot (10699.0)
+    public static final double NOMINAL_UP_VOLTAGE = 0.2;
 
-    public static final double DRIVE_ENCODER_MOTIFIER =  4096.0 * 500.0 / 600.0 * 2.0; // 3415.0
-
-    public static final double DRIVE_TO_M_ENCODER_MOTIFIER =  7.7922e-5; // 12.566in diff from enc mot (10699.0)
 
     /* NEGATIVE INERTIA CONSTANTS */
     public static final double NEG_INERTIA_TURN_SCALAR = 2.5;

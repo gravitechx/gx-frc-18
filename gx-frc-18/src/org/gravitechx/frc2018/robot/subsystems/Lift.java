@@ -18,7 +18,7 @@ public class Lift extends Subsystem {
     private LiftGearBox leftGearBox;
     private LiftGearBox rightGearBox;
 
-    private double outputScalar = 0.7;
+    private double outputScalar = 0.5;
 
     //private ElevatorHallEffect mTopHall;
     //private ElevatorHallEffect mMidHall;
@@ -102,6 +102,9 @@ public class Lift extends Subsystem {
         //mBottomHall = new ElevatorHallEffect(Constants.HALL_BOTTOM_DIO_CHANNEL, Constants.HALL_BOTTOM_DISTANCE);
 
         mControlMode = ControlState.LIFTING;
+        System.out.println(mPosition);
+
+            System.out.println("Position: " + mPosition + " Error : " + liftController.getError());
     }
 
     public double getHallPosition(){
@@ -136,7 +139,7 @@ public class Lift extends Subsystem {
 
         liftController.run(mPosition, (new Timestamp()).get());
 
-        set(liftController.get() * outputScalar);
+        set( liftController.get() * outputScalar + Constants.NOMINAL_UP_VOLTAGE /*+ mPosition*/);
         System.out.print("SET POINT: " + liftController.getPositionSetPoint() + "Lift Controller: " + (M_MAX_VOLTAGE * liftController.get() * outputScalar / 12.0) + " DISTANCE: " + mPosition + "\n");
     }
 
@@ -175,5 +178,6 @@ public class Lift extends Subsystem {
         SmartDashboard.putNumber("KA: ", liftController.getKA());
         SmartDashboard.putNumber("KV: ", liftController.getKV());
         SmartDashboard.putNumber("Error: ", liftController.getError());
+        SmartDashboard.putNumber("Position: ", mPosition);
     }
 }
