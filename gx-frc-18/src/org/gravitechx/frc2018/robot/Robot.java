@@ -151,18 +151,26 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		double reqHeight = 0.0;
+		double lastTimer = 0.0;
 		if (autonTimer.get() < 5.5) {
 			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferencialDriveSignal());
-		} else if(autonTimer.get() >= 5.5 && autonTimer.get() < 6.0){
+			if(reqHeight < .7) reqHeight += .7/5.5 * (autonTimer.get() - lastTimer);
+			lastTimer = autonTimer.get();
+			lift.setSetPoint(reqHeight, 0.0, 0.0);
+		} else if(autonTimer.get() >= 5.5 && autonTimer.get() < 6.5){
 			bio.rotate(false);
-		} else if (autonTimer.get() >= 6.0 && autonTimer.get() < 7.0) {
+			lift.setSetPoint(.70, 0.0, 0.0);
+		} else if (autonTimer.get() >= 6.5 && autonTimer.get() < 7.0) {
 			if(autoIsAGo)
-			bio.setIntake(-0.5);
+			bio.setIntake(-0.38);
 		} else {
 			drive.set(new DifferentialDriveSignal(0.0, 0.0));
 			bio.setIntake(0.0);
 			bio.rotate(true);
+			lift.setSetPoint(0.0, 0.0, 0.0);
 		}
+		lift.loop();
 	}
 
 	@Override
@@ -182,9 +190,9 @@ public class Robot extends IterativeRobot {
 						mControlScheme.getQuickTurnButton())
 		);
 
-		//lift.set(mControlScheme.getLiftManualAxis());
+		lift.set(mControlScheme.getLiftManualAxis());
 
-		lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), mControlScheme.getDAxis(), 0.0);
+		//lift.setRelitivePosition(mControlScheme.getLiftManualAxis(), mControlScheme.getDAxis(), 0.0);
 
 
 		SmartDashboard.putNumber("Axis", mControlScheme.getLiftManualAxis());
