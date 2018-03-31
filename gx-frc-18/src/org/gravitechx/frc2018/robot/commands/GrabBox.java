@@ -53,6 +53,7 @@ public class GrabBox extends Command {
 			boxangle = boxangle * (num_of_terms_to_average - 1) / num_of_terms_to_average + info.getBoxAngle();//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
 			System.out.println("New distance: " + info.getBoxDistance() + " , Average value: " + (boxdistance/num_of_terms_to_average));
 			System.out.println("New angle: " + info.getBoxAngle() + " , Average value: " + (boxangle/num_of_terms_to_average));
+			System.out.println("Driving power: " + (boxdistance/num_of_terms_to_average*Constants.DISTANCE_TO_POWER_RATIO) + ", Driving angle: " + (boxangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO));
 		}
 		/*if(boxdistance/num_of_terms_to_average<=Constants.DISTANCE_TO_CLOSE_BIO_AT) {//Run if box is within grabbing distance
 			end(); //End command

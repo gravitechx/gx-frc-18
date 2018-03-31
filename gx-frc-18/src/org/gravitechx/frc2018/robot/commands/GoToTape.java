@@ -46,6 +46,7 @@ public class GoToTape extends Command {
             tapeangle = tapeangle * (num_of_terms_to_average - 1) / num_of_terms_to_average + info.getTapeAngle();//INSERT VARIABLE FROM KATIE HERE: PROBABLY IN DEGREES
             System.out.println("New tape distance: " + info.getTapeDistance() + " , Average value: " + (tapedistance/num_of_terms_to_average));
             System.out.println("New tape angle: " + info.getTapeAngle() + " , Average value: " + (tapeangle/num_of_terms_to_average));
+            System.out.println("Driving power: " + (tapedistance/num_of_terms_to_average*Constants.DISTANCE_TO_POWER_RATIO) + ", Driving angle: " + (tapeangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO));
         }
         /*if(tapedistance/num_of_terms_to_average<=Constants.AT_TAPE_DISTANCE) {//Run if box is within grabbing distance
             end(); //End command
