@@ -1,6 +1,7 @@
 package org.gravitechx.frc2018.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 import org.gravitechx.frc2018.robot.Constants;
 import org.gravitechx.frc2018.robot.subsystems.Drive;
 import org.gravitechx.frc2018.utils.drivehelpers.RotationalDriveSignal;
@@ -15,6 +16,7 @@ public class GrabBox extends Command {
 	private BIO bio;
 	private Drive drive;
 	private Lift lift;
+	private Timer forwardtimer;
 	private RotationalDriveSignal way_to_move;
 	private double boxdistance,boxangle;
 	public GrabBox() {
@@ -45,7 +47,7 @@ public class GrabBox extends Command {
 	protected void execute() {
 		VisionInfo info = Robot.rs.getVisionInfo();
 		System.out.println(Robot.rs.getnumber());
-		if (boxdistance == 0 && boxangle == 0 && info != null) {
+		if (boxdistance == 0 && boxangle == 0 && info != null) { //Average terms and update with new information
 			boxdistance = info.getBoxDistance() * num_of_terms_to_average;
 			boxangle = info.getBoxAngle() * num_of_terms_to_average;
 		} else if (info != null) {
@@ -54,13 +56,23 @@ public class GrabBox extends Command {
 			System.out.println("New distance: " + info.getBoxDistance() + " , Average value: " + (boxdistance/num_of_terms_to_average));
 			System.out.println("New angle: " + info.getBoxAngle() + " , Average value: " + (boxangle/num_of_terms_to_average));
 		}
-		/*if(boxdistance/num_of_terms_to_average<=Constants.DISTANCE_TO_CLOSE_BIO_AT) {//Run if box is within grabbing distance
-			end(); //End command
-		} else if (boxdistance/num_of_terms_to_average*Constants.DISTANCE_TO_POWER_RATIO <=1 && boxangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO <90) {
+		/*
+		if (forwardtimer != null) { //Run if timer is set
+			if(forwardtimer.hasPeriodPassed(1)) { //If the robot has gone forward enough after the close enough distance
+				forwardtimer.stop();
+				end();
+			} else if(boxangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO < 90) { //If the angle isn't impossibly crazy. :)
+				way_to_move = new RotationalDriveSignal(0.3,boxangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO);
+				drive.set(way_to_move.toDifferentialDriveSignal());
+			} else { System.out.println("Timer not null but angle too crazy. (GrabBox)"); }
+		} else if(boxdistance/num_of_terms_to_average<=Constants.DISTANCE_TO_CLOSE_BIO_AT) {//Run if box is within grabbing distance
+			forwardtimer = new Timer();
+			forwardtimer.start();
+		} else if (boxdistance/num_of_terms_to_average*Constants.DISTANCE_TO_POWER_RATIO <= 0.9 && boxangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO < 90) {
 			way_to_move = new RotationalDriveSignal(boxdistance/num_of_terms_to_average*Constants.DISTANCE_TO_POWER_RATIO,boxangle/num_of_terms_to_average*Constants.ANGLE_TO_ROTATION_RATIO); //Create mew drivesignal (Rotational) that uses the vision distance and angle. Tune with constants.
 			drive.set(way_to_move.toDifferentialDriveSignal());
 		} else {
-			System.out.println("GrabBox not driving; too crazy of numbers")
+			System.out.println("GrabBox not driving.");
 		}*/
 	}
 	

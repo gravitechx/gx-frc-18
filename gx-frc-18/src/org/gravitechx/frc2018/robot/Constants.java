@@ -132,13 +132,13 @@ public class Constants {
     
     /* Robot Server */
     public static final int PORT = 5800;
-    public static final int SERVER_WAIT_MS = 60; //Doesn't really mattter because it's not used right now in RobotServer. 3/24/2018
+    public static final int SERVER_WAIT_MS = 60; //Doesn't really matter because it's not used right now in RobotServer. 3/24/2018
 
     /* Autonomous Vision */
     public static final double AT_TAPE_DISTANCE = 0.5; //Meters
-    public static final double DISTANCE_TO_CLOSE_BIO_AT = 0.3; //Meters
+    public static final double DISTANCE_TO_CLOSE_BIO_AT = 0.4; //Meters
     public static final double DISTANCE_TO_POWER_RATIO = 0.2;
-    public static final double ANGLE_TO_ROTATION_RATIO = 0.05;
+    public static final double ANGLE_TO_ROTATION_RATIO = 0.0;
     
     /* Control System Joystick Functions */
     public static final UnaryOperator<Double> THROTTLE_TRANSPOSITION_OPERATION = new UnaryOperator<Double>() {

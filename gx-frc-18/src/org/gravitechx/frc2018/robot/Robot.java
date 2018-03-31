@@ -86,6 +86,9 @@ public class Robot extends IterativeRobot {
 		gototape = new GoToTape();
 		
 		rs = new RobotServer(Constants.PORT, Constants.SERVER_WAIT_MS);
+		serverThread = new Thread(rs);
+		System.out.println("Starting robotserver");
+		serverThread.start();
 		//cameraServer = CameraServer.getInstance().getServer();
 
 		//topCam = new UsbLifeCam(Constants.TOP_CAM);
@@ -136,9 +139,6 @@ public class Robot extends IterativeRobot {
 		lift.zeroPosition();
 		autonTimer = new Timer();
 		autonTimer.start();
-		serverThread = new Thread(rs);
-		System.out.println("Starting robotserver");
-		serverThread.start();
 
 		String gameData;
 
@@ -165,7 +165,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
-		double reqHeight = 0.0;
+		/*double reqHeight = 0.0;
 		double lastTimer = 0.0;
 		if (autonTimer.get() < 5.5) {
 			drive.set(new RotationalDriveSignal(.2, 0.0).toDifferentialDriveSignal());
@@ -184,7 +184,7 @@ public class Robot extends IterativeRobot {
 			bio.rotate(true);
 			lift.setSetPoint(0.0, 0.0, 0.0);
 		}
-		lift.loop();
+		lift.loop();*/
 	}
 
 	@Override
@@ -200,7 +200,7 @@ public class Robot extends IterativeRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 
-		drive.set(dPipe.apply(
+		/*drive.set(dPipe.apply(
 						new RotationalDriveSignal(mControlScheme.getThrottle(), mControlScheme.getWheel()),
 						mControlScheme.getQuickTurnButton())
 		);
@@ -243,7 +243,7 @@ public class Robot extends IterativeRobot {
 		lift.loop();
 
 		bio.update();
-		mControlScheme.update((new Timestamp()).get());
+		mControlScheme.update((new Timestamp()).get());*/
 	}
 
 	/**
