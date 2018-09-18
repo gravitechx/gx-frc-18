@@ -71,21 +71,16 @@ def camera_to_image():
 	global boxupdate
 	global tapeupdate
 	global cap
-
-	global tape_offset
-	global box_senddistance
-	global box_angle
-	global box_offset
-	global tape_senddistance
-	global tape_angle
+	#global tape_senddistance
+	#global tape_angle
 	#cap=cv2.VideoCapture(0)
 	#print("Camera initiated.")
 	while True:
 		#print("in while loop")
 		ret,image=cap.read()
 		if ret:
-			print("Successful image capture!")
-			print('{"FRAME_ID":2,"TIME":' + str(time.time()-start) + ',"BOX_OFFSET":' + str(box_offset) + ',"BOX_DISTANCE":' + str(box_senddistance) + ',"BOX_ANGLE":' + str(box_angle) + ',"TAPE_OFFSET":' + str(tape_offset) + ',"TAPE_DISTANCE":' + str(tape_senddistance) + ',"TAPE_ANGLE":' + str(tape_angle) + '}\n')
+			#print("Successful image capture!")
+			#print("TD: " + str(tape_senddistance) + ", TA: " + str(tape_angle))
 			pic_lock.acquire()
 			#print("Have pic lock")
 			#print("Got camera frame")
@@ -93,7 +88,7 @@ def camera_to_image():
 			boxupdate=True
 			tapeupdate=True
 			#print("Camera updating...")
-			cv2.imshow("image",image)
+			#cv2.imshow("image",image)
 			#print("Wrote camera frame to newpic.")
 			pic_lock.release()
 		else:
@@ -113,6 +108,7 @@ def tape_vision():
 	#lowerwhite= np.array([80, 150, 0]) #<-- green
 	while (True):
 		if (tapeupdate):
+			#print("Past tape update")
 			#image used in program
 			pic_lock.acquire()
 			im=newpic
@@ -146,13 +142,13 @@ def tape_vision():
 				biggest_contour = cv2.contourArea(contours[x])
 				y = x    
 			    x += 1    
-
+			#print("To the contours")
 			#variables to be used in finding the average point of the tape
 			if contours != []:
 				cnt = contours[y]
 				M = cv2.moments(cnt)
 				if M['m00'] != 0.0:
-					print("Past the M's")
+					#print("Past the M's")
 					cx = int(M['m10']/M['m00']) #Average x point of contour box
 					cy = int(M['m01']/M['m00']) #Average y point of contour box
 
@@ -278,24 +274,26 @@ def tape_vision():
 
 					factor = 0.3149331777342597     
 					factor = factor / 2             #factor used in finding distance from tape to robot
-
+					#print("realxx: " + str(realxx) + ", realx: " + str(realx))
+					#print("realyy: " + str(realyy) + ", realy: " + str(realy))
 					firstsquare = math.pow(realxx - realx, 2)   #used to find width of tape in pixels
 					secondsquare = math.pow(realyy - realy, 2)  #used to find width of tape in pixels
-
+					#print("firstsquare: " + str(firstsquare) + ", secondsquare: " + str(secondsquare))
 					widthoftape = math.sqrt(firstsquare + secondsquare) #Pythagorean Theorem to find width of tape
 					if widthoftape != 0.0:
 						distance = (width/widthoftape) * factor     #Finds distance from robot to tape
 						distance_in_meters = distance * 0.3048      #Converts distance to meters
 
 						cent_of_img = (width/2)                     #Finds center of image
-
-						dist_to_cent = ((cx-cent_of_img) * ((1/6)/widthoftape))     #Finds arc distance (used for finding degrees)
-
+						#print("cx: " + str(cx) + ", cent_of_img: " + str(cent_of_img))
+						#print("Widthoftape: " + str(widthoftape))
+						dist_to_cent = ((cx-cent_of_img) * (1/(6*widthoftape)))     #Finds arc distance (used for finding degrees)
+						#print("Dist_to_cent: " + str(dist_to_cent))
 						degree = (dist_to_cent/(math.pi * 2 * distance)) * 360      #Finds degree (positive = right)
+						#print("Degree: " + str(degree))
 
-
-						print ("Degree = %s" %degree)
-						print ("Distance = %s" %distance)
+						#print ("Degree = %s" %degree)
+						#print ("Distance = %s" %distance)
 						info_lock.acquire()
 						tape_senddistance = distance_in_meters
 						tape_angle = degree
@@ -433,29 +431,32 @@ def box_vision():
 					xCenter = (int(width/2))
 					yCenter = (int(height/2))
 					cv2.circle(im, (xCenter, centroid_y), 1, (255,0,0), thickness=10, lineType=8, shift=0)
-
+					print("xCenter: " + str(xCenter) + ", centroid_x: " + str(centroid_x))
 					distance_to_center = xCenter - centroid_x
 
 					#draws the centroid onto im
 					cv2.circle(im, (centroid_x, centroid_y), 1, (0,255,0), thickness=10, lineType=8, shift=0)
 
-					ratio = width/w
-
+					ratio = width/w		
+					w = math.ceil(w * 100000) / 100000
 
 					#Using Width Ratio (width = image width; w = box width)
 					Wfactor = 1.012239583                               #Factor used to find distance
 					Wdistance = (width/w) * Wfactor                     #Calculators Distance
 					Wdistance *= 0.3048                                 #Converts feet to meter
-					WdistToCent = (distance_to_center * ((13/12)/w))    #Calculates Distance to center in feet 
-					WdistToCent *= 0.3048                               #Converts feet to meter
-
-					Wdegree = (WdistToCent/(2*math.pi*Wdistance))*360   #Finds Degree needed to turn for the box to be in center
+					print("distance_to_center: " + str(distance_to_center) + ", W: " + str(w))
+					WdistToCent = (distance_to_center * ((6.5)/(6*w)))   #Calculates Distance to center in feet 
+					WdistToCent *= 0.3048					#Converts feet to meter
+					print("WdistToCent: " + str(WdistToCent))
+					Wdegree = (WdistToCent/(2*math.pi*Wdistance)*360)   #Finds Degree needed to turn for the box to be in center
+					print("Box degree: " + str(Wdegree))
 					info_lock.acquire()
 					box_senddistance=Wdistance
 					box_offset=distance_to_center
 					box_angle = Wdegree
 					info_lock.release()
-
+					
+					print("Wdistance: " + str(Wdistance))
 
 					#displays the images
 					#cv2.imshow('hsv', hsv)
